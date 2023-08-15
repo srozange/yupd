@@ -28,7 +28,7 @@
     </formats>
     <files>
         <file>
-            <source>LICENSE.txt</source>
+            <source>LICENSE</source>
             <outputDirectory>./</outputDirectory>
         </file>
         <file>
