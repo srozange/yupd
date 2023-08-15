@@ -2,6 +2,7 @@ name: EarlyAccess
 
 on:
   workflow_dispatch:
+  pull_request:
 
 env:
   GRAAL_VERSION: '22.3.0'
