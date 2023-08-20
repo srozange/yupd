@@ -11,7 +11,7 @@
         <assembly-plugin.version>3.4.2</assembly-plugin.version>
         <compiler-plugin.version>3.10.1</compiler-plugin.version>
         <jreleaser-plugin.version>1.3.0</jreleaser-plugin.version>
-        <os-plugin.version>1.7.0</os-plugin.version>
+        <os-plugin.version>1.7.1</os-plugin.version>
         <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <maven.compiler.source>17</maven.compiler.source>
