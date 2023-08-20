@@ -41,17 +41,18 @@ public class YamlRepoUpdater {
             return YamlUpdateResult.notUpdated(oldContent);
         }
 
-        if (!parameter.isDryRun()) {
-            LOGGER.info("Updating the file");
-            LOGGER.debugf("The new content will be :\n%s", newContent);
+        LOGGER.debugf("New content:");
+        LOGGER.debugf("%s", newContent);
 
+        if (!parameter.isDryRun()) {
+            LOGGER.info("Updating remote file");
             repository.updateFile(parameter.getRemoteFile(), parameter.getCommitMessage(), newContent);
+            LOGGER.info("Done!");
 
         } else {
-            LOGGER.infof("No updates since the dry mode is activated; the new content would be:\n%s", newContent);
+            LOGGER.infof("No updates since the dry mode is activated");
         }
 
-        LOGGER.info("Done!");
         return YamlUpdateResult.updated(oldContent, newContent);
     }
 
