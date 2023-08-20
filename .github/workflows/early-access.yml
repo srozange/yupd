@@ -1,10 +1,11 @@
 name: EarlyAccess
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ main ]
 
 env:
-  GRAAL_VERSION: '22.3.0'
+  GRAAL_VERSION: '22.3.2'
   JAVA_VERSION: '17'
   JAVA_DISTRO: 'zulu'
 
