@@ -56,7 +56,7 @@ public class YupdCommand implements Callable<Integer> {
     public Integer call() {
         LogUtils.setConsoleLoggerLevel(verbose ? "DEBUG" : "INFO");
         try {
-            yamlRepoUpdater.update(new YamlUpdateParameterFactory(this).create());
+            yamlRepoUpdater.update(new YamlRepoUpdaterParameterFactory(this).create());
         } catch (RuntimeException e) {
             LogUtils.getConsoleLogger().error("An error occurred", e);
             return 1;
