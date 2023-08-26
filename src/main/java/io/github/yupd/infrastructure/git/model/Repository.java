@@ -10,6 +10,8 @@ public class Repository {
 
     private String token;
 
+    private String project;
+
    public static Builder builder() {
         return new Builder();
    }
@@ -26,10 +28,15 @@ public class Repository {
         return token;
     }
 
+    public String getProject() {
+        return project;
+    }
+
     public static final class Builder {
         private String url;
         private Type type;
         private String token;
+        private String project;
 
         private Builder() {
         }
@@ -53,11 +60,17 @@ public class Repository {
             return this;
         }
 
+        public Builder withProject(String project) {
+            this.project = project;
+            return this;
+        }
+
         public Repository build() {
             Repository repository = new Repository();
-            repository.type = this.type;
-            repository.token = this.token;
             repository.url = this.url;
+            repository.project = this.project;
+            repository.token = this.token;
+            repository.type = this.type;
             return repository;
         }
     }

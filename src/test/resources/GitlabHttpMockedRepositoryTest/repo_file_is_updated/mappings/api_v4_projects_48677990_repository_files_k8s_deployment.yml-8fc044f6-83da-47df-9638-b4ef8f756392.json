@@ -1,0 +1,48 @@
+{
+  "id" : "8fc044f6-83da-47df-9638-b4ef8f756392",
+  "name" : "api_v4_projects_48677990_repository_files_k8s_deployment.yml",
+  "request" : {
+    "url" : "/api/v4/projects/48677990/repository/files/k8s%2Fdeployment.yml",
+    "method" : "PUT",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"commit_message\":\"Updated container image version\",\"encoding\":\"base64\",\"branch\":\"yupd-it\",\"content\":\"LS0tCmFwaVZlcnNpb246IGFwcHMvdjEKa2luZDogRGVwbG95bWVudAptZXRhZGF0YToKICBuYW1lOiBuZ2lueAogIGxhYmVsczoKICAgIGFwcDogbmdpbngKICBhbm5vdGF0aW9uczoKICAgIGxhc3QtdXBkYXRlZDogU3VuIEF1ZyAyNyAwOToyNDo1OCBDRVNUIDIwMjMKc3BlYzoKICByZXBsaWNhczogMQogIHNlbGVjdG9yOgogICAgbWF0Y2hMYWJlbHM6CiAgICAgIGFwcDogbmdpbngKICB0ZW1wbGF0ZToKICAgIG1ldGFkYXRhOgogICAgICBsYWJlbHM6CiAgICAgICAgYXBwOiBuZ2lueAogICAgc3BlYzoKICAgICAgY29udGFpbmVyczoKICAgICAgICAtIGltYWdlOiBuZ2lueDpuZXd2ZXJzaW9uCiAgICAgICAgICBuYW1lOiBuZ2lueAo=\"}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"file_path\":\"k8s/deployment.yml\",\"branch\":\"yupd-it\"}",
+    "headers" : {
+      "Date" : "Tue, 22 Aug 2023 07:58:30 GMT",
+      "Content-Type" : "application/json",
+      "Cache-Control" : "max-age=0, private, must-revalidate",
+      "Content-Security-Policy" : "default-src 'none'",
+      "Etag" : "W/\"007db52e267b7824f15295b793753852\"",
+      "Vary" : "Origin, Accept-Encoding",
+      "X-Content-Type-Options" : "nosniff",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-Gitlab-Meta" : "{\"correlation_id\":\"b94c11bd0bc101b256a12d608e40f291\",\"version\":\"1\"}",
+      "X-Request-Id" : "b94c11bd0bc101b256a12d608e40f291",
+      "X-Runtime" : "0.553018",
+      "Strict-Transport-Security" : "max-age=31536000",
+      "Referrer-Policy" : "strict-origin-when-cross-origin",
+      "RateLimit-Observed" : "2",
+      "RateLimit-Remaining" : "1998",
+      "RateLimit-Reset" : "1692691170",
+      "RateLimit-ResetTime" : "Tue, 22 Aug 2023 07:59:30 GMT",
+      "RateLimit-Limit" : "2000",
+      "GitLab-LB" : "fe-17-lb-gprd",
+      "GitLab-SV" : "localhost",
+      "CF-Cache-Status" : "DYNAMIC",
+      "Report-To" : "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=BH4QSJtVLAtUcniF%2FYeOdPiOLB5YFO2agTFUav5TEnoj1IaWoPSk3VtLS7cOS3RLR63ZmiJlRb6pajK0iDB6sMAYSECjhXhgWjKHVEYTd9sBSDvtTCKIZMwrjkQ%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "NEL" : "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "Set-Cookie" : "_cfuvid=Yky_hAm5ixO6d8KeAq.NLjI.chEK3wd8Dz4whJ_UUb0-1692691110590-0-604800000; path=/; domain=.gitlab.com; HttpOnly; Secure; SameSite=None",
+      "Server" : "cloudflare",
+      "CF-RAY" : "7fa9922bc9d02a6e-CDG"
+    }
+  },
+  "uuid" : "8fc044f6-83da-47df-9638-b4ef8f756392",
+  "persistent" : true,
+  "insertionIndex" : 2
+}

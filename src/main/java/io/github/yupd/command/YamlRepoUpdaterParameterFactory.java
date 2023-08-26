@@ -26,7 +26,6 @@ class YamlRepoUpdaterParameterFactory {
                 .withRepository(buildRepository())
                 .withBranch(cmd.branch)
                 .withFilePath(cmd.path)
-                .withProject(cmd.project)
                 .build();
     }
 
@@ -35,6 +34,7 @@ class YamlRepoUpdaterParameterFactory {
                 .withUrl(cmd.url)
                 .withType(cmd.repoType)
                 .withToken(cmd.token)
+                .withProject(cmd.project)
                 .build();
     }
 }

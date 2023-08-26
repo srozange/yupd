@@ -2,7 +2,7 @@ package io.github.yupd.infrastructure.git;
 
 import io.github.yupd.infrastructure.git.model.RemoteFile;
 
-public interface GitRepository {
+public interface GitConnector {
 
     String getFileContent(RemoteFile file);
 

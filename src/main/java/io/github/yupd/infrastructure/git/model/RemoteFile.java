@@ -4,8 +4,6 @@ public class RemoteFile {
 
     private Repository repository;
 
-    private String project;
-
     private String branch;
 
     private String path;
@@ -18,10 +16,6 @@ public class RemoteFile {
         return repository;
     }
 
-    public String getProject() {
-        return project;
-    }
-
     public String getBranch() {
         return branch;
     }
@@ -32,7 +26,6 @@ public class RemoteFile {
 
     public static final class Builder {
         private Repository repository;
-        private String project;
         private String branch;
         private String filePath;
 
@@ -48,11 +41,6 @@ public class RemoteFile {
             return this;
         }
 
-        public Builder withProject(String project) {
-            this.project = project;
-            return this;
-        }
-
         public Builder withBranch(String branch) {
             this.branch = branch;
             return this;
@@ -65,7 +53,6 @@ public class RemoteFile {
 
         public RemoteFile build() {
             RemoteFile remoteFile = new RemoteFile();
-            remoteFile.project = this.project;
             remoteFile.repository = this.repository;
             remoteFile.path = this.filePath;
             remoteFile.branch = this.branch;

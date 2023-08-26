@@ -1,7 +1,7 @@
 package io.github.yupd.business;
 
-import io.github.yupd.infrastructure.git.GitRepositoryProvider;
-import io.github.yupd.infrastructure.git.GitRepository;
+import io.github.yupd.infrastructure.git.GitConnectorFactory;
+import io.github.yupd.infrastructure.git.GitConnector;
 import io.github.yupd.infrastructure.utils.LogUtils;
 import io.github.yupd.infrastructure.yaml.YamlPathUpdator;
 import io.github.yupd.infrastructure.utils.IOUtils;
@@ -15,16 +15,16 @@ public class YamlRepoUpdater {
     private static final Logger LOGGER = LogUtils.getConsoleLogger();
 
     @Inject
-    GitRepositoryProvider gitRepositoryProvider;
+    GitConnectorFactory gitConnectorFactory;
 
     @Inject
     YamlPathUpdator yamlPathUpdator;
 
     public YamlUpdateResult update(YamlRepoUpdaterParameter parameter) {
-        GitRepository repository = gitRepositoryProvider.provide(parameter.getRemoteFile().getRepository().getType());
+        GitConnector connector = gitConnectorFactory.create(parameter.getRemoteFile().getRepository());
 
         LOGGER.info("Fetching remote file");
-        String oldContent = repository.getFileContent(parameter.getRemoteFile());
+        String oldContent = connector.getFileContent(parameter.getRemoteFile());
 
         String newContent;
         if (parameter.getSourceFile().isPresent()) {
@@ -46,7 +46,7 @@ public class YamlRepoUpdater {
 
         if (!parameter.isDryRun()) {
             LOGGER.info("Updating remote file");
-            repository.updateFile(parameter.getRemoteFile(), parameter.getCommitMessage(), newContent);
+            connector.updateFile(parameter.getRemoteFile(), parameter.getCommitMessage(), newContent);
             LOGGER.info("Done!");
 
         } else {
