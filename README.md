@@ -89,9 +89,15 @@ Usage: yupd [-hV] [--dry-run] [--verbose] -b=<branch> [-f=<sourceFile>]
 
 You can grab the latest binaries from the [releases page](https://github.com/srozange/yupd/releases).
 
-## Docker image
+## Docker Image
 
-Coming soon.
+Docker images are available on [Docker Hub](https://hub.docker.com/repository/docker/srozange/yupd/general).
+
+To use the image, you can run the following command:
+
+```bash
+docker run srozange/yupd:0.1 --repo-type github --token <token> ...
+```
 
 ## Limitations
 
