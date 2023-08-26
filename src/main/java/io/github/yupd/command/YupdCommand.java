@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-@CommandLine.Command(name = "main", mixinStandardHelpOptions = true, versionProvider = YupdVersionProvider.class)
+@CommandLine.Command(name = "yupd", mixinStandardHelpOptions = true, versionProvider = YupdVersionProvider.class)
 public class YupdCommand implements Callable<Integer> {
 
     private final YamlRepoUpdater yamlRepoUpdater;

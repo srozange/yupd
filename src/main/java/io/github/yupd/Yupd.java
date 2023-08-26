@@ -10,6 +10,7 @@ import picocli.CommandLine;
 
 @QuarkusMain
 public class Yupd implements QuarkusApplication {
+
     @Inject
     CommandLine.IFactory factory;
 
