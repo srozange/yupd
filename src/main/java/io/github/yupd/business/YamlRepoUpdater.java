@@ -57,9 +57,9 @@ public class YamlRepoUpdater {
     }
 
     public static class YamlUpdateResult {
-        public boolean updated;
-        public String originalContent;
-        public String newContent;
+        public final boolean updated;
+        public final String originalContent;
+        public final String newContent;
 
         public YamlUpdateResult(boolean updated, String originalContent, String newContent) {
             this.updated = updated;

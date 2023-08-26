@@ -5,7 +5,7 @@ import java.util.List;
 
 public class CommandLineArgsBuilder {
 
-    private List<String> args = new ArrayList<>();
+    private final List<String> args = new ArrayList<>();
 
     public static CommandLineArgsBuilder get() {
         return new CommandLineArgsBuilder();

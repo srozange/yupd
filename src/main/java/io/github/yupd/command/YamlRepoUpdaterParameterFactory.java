@@ -5,7 +5,7 @@ import io.github.yupd.infrastructure.git.model.RemoteFile;
 import io.github.yupd.infrastructure.git.model.Repository;
 
 class YamlRepoUpdaterParameterFactory {
-    private YupdCommand cmd;
+    private final YupdCommand cmd;
 
     YamlRepoUpdaterParameterFactory(YupdCommand cmd) {
         this.cmd = cmd;

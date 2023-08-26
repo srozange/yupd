@@ -4,8 +4,8 @@ import java.util.Map;
 
 public class YamlPathEntry {
 
-    private String path;
-    private String replacement;
+    private final String path;
+    private final String replacement;
 
     public YamlPathEntry(String path, String replacement) {
         this.path = path;

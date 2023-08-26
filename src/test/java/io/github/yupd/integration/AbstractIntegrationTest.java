@@ -34,6 +34,7 @@ public abstract class AbstractIntegrationTest {
         }
 
         @Override
+        @SuppressWarnings("unchecked")
         public T answer(InvocationOnMock invocationOnMock) throws Throwable {
             result = (T) invocationOnMock.callRealMethod();
             return result;

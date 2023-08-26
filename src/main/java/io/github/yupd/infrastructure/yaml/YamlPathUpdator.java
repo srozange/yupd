@@ -1,9 +1,7 @@
 package io.github.yupd.infrastructure.yaml;
 
-import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator;
 import io.github.yamlpath.YamlExpressionParser;
 import io.github.yamlpath.YamlPath;
-import io.github.yamlpath.utils.SerializationUtils;
 import io.github.yupd.infrastructure.yaml.model.YamlPathEntry;
 import jakarta.enterprise.context.ApplicationScoped;
 
