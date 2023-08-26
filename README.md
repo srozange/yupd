@@ -1,4 +1,5 @@
 # Yupd
+![GitHub release (with filter)](https://img.shields.io/github/v/release/srozange/yupd)
 [![Build](https://github.com/srozange/yupd/actions/workflows/maven.yml/badge.svg)](https://github.com/srozange/yupd/actions/workflows/maven.yml)
 [![codecov](https://codecov.io/gh/srozange/yupd/branch/main/badge.svg?token=JCPP4VZ1S1)](https://codecov.io/gh/srozange/yupd)
 
