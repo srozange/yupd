@@ -1,5 +1,6 @@
 # Yupd
 [![Build](https://github.com/srozange/yupd/actions/workflows/maven.yml/badge.svg)](https://github.com/srozange/yupd/actions/workflows/maven.yml)
+[![codecov](https://codecov.io/gh/srozange/yupd/branch/main/badge.svg?token=JCPP4VZ1S1)](https://codecov.io/gh/srozange/yupd)
 
 **Update YAML files the GitOps way**
 
