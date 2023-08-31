@@ -10,7 +10,7 @@
     <properties>
         <assembly-plugin.version>3.6.0</assembly-plugin.version>
         <compiler-plugin.version>3.11.0</compiler-plugin.version>
-        <jreleaser-plugin.version>1.7.0</jreleaser-plugin.version>
+        <jreleaser-plugin.version>1.8.0</jreleaser-plugin.version>
         <os-plugin.version>1.7.1</os-plugin.version>
         <surefire-plugin.version>3.1.2</surefire-plugin.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
