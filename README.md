@@ -101,7 +101,7 @@ Docker images are available on [Docker Hub](https://hub.docker.com/gitRepository
 To use the image, you can run the following command:
 
 ```bash
-docker run srozange/yupd:0.1 --repo-type github --token <token> ...
+docker run srozange/yupd:0.2 --repo-type github --token <token> ...
 ```
 
 ## Limitations
