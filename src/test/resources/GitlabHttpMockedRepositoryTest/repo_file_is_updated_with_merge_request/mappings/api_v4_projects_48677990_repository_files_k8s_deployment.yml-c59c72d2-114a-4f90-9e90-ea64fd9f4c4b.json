@@ -5,7 +5,7 @@
     "url" : "/api/v4/projects/48677990/repository/files/k8s%2Fdeployment.yml",
     "method" : "PUT",
     "bodyPatterns" : [ {
-      "equalToJson" : "{\"commit_message\":\"Udpate values in k8s/deployment.yml\",\"encoding\":\"base64\",\"branch\":\"yupd/77024e4\",\"content\":\"LS0tCmFwaVZlcnNpb246IGFwcHMvdjEKa2luZDogRGVwbG95bWVudAptZXRhZGF0YToKICBuYW1lOiBuZ2lueAogIGxhYmVsczoKICAgIGFwcDogbmdpbngKICBhbm5vdGF0aW9uczoKICAgIGxhc3QtdXBkYXRlZDogU3VuIEF1ZyAyOCAwOToyNDo1OCBDRVNUIDIwMjMKc3BlYzoKICByZXBsaWNhczogMQogIHNlbGVjdG9yOgogICAgbWF0Y2hMYWJlbHM6CiAgICAgIGFwcDogbmdpbngKICB0ZW1wbGF0ZToKICAgIG1ldGFkYXRhOgogICAgICBsYWJlbHM6CiAgICAgICAgYXBwOiBuZ2lueAogICAgc3BlYzoKICAgICAgY29udGFpbmVyczoKICAgICAgICAtIGltYWdlOiBuZ2lueDphbm90aGVybmV3dmVyc2lvbgogICAgICAgICAgbmFtZTogbmdpbngK\"}",
+      "equalToJson" : "{\"commit_message\":\"Udpate values in k8s/deployment.yml\",\"encoding\":\"base64\",\"branch\":\"yupd/77024e4\",\"content\":\"YXBpVmVyc2lvbjogYXBwcy92MQpraW5kOiBEZXBsb3ltZW50Cm1ldGFkYXRhOgogIG5hbWU6IG5naW54CiAgbGFiZWxzOgogICAgYXBwOiBuZ2lueAogIGFubm90YXRpb25zOgogICAgbGFzdC11cGRhdGVkOiAiU3VuIEF1ZyAyOCAwOToyNDo1OCBDRVNUIDIwMjMiCnNwZWM6CiAgcmVwbGljYXM6IDEKICBzZWxlY3RvcjoKICAgIG1hdGNoTGFiZWxzOgogICAgICBhcHA6IG5naW54CiAgdGVtcGxhdGU6CiAgICBtZXRhZGF0YToKICAgICAgbGFiZWxzOgogICAgICAgIGFwcDogbmdpbngKICAgIHNwZWM6CiAgICAgIGNvbnRhaW5lcnM6CiAgICAgIC0gaW1hZ2U6IG5naW54OmFub3RoZXJuZXd2ZXJzaW9uCiAgICAgICAgbmFtZTogbmdpbngK\"}",
       "ignoreArrayOrder" : true,
       "ignoreExtraElements" : true
     } ]

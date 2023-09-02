@@ -106,5 +106,4 @@ docker run srozange/yupd:0.1 --repo-type github --token <token> ...
 
 ## Limitations
 
-- Does not currently support updating multiple documents embedded in a single file.
 - Only supports modifications to one file per commit.
