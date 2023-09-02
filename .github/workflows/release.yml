@@ -101,6 +101,13 @@ jobs:
             target/distributions/*.zip
             target/distributions/*.tar.gz
 
+      - name: 'Upload linux executable for Docker image'
+        uses: actions/upload-artifact@v3
+        if: contains(matrix.os, 'ubuntu')
+        with:
+          name: target
+          path: target/*runner*
+
   # Collect all executables and release
   release:
     needs: [ precheck, build ]
@@ -128,6 +135,23 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
 
+      - name: 'Set up Docker Buildx'
+        uses: docker/setup-buildx-action@v1
+
+      - name: 'Login to Docker Hub'
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: 'Build and push Docker image'
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: src/main/docker/Dockerfile.native
+          push: true
+          tags: srozange/yupd:${{ github.event.inputs.version }}
+
       - name: 'Release with JReleaser'
         env:
           JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -138,5 +162,6 @@ jobs:
           ./mvnw -B -ntp versions:set versions:commit -DnewVersion=${{ needs.precheck.outputs.NEXT_VERSION }}
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "GitHub Action"
+          sed -i 's|srozange/yupd:[0-9]\.[0-9]|srozange/yupd:${{ github.event.inputs.version }}|g' README.md
           git commit -a -m "⬆️  Next version $NEXT_VERSION"
           git push origin HEAD:main
