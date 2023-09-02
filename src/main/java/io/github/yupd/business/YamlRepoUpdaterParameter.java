@@ -1,6 +1,7 @@
 package io.github.yupd.business;
 
-import io.github.yupd.infrastructure.git.model.RemoteFile;
+import io.github.yupd.infrastructure.git.model.GitFile;
+import io.github.yupd.infrastructure.utils.StringUtils;
 import io.github.yupd.infrastructure.yaml.model.YamlPathEntry;
 
 import java.nio.file.Path;
@@ -13,11 +14,13 @@ public class YamlRepoUpdaterParameter {
 
     private Path sourceFile;
 
-    private RemoteFile remoteFile;
+    private GitFile gitFile;
 
-    private String commitMessage;
+    private String message;
 
     private List<YamlPathEntry> yamlPathEntries;
+
+    private boolean mergeRequest;
 
     private boolean dryRun;
 
@@ -29,34 +32,35 @@ public class YamlRepoUpdaterParameter {
         return Optional.ofNullable(sourceFile);
     }
 
-    public String getCommitMessage() {
-        return commitMessage;
+    public String getMessage() {
+        return StringUtils.isNullOrEmpty(message) ? "Udpate values in " + getGitFile().getPath() : message;
     }
 
     public List<YamlPathEntry> getYamlPathUpdates() {
         return yamlPathEntries;
     }
 
-    public RemoteFile getRemoteFile() {
-        return remoteFile;
+    public GitFile getGitFile() {
+        return gitFile;
     }
 
     public boolean isDryRun() {
         return dryRun;
     }
 
+    public boolean isMergeRequest() {
+        return mergeRequest;
+    }
+
     public static final class Builder {
         private Path sourceFile;
-        private RemoteFile remoteFile;
-        private String commitMessage;
+        private GitFile gitFile;
+        private String message;
         private List<YamlPathEntry> yamlPathEntries;
         private boolean dryRun;
+        private boolean mergeRequest;
 
         private Builder() {
-        }
-
-        public static Builder anYamlUpdate() {
-            return new Builder();
         }
 
         public Builder withSourceFile(Path sourceFile) {
@@ -64,13 +68,13 @@ public class YamlRepoUpdaterParameter {
             return this;
         }
 
-        public Builder withRemoteFile(RemoteFile remoteFile) {
-            this.remoteFile = remoteFile;
+        public Builder withGitFile(GitFile gitFile) {
+            this.gitFile = gitFile;
             return this;
         }
 
-        public Builder withCommitMessage(String commitMessage) {
-            this.commitMessage = commitMessage;
+        public Builder withMessage(String message) {
+            this.message = message;
             return this;
         }
 
@@ -89,13 +93,19 @@ public class YamlRepoUpdaterParameter {
             return this;
         }
 
+        public Builder withMergeRequest(boolean mergeRequest) {
+            this.mergeRequest = mergeRequest;
+            return this;
+        }
+
         public YamlRepoUpdaterParameter build() {
             YamlRepoUpdaterParameter yamlRepoUpdaterParameter = new YamlRepoUpdaterParameter();
             yamlRepoUpdaterParameter.dryRun = this.dryRun;
             yamlRepoUpdaterParameter.yamlPathEntries = this.yamlPathEntries;
-            yamlRepoUpdaterParameter.commitMessage = this.commitMessage;
-            yamlRepoUpdaterParameter.remoteFile = this.remoteFile;
+            yamlRepoUpdaterParameter.message = this.message;
+            yamlRepoUpdaterParameter.gitFile = this.gitFile;
             yamlRepoUpdaterParameter.sourceFile = this.sourceFile;
+            yamlRepoUpdaterParameter.mergeRequest = this.mergeRequest;
             return yamlRepoUpdaterParameter;
         }
     }

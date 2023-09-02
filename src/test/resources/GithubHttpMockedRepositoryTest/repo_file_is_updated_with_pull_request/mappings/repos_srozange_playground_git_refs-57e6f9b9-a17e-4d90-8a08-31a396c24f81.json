@@ -1,0 +1,48 @@
+{
+  "id" : "57e6f9b9-a17e-4d90-8a08-31a396c24f81",
+  "name" : "repos_srozange_playground_git_refs",
+  "request" : {
+    "url" : "/repos/srozange/playground/git/refs",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"ref\":\"refs/heads/yupd/77024e4\",\"sha\":\"c8b0140cedbb11ccd3a08a8ecd3e43850e51fcbe\"}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 201,
+    "body" : "{\"ref\":\"refs/heads/yupd/77024e4\",\"node_id\":\"REF_kwDOKJr_wrdyZWZzL2hlYWRzL3l1cGQvNzcwMjRlNA\",\"url\":\"https://api.github.com/repos/srozange/playground/git/refs/heads/yupd/77024e4\",\"object\":{\"sha\":\"c8b0140cedbb11ccd3a08a8ecd3e43850e51fcbe\",\"type\":\"commit\",\"url\":\"https://api.github.com/repos/srozange/playground/git/commits/c8b0140cedbb11ccd3a08a8ecd3e43850e51fcbe\"}}",
+    "headers" : {
+      "Server" : "GitHub.com",
+      "Date" : "Wed, 30 Aug 2023 09:15:28 GMT",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Cache-Control" : "private, max-age=60, s-maxage=60",
+      "Vary" : [ "Accept, Authorization, Cookie, X-GitHub-OTP", "Accept-Encoding, Accept, X-Requested-With" ],
+      "ETag" : "\"e265433b7e35414c48b11b88947682eebbd2d8ced3dcbf1eb064774d5faa2406\"",
+      "X-OAuth-Scopes" : "repo",
+      "X-Accepted-OAuth-Scopes" : "repo",
+      "github-authentication-token-expiration" : "2023-09-15 09:55:43 UTC",
+      "Location" : "https://api.github.com/repos/srozange/playground/git/refs/heads/yupd/77024e4",
+      "X-GitHub-Media-Type" : "github.v3; format=json",
+      "x-github-api-version-selected" : "2022-11-28",
+      "X-RateLimit-Limit" : "5000",
+      "X-RateLimit-Remaining" : "4982",
+      "X-RateLimit-Reset" : "1693390465",
+      "X-RateLimit-Used" : "18",
+      "X-RateLimit-Resource" : "core",
+      "Access-Control-Expose-Headers" : "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset",
+      "Access-Control-Allow-Origin" : "*",
+      "Strict-Transport-Security" : "max-age=31536000; includeSubdomains; preload",
+      "X-Frame-Options" : "deny",
+      "X-Content-Type-Options" : "nosniff",
+      "X-XSS-Protection" : "0",
+      "Referrer-Policy" : "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "Content-Security-Policy" : "default-src 'none'",
+      "X-GitHub-Request-Id" : "EFD6:18EC:1AC87A1:1B1C8D9:64EF08AF"
+    }
+  },
+  "uuid" : "57e6f9b9-a17e-4d90-8a08-31a396c24f81",
+  "persistent" : true,
+  "insertionIndex" : 8
+}

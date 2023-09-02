@@ -23,4 +23,5 @@ public class YamlPathEntry {
     public String getReplacement() {
         return replacement;
     }
+
 }

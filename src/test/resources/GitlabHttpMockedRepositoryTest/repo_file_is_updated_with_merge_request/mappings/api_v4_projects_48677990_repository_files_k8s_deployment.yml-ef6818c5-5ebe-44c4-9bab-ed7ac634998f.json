@@ -1,0 +1,53 @@
+{
+  "id" : "ef6818c5-5ebe-44c4-9bab-ed7ac634998f",
+  "name" : "api_v4_projects_48677990_repository_files_k8s_deployment.yml",
+  "request" : {
+    "url" : "/api/v4/projects/48677990/repository/files/k8s%2Fdeployment.yml?ref=yupd-it",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"file_name\":\"deployment.yml\",\"file_path\":\"k8s/deployment.yml\",\"size\":362,\"encoding\":\"base64\",\"content_sha256\":\"451bc9323ca3de4b020a1297533200921a1e2f6f0cbe3c3e220f709e60d8103b\",\"ref\":\"yupd-it\",\"blob_id\":\"d3f6a2c13397349e49a6bb75c80c90c6fc51a5aa\",\"commit_id\":\"3452364aa43f683c3a39181f9dea861ff4849170\",\"last_commit_id\":\"3452364aa43f683c3a39181f9dea861ff4849170\",\"execute_filemode\":false,\"content\":\"LS0tCmFwaVZlcnNpb246IGFwcHMvdjEKa2luZDogRGVwbG95bWVudAptZXRhZGF0YToKICBuYW1lOiBuZ2lueAogIGxhYmVsczoKICAgIGFwcDogbmdpbngKICBhbm5vdGF0aW9uczoKICAgIGxhc3QtdXBkYXRlZDogU3VuIEF1ZyAyNyAwOToyNDo1OCBDRVNUIDIwMjMKc3BlYzoKICByZXBsaWNhczogMQogIHNlbGVjdG9yOgogICAgbWF0Y2hMYWJlbHM6CiAgICAgIGFwcDogbmdpbngKICB0ZW1wbGF0ZToKICAgIG1ldGFkYXRhOgogICAgICBsYWJlbHM6CiAgICAgICAgYXBwOiBuZ2lueAogICAgc3BlYzoKICAgICAgY29udGFpbmVyczoKICAgICAgICAtIGltYWdlOiBuZ2lueDpuZXd2ZXJzaW9uCiAgICAgICAgICBuYW1lOiBuZ2lueAo=\"}",
+    "headers" : {
+      "Date" : "Wed, 30 Aug 2023 09:20:39 GMT",
+      "Content-Type" : "application/json",
+      "Cache-Control" : "max-age=0, private, must-revalidate",
+      "Content-Security-Policy" : "default-src 'none'",
+      "Etag" : "W/\"61c180a48dec2ea1a34a22ab04f943bf\"",
+      "Vary" : "Origin, Accept-Encoding",
+      "X-Content-Type-Options" : "nosniff",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-Gitlab-Blob-Id" : "d3f6a2c13397349e49a6bb75c80c90c6fc51a5aa",
+      "X-Gitlab-Commit-Id" : "3452364aa43f683c3a39181f9dea861ff4849170",
+      "X-Gitlab-Content-Sha256" : "451bc9323ca3de4b020a1297533200921a1e2f6f0cbe3c3e220f709e60d8103b",
+      "X-Gitlab-Encoding" : "base64",
+      "X-Gitlab-Execute-Filemode" : "false",
+      "X-Gitlab-File-Name" : "deployment.yml",
+      "X-Gitlab-File-Path" : "k8s/deployment.yml",
+      "X-Gitlab-Last-Commit-Id" : "3452364aa43f683c3a39181f9dea861ff4849170",
+      "X-Gitlab-Meta" : "{\"correlation_id\":\"188f8c61e392c1cd1ee1ad54602c481c\",\"version\":\"1\"}",
+      "X-Gitlab-Ref" : "yupd-it",
+      "X-Gitlab-Size" : "362",
+      "X-Request-Id" : "188f8c61e392c1cd1ee1ad54602c481c",
+      "X-Runtime" : "0.138749",
+      "Strict-Transport-Security" : "max-age=31536000",
+      "Referrer-Policy" : "strict-origin-when-cross-origin",
+      "RateLimit-Observed" : "3",
+      "RateLimit-Remaining" : "1997",
+      "RateLimit-Reset" : "1693387298",
+      "RateLimit-ResetTime" : "Wed, 30 Aug 2023 09:21:38 GMT",
+      "RateLimit-Limit" : "2000",
+      "GitLab-LB" : "fe-14-lb-gprd",
+      "GitLab-SV" : "localhost",
+      "CF-Cache-Status" : "MISS",
+      "Report-To" : "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=7YdmRgjzVsF9CtDMINWlLi%2Bgdd85CLH0c9b9xIvR2ZTOoUcOZnOWd36MPyk26IG8depz%2Bmkw1QZDHP0v5xuuWGa5CMfAcM%2BTbE2fBotehcd6PMQCY4OI1irz27I%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "NEL" : "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "Set-Cookie" : "_cfuvid=oxzdB7XZeDMwY13YIG4lzB1k2Y9ODJ_HsaRtDBDCtpo-1693387239036-0-604800000; path=/; domain=.gitlab.com; HttpOnly; Secure; SameSite=None",
+      "Server" : "cloudflare",
+      "CF-RAY" : "7febf5822ead03c5-CDG"
+    }
+  },
+  "uuid" : "ef6818c5-5ebe-44c4-9bab-ed7ac634998f",
+  "persistent" : true,
+  "insertionIndex" : 1
+}

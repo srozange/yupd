@@ -1,0 +1,43 @@
+{
+  "id" : "3f506aa5-a08e-4226-aeb6-67ed436f0e3f",
+  "name" : "repos_srozange_playground_contents_k8s_deployment.yml",
+  "request" : {
+    "url" : "/repos/srozange/playground/contents/k8s/deployment.yml?ref=refs%2Fheads%2Fyupd-it",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"name\":\"deployment.yml\",\"path\":\"k8s/deployment.yml\",\"sha\":\"d3f6a2c13397349e49a6bb75c80c90c6fc51a5aa\",\"size\":362,\"url\":\"https://api.github.com/repos/srozange/playground/contents/k8s/deployment.yml?ref=refs/heads/yupd-it\",\"html_url\":\"https://github.com/srozange/playground/blob/refs/heads/yupd-it/k8s/deployment.yml\",\"git_url\":\"https://api.github.com/repos/srozange/playground/git/blobs/d3f6a2c13397349e49a6bb75c80c90c6fc51a5aa\",\"download_url\":\"https://raw.githubusercontent.com/srozange/playground/refs/heads/yupd-it/k8s/deployment.yml?token=ACJ6YFCWVQULRLB2YM4I4H3E54ELA\",\"type\":\"file\",\"content\":\"LS0tCmFwaVZlcnNpb246IGFwcHMvdjEKa2luZDogRGVwbG95bWVudAptZXRh\\nZGF0YToKICBuYW1lOiBuZ2lueAogIGxhYmVsczoKICAgIGFwcDogbmdpbngK\\nICBhbm5vdGF0aW9uczoKICAgIGxhc3QtdXBkYXRlZDogU3VuIEF1ZyAyNyAw\\nOToyNDo1OCBDRVNUIDIwMjMKc3BlYzoKICByZXBsaWNhczogMQogIHNlbGVj\\ndG9yOgogICAgbWF0Y2hMYWJlbHM6CiAgICAgIGFwcDogbmdpbngKICB0ZW1w\\nbGF0ZToKICAgIG1ldGFkYXRhOgogICAgICBsYWJlbHM6CiAgICAgICAgYXBw\\nOiBuZ2lueAogICAgc3BlYzoKICAgICAgY29udGFpbmVyczoKICAgICAgICAt\\nIGltYWdlOiBuZ2lueDpuZXd2ZXJzaW9uCiAgICAgICAgICBuYW1lOiBuZ2lu\\neAo=\\n\",\"encoding\":\"base64\",\"_links\":{\"self\":\"https://api.github.com/repos/srozange/playground/contents/k8s/deployment.yml?ref=refs/heads/yupd-it\",\"git\":\"https://api.github.com/repos/srozange/playground/git/blobs/d3f6a2c13397349e49a6bb75c80c90c6fc51a5aa\",\"html\":\"https://github.com/srozange/playground/blob/refs/heads/yupd-it/k8s/deployment.yml\"}}",
+    "headers" : {
+      "Server" : "GitHub.com",
+      "Date" : "Wed, 30 Aug 2023 09:14:28 GMT",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Cache-Control" : "private, max-age=60, s-maxage=60",
+      "Vary" : [ "Accept, Authorization, Cookie, X-GitHub-OTP", "Accept-Encoding, Accept, X-Requested-With" ],
+      "ETag" : "W/\"d3f6a2c13397349e49a6bb75c80c90c6fc51a5aa\"",
+      "Last-Modified" : "Wed, 30 Aug 2023 09:14:27 GMT",
+      "X-OAuth-Scopes" : "repo",
+      "X-Accepted-OAuth-Scopes" : "",
+      "github-authentication-token-expiration" : "2023-09-15 09:55:43 UTC",
+      "X-GitHub-Media-Type" : "github.v3; format=json",
+      "x-github-api-version-selected" : "2022-11-28",
+      "X-RateLimit-Limit" : "5000",
+      "X-RateLimit-Remaining" : "4992",
+      "X-RateLimit-Reset" : "1693390465",
+      "X-RateLimit-Used" : "8",
+      "X-RateLimit-Resource" : "core",
+      "Access-Control-Expose-Headers" : "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset",
+      "Access-Control-Allow-Origin" : "*",
+      "Strict-Transport-Security" : "max-age=31536000; includeSubdomains; preload",
+      "X-Frame-Options" : "deny",
+      "X-Content-Type-Options" : "nosniff",
+      "X-XSS-Protection" : "0",
+      "Referrer-Policy" : "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "Content-Security-Policy" : "default-src 'none'",
+      "X-GitHub-Request-Id" : "EFB6:9A64:2D1B511:2D9223E:64EF0874"
+    }
+  },
+  "uuid" : "3f506aa5-a08e-4226-aeb6-67ed436f0e3f",
+  "persistent" : true,
+  "insertionIndex" : 3
+}

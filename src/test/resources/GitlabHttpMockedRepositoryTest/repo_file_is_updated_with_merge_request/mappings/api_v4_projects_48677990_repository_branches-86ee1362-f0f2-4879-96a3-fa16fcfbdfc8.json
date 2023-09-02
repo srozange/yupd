@@ -1,0 +1,48 @@
+{
+  "id" : "86ee1362-f0f2-4879-96a3-fa16fcfbdfc8",
+  "name" : "api_v4_projects_48677990_repository_branches",
+  "request" : {
+    "url" : "/api/v4/projects/48677990/repository/branches",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"ref\":\"refs/heads/yupd-it\",\"branch\":\"yupd/77024e4\"}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 201,
+    "body" : "{\"name\":\"yupd/77024e4\",\"commit\":{\"id\":\"3452364aa43f683c3a39181f9dea861ff4849170\",\"short_id\":\"3452364a\",\"created_at\":\"2023-08-30T09:20:37.000+00:00\",\"parent_ids\":[\"2b863a57c794f38757c0e61bcaa9a927fd7b3e88\"],\"title\":\"Updated container image version\",\"message\":\"Updated container image version\",\"author_name\":\"Sebastien Rozange\",\"author_email\":\"srozange@gmail.com\",\"authored_date\":\"2023-08-30T09:20:37.000+00:00\",\"committer_name\":\"Sebastien Rozange\",\"committer_email\":\"srozange@gmail.com\",\"committed_date\":\"2023-08-30T09:20:37.000+00:00\",\"trailers\":{},\"web_url\":\"https://gitlab.com/srozange/playground/-/commit/3452364aa43f683c3a39181f9dea861ff4849170\"},\"merged\":false,\"protected\":false,\"developers_can_push\":false,\"developers_can_merge\":false,\"can_push\":true,\"default\":false,\"web_url\":\"https://gitlab.com/srozange/playground/-/tree/yupd/77024e4\"}",
+    "headers" : {
+      "Date" : "Wed, 30 Aug 2023 09:20:39 GMT",
+      "Content-Type" : "application/json",
+      "Cache-Control" : "max-age=0, private, must-revalidate",
+      "Content-Security-Policy" : "default-src 'none'",
+      "Etag" : "W/\"b17285e65ada584b1d9c0010e29b28ac\"",
+      "Vary" : "Origin",
+      "X-Content-Type-Options" : "nosniff",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-Gitlab-Meta" : "{\"correlation_id\":\"c01e241e8d150af348703406b925458b\",\"version\":\"1\"}",
+      "X-Request-Id" : "c01e241e8d150af348703406b925458b",
+      "X-Runtime" : "0.638367",
+      "Strict-Transport-Security" : "max-age=31536000",
+      "Referrer-Policy" : "strict-origin-when-cross-origin",
+      "RateLimit-Observed" : "4",
+      "RateLimit-Remaining" : "1996",
+      "RateLimit-Reset" : "1693387299",
+      "RateLimit-ResetTime" : "Wed, 30 Aug 2023 09:21:39 GMT",
+      "RateLimit-Limit" : "2000",
+      "GitLab-LB" : "fe-30-lb-gprd",
+      "GitLab-SV" : "localhost",
+      "CF-Cache-Status" : "DYNAMIC",
+      "Report-To" : "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=0LvafKvExBw0VHLjID74baOcNp3X49jZ2U9K34%2BjubUXNPjfnflUEtAGXL8yuWjg%2FU1fzbvx3K2AikNfnFeWL%2BWGprZUe4de2UFYdYR42IOMUpEtCOzcKsSu22Y%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "NEL" : "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "Set-Cookie" : "_cfuvid=qcPFadxGunNED.28LjwikTZinb2V_pDU5YXgXiUfsv0-1693387239841-0-604800000; path=/; domain=.gitlab.com; HttpOnly; Secure; SameSite=None",
+      "Server" : "cloudflare",
+      "CF-RAY" : "7febf5842939f188-CDG"
+    }
+  },
+  "uuid" : "86ee1362-f0f2-4879-96a3-fa16fcfbdfc8",
+  "persistent" : true,
+  "insertionIndex" : 2
+}

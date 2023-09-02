@@ -1,8 +1,8 @@
 package io.github.yupd.command;
 
 import io.github.yupd.business.YamlRepoUpdaterParameter;
-import io.github.yupd.infrastructure.git.model.RemoteFile;
-import io.github.yupd.infrastructure.git.model.Repository;
+import io.github.yupd.infrastructure.git.model.GitFile;
+import io.github.yupd.infrastructure.git.model.GitRepository;
 
 class YamlRepoUpdaterParameterFactory {
     private final YupdCommand cmd;
@@ -13,24 +13,25 @@ class YamlRepoUpdaterParameterFactory {
 
     YamlRepoUpdaterParameter create() {
         return YamlRepoUpdaterParameter.builder()
-                .withRemoteFile(buildRemoteFile())
-                .withCommitMessage(cmd.commitMessage)
+                .withGitFile(buildGitFile())
+                .withMessage(cmd.commitMessage)
                 .withSourceFile(cmd.sourceFile)
                 .withYamlPathEntries(cmd.yamlPathMap)
                 .withDryRun(cmd.dryRun)
+                .withMergeRequest(cmd.mergeRequest)
                 .build();
     }
 
-    private RemoteFile buildRemoteFile() {
-        return RemoteFile.builder()
-                .withRepository(buildRepository())
+    private GitFile buildGitFile() {
+        return GitFile.builder()
+                .withGitRepository(buildGitRepository())
                 .withBranch(cmd.branch)
-                .withFilePath(cmd.path)
+                .withPath(cmd.path)
                 .build();
     }
 
-    private Repository buildRepository() {
-        return Repository.builder()
+    private GitRepository buildGitRepository() {
+        return GitRepository.builder()
                 .withUrl(cmd.url)
                 .withType(cmd.repoType)
                 .withToken(cmd.token)

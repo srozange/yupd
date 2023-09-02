@@ -1,6 +1,6 @@
 package io.github.yupd.infrastructure.git.model;
 
-public class Repository {
+public class GitRepository {
     public enum Type {
         GITLAB, GITHUB
     }
@@ -41,10 +41,6 @@ public class Repository {
         private Builder() {
         }
 
-        public static Builder aRepository() {
-            return new Builder();
-        }
-
         public Builder withUrl(String url) {
             this.url = url;
             return this;
@@ -65,13 +61,13 @@ public class Repository {
             return this;
         }
 
-        public Repository build() {
-            Repository repository = new Repository();
-            repository.url = this.url;
-            repository.project = this.project;
-            repository.token = this.token;
-            repository.type = this.type;
-            return repository;
+        public GitRepository build() {
+            GitRepository gitRepository = new GitRepository();
+            gitRepository.url = this.url;
+            gitRepository.project = this.project;
+            gitRepository.token = this.token;
+            gitRepository.type = this.type;
+            return gitRepository;
         }
     }
 }

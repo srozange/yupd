@@ -1,7 +1,7 @@
 package io.github.yupd.command;
 
 import io.github.yupd.business.YamlRepoUpdater;
-import io.github.yupd.infrastructure.git.model.Repository;
+import io.github.yupd.infrastructure.git.model.GitRepository;
 import io.github.yupd.infrastructure.utils.LogUtils;
 import picocli.CommandLine;
 
@@ -19,7 +19,7 @@ public class YupdCommand implements Callable<Integer> {
     String url;
 
     @CommandLine.Option(names = {"--repo-type"}, required = true, description = "Specifies the repository type; valid values: 'gitlab' or 'github'")
-    Repository.Type repoType;
+    GitRepository.Type repoType;
 
     @CommandLine.Option(names = {"--project"}, required = true, description = "Identifies the project (e.g., 'srozange/yupd' for GitHub or '48539100' for GitLab)")
     String project;
@@ -36,11 +36,14 @@ public class YupdCommand implements Callable<Integer> {
     @CommandLine.Option(names = {"-f", "--template"}, description = "Points to a local YAML file to be used as the source, instead of the remote one")
     Path sourceFile;
 
-    @CommandLine.Option(names = {"-m", "--commit-msg"}, defaultValue = "File updated by Yupd", description = "Provides a custom commit message for the update")
+    @CommandLine.Option(names = {"-m", "--commit-msg"}, description = "Provides a custom commit message for the update")
     String commitMessage;
 
     @CommandLine.Option(names = {"--set"}, required = true, description = "Allows setting YAML path expressions (e.g., metadata.name=new_name)")
     Map<String, String> yamlPathMap = new LinkedHashMap<>();
+
+    @CommandLine.Option(names = {"--merge-request", "--pull-request"}, defaultValue = "false", description = "If set to true, open either a pull request or a merge request based on the Git provider context")
+    boolean mergeRequest;
 
     @CommandLine.Option(names = {"--dry-run"}, defaultValue = "false", description = "If set to true, no write operation is done")
     boolean dryRun;

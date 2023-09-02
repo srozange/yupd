@@ -1,0 +1,43 @@
+{
+  "id" : "37d2992a-c2cd-49a1-882f-5e565f850a68",
+  "name" : "api_v4_projects_48677990_merge_requests_6",
+  "request" : {
+    "url" : "/api/v4/projects/48677990/merge_requests/6?target_branch=yupd-it&title=Udpate+values+in+k8s%2Fdeployment.yml&description=Proposed+update+in+k8s%2Fdeployment.yml%3A%0A-+%5Byamlpath%5D+metadata.annotations.last-updated%3DSun+Aug+28+09%3A24%3A58+CEST+2023%0A-+%5Byamlpath%5D+*.containers%5B0%5D.image%3Dnginx%3Aanothernewversion%0A",
+    "method" : "PUT"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"id\":246475717,\"iid\":6,\"project_id\":48677990,\"title\":\"Updated container image version\",\"description\":\"Proposed update in k8s/deployment.yml:\\n- [yamlpath] metadata.annotations.last-updated=Sun Aug 28 09:24:58 CEST 2023\\n- [yamlpath] *.containers[0].image=nginx:anothernewversion\",\"state\":\"opened\",\"created_at\":\"2023-08-30T09:20:40.662Z\",\"updated_at\":\"2023-08-30T09:20:41.269Z\",\"merged_by\":null,\"merge_user\":null,\"merged_at\":null,\"closed_by\":null,\"closed_at\":null,\"target_branch\":\"yupd-it\",\"source_branch\":\"yupd/77024e4\",\"user_notes_count\":0,\"upvotes\":0,\"downvotes\":0,\"author\":{\"id\":15483393,\"username\":\"srozange\",\"name\":\"Sebastien Rozange\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/e3f229cd4e79e4fd700b75b4f43e2d23?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/srozange\"},\"assignees\":[],\"assignee\":null,\"reviewers\":[],\"source_project_id\":48677990,\"target_project_id\":48677990,\"labels\":[],\"draft\":false,\"work_in_progress\":false,\"milestone\":null,\"merge_when_pipeline_succeeds\":false,\"merge_status\":\"checking\",\"detailed_merge_status\":\"mergeable\",\"sha\":\"2b7255d6e7ff7c6ea75f7fa704e8f9d7b67f6360\",\"merge_commit_sha\":null,\"squash_commit_sha\":null,\"discussion_locked\":null,\"should_remove_source_branch\":null,\"force_remove_source_branch\":null,\"prepared_at\":null,\"reference\":\"!6\",\"references\":{\"short\":\"!6\",\"relative\":\"!6\",\"full\":\"srozange/playground!6\"},\"web_url\":\"https://gitlab.com/srozange/playground/-/merge_requests/6\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null},\"squash\":false,\"squash_on_merge\":false,\"task_completion_status\":{\"count\":0,\"completed_count\":0},\"has_conflicts\":false,\"blocking_discussions_resolved\":true,\"approvals_before_merge\":null,\"subscribed\":true,\"changes_count\":\"1\",\"latest_build_started_at\":null,\"latest_build_finished_at\":null,\"first_deployed_to_production_at\":null,\"pipeline\":null,\"head_pipeline\":null,\"diff_refs\":{\"base_sha\":\"3452364aa43f683c3a39181f9dea861ff4849170\",\"head_sha\":\"2b7255d6e7ff7c6ea75f7fa704e8f9d7b67f6360\",\"start_sha\":\"3452364aa43f683c3a39181f9dea861ff4849170\"},\"merge_error\":null,\"user\":{\"can_merge\":true}}",
+    "headers" : {
+      "Date" : "Wed, 30 Aug 2023 09:20:41 GMT",
+      "Content-Type" : "application/json",
+      "Cache-Control" : "max-age=0, private, must-revalidate",
+      "Content-Security-Policy" : "default-src 'none'",
+      "Etag" : "W/\"7ed9fd69f159024efd44e52aacee2f4f\"",
+      "Vary" : "Origin, Accept-Encoding",
+      "X-Content-Type-Options" : "nosniff",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-Gitlab-Meta" : "{\"correlation_id\":\"b71b3d0346de4916cc848443920b6a0a\",\"version\":\"1\"}",
+      "X-Request-Id" : "b71b3d0346de4916cc848443920b6a0a",
+      "X-Runtime" : "0.530030",
+      "Strict-Transport-Security" : "max-age=31536000",
+      "Referrer-Policy" : "strict-origin-when-cross-origin",
+      "RateLimit-Observed" : "7",
+      "RateLimit-Remaining" : "1993",
+      "RateLimit-Reset" : "1693387301",
+      "RateLimit-ResetTime" : "Wed, 30 Aug 2023 09:21:41 GMT",
+      "RateLimit-Limit" : "2000",
+      "GitLab-LB" : "fe-14-lb-gprd",
+      "GitLab-SV" : "localhost",
+      "CF-Cache-Status" : "DYNAMIC",
+      "Report-To" : "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=6ZAuI2kT843BAcvABUefVSdIC%2FHxG0AHxLkYPtDRj26VuCKgzAETOuUnASZMqSS5uxk59iQu8HUG%2BgzawAJOLRHGNGK9Nezh3Daty5xRnQrspwY8hPBqBhlRc8o%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "NEL" : "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "Set-Cookie" : "_cfuvid=9eKoxhiVD23YoHrn6pdX5rEIf.s3W_tSvfHZx9JEIn8-1693387241602-0-604800000; path=/; domain=.gitlab.com; HttpOnly; Secure; SameSite=None",
+      "Server" : "cloudflare",
+      "CF-RAY" : "7febf58fdf312167-CDG"
+    }
+  },
+  "uuid" : "37d2992a-c2cd-49a1-882f-5e565f850a68",
+  "persistent" : true,
+  "insertionIndex" : 5
+}

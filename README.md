@@ -5,11 +5,11 @@
 
 **Update YAML files the GitOps way**
 
-yupd is a command-line tool that allows updating a YAML file in a remote GitHub or GitLab repository.
+yupd is a command-line tool that allows updating a YAML file in a remote GitHub or GitLab gitRepository.
 
 ## Usage
 
-Assuming we have this file in a Git repository:
+Assuming we have this file in a Git gitRepository:
 
 ```yaml
 apiVersion: apps/v1
@@ -35,21 +35,23 @@ spec:
         name: nginx
 ```
 
-Let's use yupd to update the nginx image version as well as the last-updated annotation
+Let's use yupd to update the nginx image version as well as the last-updated annotation :
 
-For GitHub :
+- For GitHub :
 
 ```bash
 yupd --repo-type github --token <updateme> --project srozange/playground --path k8s/deployment.yml --branch yupd-it --set *.containers[0].image=nginx:newversion --set metadata.annotations.last-updated="$(date)"
 ```
 
-For GitLab :
+- For GitLab :
 
 ```bash
 yupd --repo-type gitlab --token <updateme> --project 48677990 --path k8s/deployment.yml --branch yupd-it --set *.containers[0].image=nginx:newversion --set metadata.annotations.last-updated="$(date)"
 ```
 
 Voilà!
+
+Additionally, instead of making direct updates to the target branch, yupd can create either a merge request or a pull request (based on the Git provider context) by simply adding the **--merge-request** or **--pull-request** flag.
 
 ## YAML path expressions
 
@@ -58,9 +60,9 @@ You can check their [readme page](https://github.com/yaml-path/YamlPath) for the
 
 ## Manual
 ```bash
-Usage: yupd [-hV] [--dry-run] [--verbose] -b=<branch> [-f=<sourceFile>]
-            [-m=<commitMessage>] -p=<path> --project=<project> [-r=<url>]
-            --repo-type=<repoType> -t=<token> --set=<String=String>
+Usage: yupd [-hV] [--dry-run] [--pull-request] [--verbose] -b=<branch>
+            [-f=<sourceFile>] [-m=<message>] -p=<path> --project=<project>
+            [-r=<url>] --repo-type=<repoType> -t=<token> --set=<String=String>
             [--set=<String=String>]...
   -b, --branch=<branch>     Specifies the branch name of the target file to
                               update
@@ -74,9 +76,12 @@ Usage: yupd [-hV] [--dry-run] [--verbose] -b=<branch> [-f=<sourceFile>]
   -p, --path=<path>         Specifies the path of the target file to update
       --project=<project>   Identifies the project (e.g., 'srozange/yupd' for
                               GitHub or '48539100' for GitLab)
-  -r, --repo=<url>          Specifies the URL of the Git repository
+      --pull-request, --merge-request
+                            If set to true, open either a pull request or a
+                              merge request based on the Git provider context
+  -r, --repo=<url>          Specifies the URL of the Git gitRepository
       --repo-type=<repoType>
-                            Specifies the repository type; valid values:
+                            Specifies the gitRepository type; valid values:
                               'gitlab' or 'github'
       --set=<String=String> Allows setting YAML path expressions (e.g.,
                               metadata.name=new_name)
@@ -91,7 +96,7 @@ You can grab the latest binaries from the [releases page](https://github.com/sro
 
 ## Docker Image
 
-Docker images are available on [Docker Hub](https://hub.docker.com/repository/docker/srozange/yupd/general).
+Docker images are available on [Docker Hub](https://hub.docker.com/gitRepository/docker/srozange/yupd/general).
 
 To use the image, you can run the following command:
 
@@ -102,5 +107,4 @@ docker run srozange/yupd:0.1 --repo-type github --token <token> ...
 ## Limitations
 
 - Does not currently support updating multiple documents embedded in a single file.
-- Does not currently support the creation of merge requests or pull requests.
 - Only supports modifications to one file per commit.

@@ -1,0 +1,47 @@
+{
+  "id" : "59402c67-c3d0-4b14-b453-16147c3695ab",
+  "name" : "repos_srozange_playground_contents_k8s_deployment.yml",
+  "request" : {
+    "url" : "/repos/srozange/playground/contents/k8s/deployment.yml",
+    "method" : "PUT",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"path\":\"k8s/deployment.yml\",\"message\":\"Udpate values in k8s/deployment.yml\",\"sha\":\"d3f6a2c13397349e49a6bb75c80c90c6fc51a5aa\",\"branch\":\"yupd/77024e4\",\"content\":\"LS0tCmFwaVZlcnNpb246IGFwcHMvdjEKa2luZDogRGVwbG95bWVudAptZXRhZGF0YToKICBuYW1lOiBuZ2lueAogIGxhYmVsczoKICAgIGFwcDogbmdpbngKICBhbm5vdGF0aW9uczoKICAgIGxhc3QtdXBkYXRlZDogU3VuIEF1ZyAyOCAwOToyNDo1OCBDRVNUIDIwMjMKc3BlYzoKICByZXBsaWNhczogMQogIHNlbGVjdG9yOgogICAgbWF0Y2hMYWJlbHM6CiAgICAgIGFwcDogbmdpbngKICB0ZW1wbGF0ZToKICAgIG1ldGFkYXRhOgogICAgICBsYWJlbHM6CiAgICAgICAgYXBwOiBuZ2lueAogICAgc3BlYzoKICAgICAgY29udGFpbmVyczoKICAgICAgICAtIGltYWdlOiBuZ2lueDphbm90aGVybmV3dmVyc2lvbgogICAgICAgICAgbmFtZTogbmdpbngK\"}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"content\":{\"name\":\"deployment.yml\",\"path\":\"k8s/deployment.yml\",\"sha\":\"7d61c02c1ce3d2e822068ab4fdb2ca7a671f2968\",\"size\":369,\"url\":\"https://api.github.com/repos/srozange/playground/contents/k8s/deployment.yml?ref=yupd/77024e4\",\"html_url\":\"https://github.com/srozange/playground/blob/yupd/77024e4/k8s/deployment.yml\",\"git_url\":\"https://api.github.com/repos/srozange/playground/git/blobs/7d61c02c1ce3d2e822068ab4fdb2ca7a671f2968\",\"download_url\":\"https://raw.githubusercontent.com/srozange/playground/yupd/77024e4/k8s/deployment.yml?token=ACJ6YFCW7FEJ5QS4WBSGMJ3E54EO2\",\"type\":\"file\",\"_links\":{\"self\":\"https://api.github.com/repos/srozange/playground/contents/k8s/deployment.yml?ref=yupd/77024e4\",\"git\":\"https://api.github.com/repos/srozange/playground/git/blobs/7d61c02c1ce3d2e822068ab4fdb2ca7a671f2968\",\"html\":\"https://github.com/srozange/playground/blob/yupd/77024e4/k8s/deployment.yml\"}},\"commit\":{\"sha\":\"fd96ac23ce87ac9cafd6f91dd05c0f4d874a3a4e\",\"node_id\":\"C_kwDOKJr_wtoAKGZkOTZhYzIzY2U4N2FjOWNhZmQ2ZjkxZGQwNWMwZjRkODc0YTNhNGU\",\"url\":\"https://api.github.com/repos/srozange/playground/git/commits/fd96ac23ce87ac9cafd6f91dd05c0f4d874a3a4e\",\"html_url\":\"https://github.com/srozange/playground/commit/fd96ac23ce87ac9cafd6f91dd05c0f4d874a3a4e\",\"author\":{\"name\":\"Sebastien Rozange\",\"email\":\"srozange@gmail.com\",\"date\":\"2023-08-30T09:15:29Z\"},\"committer\":{\"name\":\"Sebastien Rozange\",\"email\":\"srozange@gmail.com\",\"date\":\"2023-08-30T09:15:29Z\"},\"tree\":{\"sha\":\"3f3342428f96400b4f016666c0a74e8299748f71\",\"url\":\"https://api.github.com/repos/srozange/playground/git/trees/3f3342428f96400b4f016666c0a74e8299748f71\"},\"message\":\"Updated container image version\",\"parents\":[{\"sha\":\"c8b0140cedbb11ccd3a08a8ecd3e43850e51fcbe\",\"url\":\"https://api.github.com/repos/srozange/playground/git/commits/c8b0140cedbb11ccd3a08a8ecd3e43850e51fcbe\",\"html_url\":\"https://github.com/srozange/playground/commit/c8b0140cedbb11ccd3a08a8ecd3e43850e51fcbe\"}],\"verification\":{\"verified\":false,\"reason\":\"unsigned\",\"signature\":null,\"payload\":null}}}",
+    "headers" : {
+      "Server" : "GitHub.com",
+      "Date" : "Wed, 30 Aug 2023 09:15:29 GMT",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Cache-Control" : "private, max-age=60, s-maxage=60",
+      "Vary" : [ "Accept, Authorization, Cookie, X-GitHub-OTP", "Accept-Encoding, Accept, X-Requested-With" ],
+      "ETag" : "W/\"d6dba3a82b36ab6705c9908f37f910bc36ffe60057aa70e282d8c1b07fd73159\"",
+      "X-OAuth-Scopes" : "repo",
+      "X-Accepted-OAuth-Scopes" : "",
+      "github-authentication-token-expiration" : "2023-09-15 09:55:43 UTC",
+      "X-GitHub-Media-Type" : "github.v3; format=json",
+      "x-github-api-version-selected" : "2022-11-28",
+      "X-RateLimit-Limit" : "5000",
+      "X-RateLimit-Remaining" : "4980",
+      "X-RateLimit-Reset" : "1693390465",
+      "X-RateLimit-Used" : "20",
+      "X-RateLimit-Resource" : "core",
+      "Access-Control-Expose-Headers" : "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset",
+      "Access-Control-Allow-Origin" : "*",
+      "Strict-Transport-Security" : "max-age=31536000; includeSubdomains; preload",
+      "X-Frame-Options" : "deny",
+      "X-Content-Type-Options" : "nosniff",
+      "X-XSS-Protection" : "0",
+      "Referrer-Policy" : "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "Content-Security-Policy" : "default-src 'none'",
+      "X-GitHub-Request-Id" : "EFD8:B2B6:2FAD951:302489F:64EF08B0"
+    }
+  },
+  "uuid" : "59402c67-c3d0-4b14-b453-16147c3695ab",
+  "persistent" : true,
+  "insertionIndex" : 10
+}

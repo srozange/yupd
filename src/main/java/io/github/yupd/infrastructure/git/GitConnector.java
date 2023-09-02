@@ -1,10 +1,15 @@
 package io.github.yupd.infrastructure.git;
 
-import io.github.yupd.infrastructure.git.model.RemoteFile;
+import io.github.yupd.infrastructure.git.model.GitFile;
 
 public interface GitConnector {
 
-    String getFileContent(RemoteFile file);
+    String getFileContent(GitFile file);
 
-    void updateFile(RemoteFile file, String commitMessage, String content);
+    void updateFile(GitFile file, String commitMessage, String content);
+
+    void createBranch(String ref, String name);
+
+    void createMergeRequest(String title, String sourceBranch, String targetBranch, String body);
+
 }

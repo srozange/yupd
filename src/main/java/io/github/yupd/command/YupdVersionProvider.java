@@ -1,10 +1,7 @@
 package io.github.yupd.command;
 
-import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.ConfigProvider;
 import picocli.CommandLine;
-
-import java.util.Optional;
 
 import static io.github.yupd.infrastructure.utils.StringUtils.isNotEmpty;
 

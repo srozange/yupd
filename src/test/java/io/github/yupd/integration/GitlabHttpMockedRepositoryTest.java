@@ -4,6 +4,7 @@ import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
 @QuarkusTest
 public class GitlabHttpMockedRepositoryTest extends AbstractHttpMockedRepositoryTest {
@@ -21,7 +22,28 @@ public class GitlabHttpMockedRepositoryTest extends AbstractHttpMockedRepository
                 .withOption("--set", "*.containers[0].image=nginx:newversion")
                 .withOption("-m", "Updated container image version")
                 .withOption("--verbose")
-                //.withOption("--dry-run")
+                .create();
+
+        int exitCode = yupd.run(args);
+
+        assertThat(exitCode).isEqualTo(0);
+        assertThat(yamlRepoUpdaterResultCaptor.getResult().updated).isTrue();
+    }
+
+    @Test
+    void repo_file_is_updated_with_merge_request() {
+        when(uniqueIdGenerator.generate()).thenReturn("77024e4");
+        String[] args = CommandLineArgsBuilder.get()
+                .withOption("--repo", getServerUrl())
+                .withOption("--repo-type", "gitlab")
+                .withOption("--token", getToken())
+                .withOption("--project", "48677990")
+                .withOption("--branch", "yupd-it")
+                .withOption("--path", "k8s/deployment.yml")
+                .withOption("--set", "metadata.annotations.last-updated=Sun Aug 28 09:24:58 CEST 2023")
+                .withOption("--set", "*.containers[0].image=nginx:anothernewversion")
+                .withOption("--merge-request")
+                .withOption("--verbose")
                 .create();
 
         int exitCode = yupd.run(args);
