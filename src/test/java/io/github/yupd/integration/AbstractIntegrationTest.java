@@ -31,7 +31,7 @@ public abstract class AbstractIntegrationTest {
         doAnswer(yamlRepoUpdaterResultCaptor).when(yamlRepoUpdater).update(Mockito.any());
     }
 
-    public class ResultCaptor<T> implements Answer {
+    public static class ResultCaptor<T> implements Answer {
         private T result = null;
         public T getResult() {
             return result;

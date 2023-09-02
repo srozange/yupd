@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class YamlPathUpdatorTest {
 
     @Test
-    public void testMonoDocument() throws Exception{
+    public void testMonoDocument() {
         String content = IOUtils.readFile("YamlPathUpdator/deployment.yml");
         String newContent = new YamlPathUpdator().update(content, new YamlPathEntry("*.containers[0].image", "nginx:newversion"));
         String expected = IOUtils.readFile("YamlPathUpdator/deployment_expected.yml");

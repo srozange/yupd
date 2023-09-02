@@ -77,9 +77,9 @@ class YamlRepoUpdaterTest {
 
         // Assert
         verify(connector).updateFile(parameter.getGitFile(), COMMIT_MESSAGE, NEW_CONTENT);
-        assertThat(result.updated).isTrue();
-        assertThat(result.originalContent).isEqualTo(ORIGINAL_CONTENT);
-        assertThat(result.newContent).isEqualTo(NEW_CONTENT);
+        assertThat(result.updated()).isTrue();
+        assertThat(result.originalContent()).isEqualTo(ORIGINAL_CONTENT);
+        assertThat(result.newContent()).isEqualTo(NEW_CONTENT);
     }
 
     @Test
@@ -97,9 +97,9 @@ class YamlRepoUpdaterTest {
         verify(connector).updateFile(parameter.getGitFile().builderFrom().withBranch(MR_SOURCE_BRANCH).build(), COMMIT_MESSAGE, NEW_CONTENT);
         verify(connector).createMergeRequest(COMMIT_MESSAGE, MR_SOURCE_BRANCH, TARGET_BRANCH, "Proposed update in " + FILE_PATH + ":\n- [yamlpath] path=replacement\n");
 
-        assertThat(result.updated).isTrue();
-        assertThat(result.originalContent).isEqualTo(ORIGINAL_CONTENT);
-        assertThat(result.newContent).isEqualTo(NEW_CONTENT);
+        assertThat(result.updated()).isTrue();
+        assertThat(result.originalContent()).isEqualTo(ORIGINAL_CONTENT);
+        assertThat(result.newContent()).isEqualTo(NEW_CONTENT);
     }
 
     @Test
@@ -117,9 +117,9 @@ class YamlRepoUpdaterTest {
 
         // Assert
         verify(connector).updateFile(parameter.getGitFile(), COMMIT_MESSAGE, NEW_CONTENT);
-        assertThat(result.updated).isTrue();
-        assertThat(result.originalContent).isEqualTo(ORIGINAL_CONTENT);
-        assertThat(result.newContent).isEqualTo(NEW_CONTENT);
+        assertThat(result.updated()).isTrue();
+        assertThat(result.originalContent()).isEqualTo(ORIGINAL_CONTENT);
+        assertThat(result.newContent()).isEqualTo(NEW_CONTENT);
     }
 
     @Test
@@ -134,9 +134,9 @@ class YamlRepoUpdaterTest {
 
         // Assert
         verify(connector, never()).updateFile(parameter.getGitFile(), COMMIT_MESSAGE, NEW_CONTENT);
-        assertThat(result.updated).isTrue();
-        assertThat(result.originalContent).isEqualTo(ORIGINAL_CONTENT);
-        assertThat(result.newContent).isEqualTo(NEW_CONTENT);
+        assertThat(result.updated()).isTrue();
+        assertThat(result.originalContent()).isEqualTo(ORIGINAL_CONTENT);
+        assertThat(result.newContent()).isEqualTo(NEW_CONTENT);
     }
 
 
@@ -152,9 +152,9 @@ class YamlRepoUpdaterTest {
 
         // Assert
         verify(connector, times(0)).updateFile(eq(parameter.getGitFile()), eq(COMMIT_MESSAGE), anyString());
-        assertThat(result.updated).isFalse();
-        assertThat(result.originalContent).isEqualTo(ORIGINAL_CONTENT);
-        assertThat(result.newContent).isEqualTo(ORIGINAL_CONTENT);
+        assertThat(result.updated()).isFalse();
+        assertThat(result.originalContent()).isEqualTo(ORIGINAL_CONTENT);
+        assertThat(result.newContent()).isEqualTo(ORIGINAL_CONTENT);
     }
 
 }

@@ -14,8 +14,8 @@ import java.util.Optional;
 
 public class GitlabConnector implements GitConnector {
 
-    private GitlabAPI gitlabAPI;
-    private GitlabProject gitlabProject;
+    private final GitlabAPI gitlabAPI;
+    private final GitlabProject gitlabProject;
 
     public GitlabConnector(GitRepository gitRepository) {
         this.gitlabAPI = computeGitlabApi(gitRepository);

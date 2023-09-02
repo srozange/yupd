@@ -58,10 +58,10 @@ public class ObjectMapperFactory {
     }
 
     public static class Parameter {
-        Set<YAMLGenerator.Feature> withYamlGeneratorFeatures = EnumSet.noneOf(YAMLGenerator.Feature.class);
-        Set<YAMLGenerator.Feature> withoutYamlGeneratorFeatures = EnumSet.noneOf(YAMLGenerator.Feature.class);
-        Set<SerializationFeature> withSerializationFeature = EnumSet.noneOf(SerializationFeature.class);
-        Set<SerializationFeature> withoutSerializationFeature = EnumSet.noneOf(SerializationFeature.class);
+        final Set<YAMLGenerator.Feature> withYamlGeneratorFeatures = EnumSet.noneOf(YAMLGenerator.Feature.class);
+        final Set<YAMLGenerator.Feature> withoutYamlGeneratorFeatures = EnumSet.noneOf(YAMLGenerator.Feature.class);
+        final Set<SerializationFeature> withSerializationFeature = EnumSet.noneOf(SerializationFeature.class);
+        final Set<SerializationFeature> withoutSerializationFeature = EnumSet.noneOf(SerializationFeature.class);
 
         public Parameter with(YAMLGenerator.Feature feature) {
             withYamlGeneratorFeatures.add(feature);

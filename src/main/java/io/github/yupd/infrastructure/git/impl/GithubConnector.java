@@ -15,7 +15,7 @@ import java.io.InputStream;
 
 public class GithubConnector implements GitConnector {
 
-    private GHRepository githubRepository;
+    private final GHRepository githubRepository;
 
     public GithubConnector(GitRepository gitRepository) {
         GitHubBuilder gitHubBuilder = new GitHubBuilder().withOAuthToken(gitRepository.getToken());

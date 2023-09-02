@@ -93,17 +93,7 @@ public class YamlRepoUpdater {
         return "- [yamlpath] " + entry.getPath() + "=" + entry.getReplacement();
     }
 
-    public static class YamlUpdateResult {
-
-        public final boolean updated;
-        public final String originalContent;
-        public final String newContent;
-
-        public YamlUpdateResult(boolean updated, String originalContent, String newContent) {
-            this.updated = updated;
-            this.originalContent = originalContent;
-            this.newContent = newContent;
-        }
+    public record YamlUpdateResult(boolean updated, String originalContent, String newContent) {
 
         public static YamlUpdateResult updated(String originalContent, String newContent) {
             return new YamlUpdateResult(true, originalContent, newContent);

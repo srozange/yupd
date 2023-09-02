@@ -29,7 +29,7 @@ public class IOUtils {
 
     public static void writeFile(Path path, String content) {
         try {
-            Files.write(path, content.getBytes(StandardCharsets.UTF_8));
+            Files.writeString(path, content);
         } catch (IOException e) {
             throw new RuntimeException("Could not write file " + path, e);
         }

@@ -27,7 +27,7 @@ public class GithubHttpMockedRepositoryTest extends AbstractHttpMockedRepository
         int exitCode = yupd.run(args);
 
         assertThat(exitCode).isEqualTo(0);
-        assertThat(yamlRepoUpdaterResultCaptor.getResult().updated).isTrue();
+        assertThat(yamlRepoUpdaterResultCaptor.getResult().updated()).isTrue();
     }
 
     @Test
@@ -49,7 +49,7 @@ public class GithubHttpMockedRepositoryTest extends AbstractHttpMockedRepository
         int exitCode = yupd.run(args);
 
         assertThat(exitCode).isEqualTo(0);
-        assertThat(yamlRepoUpdaterResultCaptor.getResult().updated).isTrue();
+        assertThat(yamlRepoUpdaterResultCaptor.getResult().updated()).isTrue();
     }
 
     @Override
