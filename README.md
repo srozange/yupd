@@ -60,34 +60,26 @@ You can check their [readme page](https://github.com/yaml-path/YamlPath) for the
 
 ## Manual
 ```bash
-Usage: yupd [-hV] [--dry-run] [--pull-request] [--verbose] -b=<branch>
-            [-f=<sourceFile>] [-m=<message>] -p=<path> --project=<project>
-            [-r=<url>] --repo-type=<repoType> -t=<token> --set=<String=String>
-            [--set=<String=String>]...
-  -b, --branch=<branch>     Specifies the branch name of the target file to
-                              update
-      --dry-run             If set to true, no write operation is done
+Usage: yupd [-hV] [--dry-run] [--pull-request] [--verbose] -b=<branch> [-f=<sourceFile>] [-m=<commitMessage>] -p=<path> --project=<project> [-r=<url>]
+            --repo-type=<repoType> [-t=<token>] --set=<String=String> [--set=<String=String>]...
+  -b, --branch=<branch>     Specifies the branch name of the target file to update (env: YUPD_BRANCH)
+      --dry-run             If set to true, no write operation is done (env: YUPD_DRY_RUN)
   -f, --template=<sourceFile>
-                            Points to a local YAML file to be used as the
-                              source, instead of the remote one
+                            Points to a local YAML file to be used as the source, instead of the remote one (env: YUPD_TEMPLATE)
   -h, --help                Show this help message and exit.
   -m, --commit-msg=<commitMessage>
-                            Provides a custom commit message for the update
-  -p, --path=<path>         Specifies the path of the target file to update
-      --project=<project>   Identifies the project (e.g., 'srozange/yupd' for
-                              GitHub or '48539100' for GitLab)
+                            Provides a custom commit message for the update (env: YUPD_COMMIT_MSG)
+  -p, --path=<path>         Specifies the path of the target file to update (env: YUPD_PATH)
+      --project=<project>   Identifies the project (e.g., 'srozange/yupd' for GitHub or '48539100' for GitLab) (env: YUPD_PROJECT)
       --pull-request, --merge-request
-                            If set to true, open either a pull request or a
-                              merge request based on the Git provider context
-  -r, --repo=<url>          Specifies the URL of the Git gitRepository
+                            If set to true, open either a pull request or a merge request based on the Git provider context (env: YUPD_MERGE_REQUEST)
+  -r, --repo=<url>          Specifies the URL of the Git repository (env: YUPD_REPO)
       --repo-type=<repoType>
-                            Specifies the gitRepository type; valid values:
-                              'gitlab' or 'github'
-      --set=<String=String> Allows setting YAML path expressions (e.g.,
-                              metadata.name=new_name)
-  -t, --token=<token>       Provides the authentication token
+                            Specifies the repository type; valid values: 'gitlab' or 'github' (env: YUPD_REPO_TYPE)
+      --set=<String=String> Allows setting YAML path expressions (e.g., metadata.name=new_name) (env: YUPD_SET)
+  -t, --token=<token>       Provides the authentication token (env: YUPD_TOKEN)
   -V, --version             Print version information and exit.
-      --verbose             If set to true, sets the log level to debug
+      --verbose             If set to true, sets the log level to debug (env: YUPD_VERBOSE)
 ```
 
 ## Installation
@@ -101,7 +93,7 @@ Docker images are available on [Docker Hub](https://hub.docker.com/gitRepository
 To use the image, you can run the following command:
 
 ```bash
-docker run srozange/yupd:0.2 --repo-type github --token <token> ...
+docker run --rm srozange/yupd:0.2 --repo-type github --token <updateme> --project srozange/playground --path k8s/deployment.yml --branch yupd-it --set *.containers[0].image=nginx:newversion
 ```
 
 ## Limitations
