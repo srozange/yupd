@@ -20,8 +20,7 @@ public class ObjectMapperFactory {
                 .with(YAMLGenerator.Feature.MINIMIZE_QUOTES)
                 .without(YAMLGenerator.Feature.WRITE_DOC_START_MARKER)
                 .without(SerializationFeature.WRITE_NULL_MAP_VALUES)
-                .without(SerializationFeature.WRITE_EMPTY_JSON_ARRAYS)
-                .with(SerializationFeature.INDENT_OUTPUT);
+                .without(SerializationFeature.WRITE_EMPTY_JSON_ARRAYS);
     }
 
     public static ObjectMapper create() {
@@ -74,7 +73,7 @@ public class ObjectMapperFactory {
         }
 
         public Parameter with(SerializationFeature feature) {
-            withoutSerializationFeature.add(feature);
+            withSerializationFeature.add(feature);
             return this;
         }
 
