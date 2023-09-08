@@ -35,6 +35,7 @@ class YamlRepoUpdaterParameterFactory {
                 .withUrl(cmd.url)
                 .withType(cmd.repoType)
                 .withToken(cmd.token)
+                .withInsecure(cmd.insecure)
                 .withProject(cmd.project)
                 .build();
     }

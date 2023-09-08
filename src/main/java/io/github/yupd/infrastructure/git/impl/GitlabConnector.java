@@ -72,7 +72,9 @@ public class GitlabConnector implements GitConnector {
 
     private GitlabAPI computeGitlabApi(GitRepository gitRepository) {
         String url = Optional.ofNullable(gitRepository.getUrl()).orElse("https://gitlab.com");
-        return GitlabAPI.connect(url, gitRepository.getToken());
+        return GitlabAPI
+                .connect(url, gitRepository.getToken())
+                .ignoreCertificateErrors(gitRepository.isInsecure());
     }
 
 }

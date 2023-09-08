@@ -60,13 +60,14 @@ You can check their [readme page](https://github.com/yaml-path/YamlPath) for the
 
 ## Manual
 ```bash
-Usage: yupd [-hV] [--dry-run] [--pull-request] [--verbose] -b=<branch> [-f=<sourceFile>] [-m=<commitMessage>] -p=<path> --project=<project> [-r=<url>]
-            --repo-type=<repoType> [-t=<token>] --set=<String=String> [--set=<String=String>]...
+Usage: yupd [-hV] [--dry-run] [--insecure] [--pull-request] [--verbose] -b=<branch> [-f=<sourceFile>] [-m=<commitMessage>] -p=<path> --project=<project>
+            [-r=<url>] --repo-type=<repoType> -t=<token> --set=<String=String> [--set=<String=String>]...
   -b, --branch=<branch>     Specifies the branch name of the target file to update (env: YUPD_BRANCH)
       --dry-run             If set to true, no write operation is done (env: YUPD_DRY_RUN)
   -f, --template=<sourceFile>
                             Points to a local YAML file to be used as the source, instead of the remote one (env: YUPD_TEMPLATE)
   -h, --help                Show this help message and exit.
+      --insecure            If set to true, disable SSL certificate validation (applicable to GitLab only)(env: YUPD_INSECURE)
   -m, --commit-msg=<commitMessage>
                             Provides a custom commit message for the update (env: YUPD_COMMIT_MSG)
   -p, --path=<path>         Specifies the path of the target file to update (env: YUPD_PATH)

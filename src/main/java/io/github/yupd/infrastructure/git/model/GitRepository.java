@@ -7,10 +7,9 @@ public class GitRepository {
 
     private String url;
     private Type type;
-
     private String token;
-
     private String project;
+    private boolean insecure;
 
    public static Builder builder() {
         return new Builder();
@@ -32,11 +31,16 @@ public class GitRepository {
         return project;
     }
 
+    public boolean isInsecure() {
+        return insecure;
+    }
+
     public static final class Builder {
         private String url;
         private Type type;
         private String token;
         private String project;
+        private boolean insecure;
 
         private Builder() {
         }
@@ -61,12 +65,18 @@ public class GitRepository {
             return this;
         }
 
+        public Builder withInsecure(boolean insecure) {
+            this.insecure = insecure;
+            return this;
+        }
+
         public GitRepository build() {
             GitRepository gitRepository = new GitRepository();
             gitRepository.url = this.url;
             gitRepository.project = this.project;
             gitRepository.token = this.token;
             gitRepository.type = this.type;
+            gitRepository.insecure = this.insecure;
             return gitRepository;
         }
     }

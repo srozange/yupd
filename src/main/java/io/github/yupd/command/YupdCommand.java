@@ -33,6 +33,9 @@ public class YupdCommand implements Callable<Integer> {
     @CommandLine.Option(names = {"-p", "--path"}, required = true, defaultValue = "${YUPD_PATH}", description = "Specifies the path of the target file to update (env: YUPD_PATH)")
     String path;
 
+    @CommandLine.Option(names = {"--insecure"}, defaultValue = "${YUPD_INSECURE:-false}", description = "If set to true, disable SSL certificate validation (applicable to GitLab only)(env: YUPD_INSECURE)")
+    boolean insecure;
+
     @CommandLine.Option(names = {"-f", "--template"}, defaultValue = "${YUPD_TEMPLATE}", description = "Points to a local YAML file to be used as the source, instead of the remote one (env: YUPD_TEMPLATE)")
     Path sourceFile;
 
