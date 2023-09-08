@@ -5,7 +5,7 @@
     "url" : "/repos/srozange/playground/pulls",
     "method" : "POST",
     "bodyPatterns" : [ {
-      "equalToJson" : "{\"head\":\"yupd/77024e4\",\"draft\":false,\"maintainer_can_modify\":true,\"title\":\"Udpate values in k8s/deployment.yml\",\"body\":\"Proposed update in k8s/deployment.yml:\\n- [yamlpath] metadata.annotations.last-updated=Sun Aug 28 09:24:58 CEST 2023\\n- [yamlpath] *.containers[0].image=nginx:anothernewversion\\n\",\"base\":\"yupd-it\"}",
+      "equalToJson" : "{\"head\":\"yupd/77024e4\",\"draft\":false,\"maintainer_can_modify\":true,\"title\":\"Update values in k8s/deployment.yml\",\"body\":\"Proposed update in k8s/deployment.yml:\\n- [regex] last-updated: (.*)=\\\"Sun Aug 28 09:24:58 CEST 2023\\\"\\n- [yamlpath] *.containers[0].image=nginx:anothernewversion\\n\",\"base\":\"yupd-it\"}",
       "ignoreArrayOrder" : true,
       "ignoreExtraElements" : true
     } ]

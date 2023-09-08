@@ -3,12 +3,12 @@ package io.github.yupd.business;
 import io.github.yupd.infrastructure.git.GitConnectorFactory;
 import io.github.yupd.infrastructure.git.GitConnector;
 import io.github.yupd.infrastructure.git.model.GitFile;
+import io.github.yupd.infrastructure.update.ContentUpdateService;
 import io.github.yupd.infrastructure.utils.LogUtils;
 import io.github.yupd.infrastructure.utils.StringUtils;
 import io.github.yupd.infrastructure.utils.UniqueIdGenerator;
-import io.github.yupd.infrastructure.yaml.YamlPathUpdator;
 import io.github.yupd.infrastructure.utils.IOUtils;
-import io.github.yupd.infrastructure.yaml.model.YamlPathEntry;
+import io.github.yupd.infrastructure.update.model.ContentUpdateCriteria;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.jboss.logging.Logger;
@@ -24,7 +24,7 @@ public class YamlRepoUpdater {
     GitConnectorFactory gitConnectorFactory;
 
     @Inject
-    YamlPathUpdator yamlPathUpdator;
+    ContentUpdateService updateService;
 
     @Inject
     UniqueIdGenerator uniqueIdGenerator;
@@ -75,23 +75,23 @@ public class YamlRepoUpdater {
         String newContent;
         if (parameter.getSourceFile().isPresent()) {
             LOGGER.info("Applying YAML path expressions on the template file");
-            newContent = yamlPathUpdator.update(IOUtils.readFile(parameter.getSourceFile().get()), parameter.getYamlPathUpdates());
+            newContent = updateService.update(IOUtils.readFile(parameter.getSourceFile().get()), parameter.getContentUpdates());
         } else {
             LOGGER.info("Applying YAML path expressions");
-            newContent = yamlPathUpdator.update(oldContent, parameter.getYamlPathUpdates());
+            newContent = updateService.update(oldContent, parameter.getContentUpdates());
         }
         return newContent;
     }
 
     private String computeMergeRequestBody(YamlRepoUpdaterParameter parameter) {
-        return parameter.getYamlPathUpdates()
+        return parameter.getContentUpdates()
                 .stream()
                 .map(YamlRepoUpdater::computePathEntryDescription)
                 .collect(Collectors.joining("\n", "Proposed update in " + parameter.getGitFile().getPath() + ":\n", "\n"));
     }
 
-    private static String computePathEntryDescription(YamlPathEntry entry) {
-        return "- [yamlpath] " + entry.getPath() + "=" + entry.getReplacement();
+    private static String computePathEntryDescription(ContentUpdateCriteria entry) {
+        return "- [" + entry.type().getDisplayName() + "] " + entry.key() + "=" + entry.value();
     }
 
     public record YamlUpdateResult(boolean updated, String originalContent, String newContent) {

@@ -4,10 +4,10 @@ import io.github.yupd.infrastructure.git.GitConnector;
 import io.github.yupd.infrastructure.git.GitConnectorFactory;
 import io.github.yupd.infrastructure.git.model.GitFile;
 import io.github.yupd.infrastructure.git.model.GitRepository;
+import io.github.yupd.infrastructure.update.ContentUpdateService;
 import io.github.yupd.infrastructure.utils.IOUtils;
 import io.github.yupd.infrastructure.utils.UniqueIdGenerator;
-import io.github.yupd.infrastructure.yaml.YamlPathUpdator;
-import io.github.yupd.infrastructure.yaml.model.YamlPathEntry;
+import io.github.yupd.infrastructure.update.model.ContentUpdateCriteria;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,8 +38,8 @@ class YamlRepoUpdaterTest {
     private GitConnectorFactory provider;
 
     @Mock
-    private YamlPathUpdator yamlPathUpdator;
-
+    private ContentUpdateService contentUpdateService;
+    
     @Mock
     private GitConnector connector;
 
@@ -60,7 +60,7 @@ class YamlRepoUpdaterTest {
         parameterBuilder = YamlRepoUpdaterParameter.builder()
                 .withGitFile(gitFile)
                 .withMessage(COMMIT_MESSAGE)
-                .withYamlPathEntries(List.of(new YamlPathEntry("path", "replacement")));
+                .withContentUpdates(List.of(new ContentUpdateCriteria("ypath:path", "replacement")));
 
         lenient().when(uniqueIdGenerator.generate()).thenReturn("uniqueid");
     }
@@ -70,7 +70,7 @@ class YamlRepoUpdaterTest {
         // Setup
         YamlRepoUpdaterParameter parameter = parameterBuilder.build();
         when(connector.getFileContent(parameter.getGitFile())).thenReturn(ORIGINAL_CONTENT);
-        when(yamlPathUpdator.update(ORIGINAL_CONTENT, parameter.getYamlPathUpdates())).thenReturn(NEW_CONTENT);
+        when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdates())).thenReturn(NEW_CONTENT);
 
         // Test
         YamlRepoUpdater.YamlUpdateResult result = updater.update(parameter);
@@ -87,7 +87,7 @@ class YamlRepoUpdaterTest {
         // Setup
         YamlRepoUpdaterParameter parameter = parameterBuilder.withMergeRequest(true).build();
         when(connector.getFileContent(parameter.getGitFile())).thenReturn(ORIGINAL_CONTENT);
-        when(yamlPathUpdator.update(ORIGINAL_CONTENT, parameter.getYamlPathUpdates())).thenReturn(NEW_CONTENT);
+        when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdates())).thenReturn(NEW_CONTENT);
 
         // Test
         YamlRepoUpdater.YamlUpdateResult result = updater.update(parameter);
@@ -110,7 +110,7 @@ class YamlRepoUpdaterTest {
 
         YamlRepoUpdaterParameter parameter = parameterBuilder.withSourceFile(template).build();
         when(connector.getFileContent(parameter.getGitFile())).thenReturn(ORIGINAL_CONTENT);
-        when(yamlPathUpdator.update(TEMPLATE_CONTENT, parameter.getYamlPathUpdates())).thenReturn(NEW_CONTENT);
+        when(contentUpdateService.update(TEMPLATE_CONTENT, parameter.getContentUpdates())).thenReturn(NEW_CONTENT);
 
         // Test
         YamlRepoUpdater.YamlUpdateResult result = updater.update(parameter);
@@ -127,7 +127,7 @@ class YamlRepoUpdaterTest {
         // Setup
         YamlRepoUpdaterParameter parameter = parameterBuilder.withDryRun(true).build();
         when(connector.getFileContent(parameter.getGitFile())).thenReturn(ORIGINAL_CONTENT);
-        when(yamlPathUpdator.update(ORIGINAL_CONTENT, parameter.getYamlPathUpdates())).thenReturn(NEW_CONTENT);
+        when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdates())).thenReturn(NEW_CONTENT);
 
         // Test
         YamlRepoUpdater.YamlUpdateResult result = updater.update(parameter);
@@ -145,7 +145,7 @@ class YamlRepoUpdaterTest {
         // Setup
         YamlRepoUpdaterParameter parameter = parameterBuilder.build();
         when(connector.getFileContent(parameter.getGitFile())).thenReturn(ORIGINAL_CONTENT);
-        when(yamlPathUpdator.update(ORIGINAL_CONTENT, parameter.getYamlPathUpdates())).thenReturn(ORIGINAL_CONTENT);
+        when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdates())).thenReturn(ORIGINAL_CONTENT);
 
         // Test
         YamlRepoUpdater.YamlUpdateResult result = updater.update(parameter);

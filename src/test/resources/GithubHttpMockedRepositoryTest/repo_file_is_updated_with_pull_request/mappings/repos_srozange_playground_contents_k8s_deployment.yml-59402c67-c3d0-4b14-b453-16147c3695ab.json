@@ -5,7 +5,7 @@
     "url" : "/repos/srozange/playground/contents/k8s/deployment.yml",
     "method" : "PUT",
     "bodyPatterns" : [ {
-      "equalToJson" : "{\"path\":\"k8s/deployment.yml\",\"message\":\"Udpate values in k8s/deployment.yml\",\"sha\":\"d3f6a2c13397349e49a6bb75c80c90c6fc51a5aa\",\"branch\":\"yupd/77024e4\",\"content\":\"YXBpVmVyc2lvbjogYXBwcy92MQpraW5kOiBEZXBsb3ltZW50Cm1ldGFkYXRhOgogIG5hbWU6IG5naW54CiAgbGFiZWxzOgogICAgYXBwOiBuZ2lueAogIGFubm90YXRpb25zOgogICAgbGFzdC11cGRhdGVkOiAiU3VuIEF1ZyAyOCAwOToyNDo1OCBDRVNUIDIwMjMiCnNwZWM6CiAgcmVwbGljYXM6IDEKICBzZWxlY3RvcjoKICAgIG1hdGNoTGFiZWxzOgogICAgICBhcHA6IG5naW54CiAgdGVtcGxhdGU6CiAgICBtZXRhZGF0YToKICAgICAgbGFiZWxzOgogICAgICAgIGFwcDogbmdpbngKICAgIHNwZWM6CiAgICAgIGNvbnRhaW5lcnM6CiAgICAgIC0gaW1hZ2U6IG5naW54OmFub3RoZXJuZXd2ZXJzaW9uCiAgICAgICAgbmFtZTogbmdpbngK\"}",
+      "equalToJson" : "{\"path\":\"k8s/deployment.yml\",\"message\":\"Update values in k8s/deployment.yml\",\"sha\":\"d3f6a2c13397349e49a6bb75c80c90c6fc51a5aa\",\"branch\":\"yupd/77024e4\",\"content\":\"YXBpVmVyc2lvbjogYXBwcy92MQpraW5kOiBEZXBsb3ltZW50Cm1ldGFkYXRhOgogIG5hbWU6IG5naW54CiAgbGFiZWxzOgogICAgYXBwOiBuZ2lueAogIGFubm90YXRpb25zOgogICAgbGFzdC11cGRhdGVkOiAiU3VuIEF1ZyAyOCAwOToyNDo1OCBDRVNUIDIwMjMiCnNwZWM6CiAgcmVwbGljYXM6IDEKICBzZWxlY3RvcjoKICAgIG1hdGNoTGFiZWxzOgogICAgICBhcHA6IG5naW54CiAgdGVtcGxhdGU6CiAgICBtZXRhZGF0YToKICAgICAgbGFiZWxzOgogICAgICAgIGFwcDogbmdpbngKICAgIHNwZWM6CiAgICAgIGNvbnRhaW5lcnM6CiAgICAgIC0gaW1hZ2U6IG5naW54OmFub3RoZXJuZXd2ZXJzaW9uCiAgICAgICAgbmFtZTogbmdpbngK\"}",
       "ignoreArrayOrder" : true,
       "ignoreExtraElements" : true
     } ]

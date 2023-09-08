@@ -40,8 +40,8 @@ public class GithubHttpMockedRepositoryTest extends AbstractHttpMockedRepository
                 .withOption("--project", "srozange/playground")
                 .withOption("--branch", "yupd-it")
                 .withOption("--path", "k8s/deployment.yml")
-                .withOption("--set", "metadata.annotations.last-updated=Sun Aug 28 09:24:58 CEST 2023")
-                .withOption("--set", "*.containers[0].image=nginx:anothernewversion")
+                .withOption("--set", "regex:last-updated: (.*)=\"Sun Aug 28 09:24:58 CEST 2023\"")
+                .withOption("--set", "ypath:*.containers[0].image=nginx:anothernewversion")
                 .withOption("--verbose")
                 .withOption("--pull-request")
                 .create();

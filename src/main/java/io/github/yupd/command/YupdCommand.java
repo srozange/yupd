@@ -33,7 +33,7 @@ public class YupdCommand implements Callable<Integer> {
     @CommandLine.Option(names = {"-p", "--path"}, required = true, defaultValue = "${YUPD_PATH}", description = "Specifies the path of the target file to update (env: YUPD_PATH)")
     String path;
 
-    @CommandLine.Option(names = {"--insecure"}, defaultValue = "${YUPD_INSECURE:-false}", description = "If set to true, disable SSL certificate validation (applicable to GitLab only)(env: YUPD_INSECURE)")
+    @CommandLine.Option(names = {"--insecure"}, defaultValue = "${YUPD_INSECURE:-false}", description = "If set to true, disable SSL certificate validation (applicable to GitLab only) (env: YUPD_INSECURE)")
     boolean insecure;
 
     @CommandLine.Option(names = {"-f", "--template"}, defaultValue = "${YUPD_TEMPLATE}", description = "Points to a local YAML file to be used as the source, instead of the remote one (env: YUPD_TEMPLATE)")
@@ -42,8 +42,8 @@ public class YupdCommand implements Callable<Integer> {
     @CommandLine.Option(names = {"-m", "--commit-msg"}, defaultValue = "${YUPD_COMMIT_MSG}", description = "Provides a custom commit message for the update (env: YUPD_COMMIT_MSG)")
     String commitMessage;
 
-    @CommandLine.Option(names = {"--set"}, required = true, defaultValue = "${YUPD_SET}", description = "Allows setting YAML path expressions (e.g., metadata.name=new_name) (env: YUPD_SET)")
-    Map<String, String> yamlPathMap = new LinkedHashMap<>();
+    @CommandLine.Option(names = {"--set"}, required = true, description = "Allows setting YAML path expressions (e.g., metadata.name=new_name) or regular expressions (env: YUPD_SET)")
+    Map<String, String> contentUpdates = new LinkedHashMap<>();
 
     @CommandLine.Option(names = {"--merge-request", "--pull-request"}, defaultValue = "${YUPD_MERGE_REQUEST:-false}", description = "If set to true, open either a pull request or a merge request based on the Git provider context (env: YUPD_MERGE_REQUEST)")
     boolean mergeRequest;

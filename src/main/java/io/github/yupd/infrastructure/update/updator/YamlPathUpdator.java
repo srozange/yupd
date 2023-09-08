@@ -1,10 +1,10 @@
-package io.github.yupd.infrastructure.yaml;
+package io.github.yupd.infrastructure.update.updator;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.yamlpath.YamlExpressionParser;
 import io.github.yamlpath.YamlPath;
-import io.github.yupd.infrastructure.yaml.model.YamlPathEntry;
+import io.github.yupd.infrastructure.update.model.ContentUpdateCriteria;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
@@ -16,15 +16,15 @@ public class YamlPathUpdator {
 
     private static final String DOCUMENT_DELIMITER = "---";
 
-    private static final ObjectMapper objectMapper = ObjectMapperFactory.create();
+    private static final ObjectMapper OBJECT_MAPPER = YamlObjectMapperFactory.create();
 
-    public String update(String content, YamlPathEntry yamlPathEntry) {
+    public String update(String content, ContentUpdateCriteria yamlPathEntry) {
         return update(content, List.of(yamlPathEntry));
     }
 
-    public String update(String content, List<YamlPathEntry> yamlPathEntries) {
+    public String update(String content, List<ContentUpdateCriteria> yamlPathEntries) {
         YamlExpressionParser yamlExpressionParser = YamlPath.from(content);
-        yamlPathEntries.forEach(entry -> yamlExpressionParser.write(entry.getPath(), entry.getReplacement()));
+        yamlPathEntries.forEach(entry -> yamlExpressionParser.write(entry.key(), entry.value()));
         return dumpAsString(yamlExpressionParser);
     }
 
@@ -36,7 +36,7 @@ public class YamlPathUpdator {
 
     private String writeValueAsString(Map<Object, Object> resource) {
         try {
-            return objectMapper.writeValueAsString(resource);
+            return OBJECT_MAPPER.writeValueAsString(resource);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

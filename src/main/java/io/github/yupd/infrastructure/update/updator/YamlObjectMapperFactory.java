@@ -1,4 +1,4 @@
-package io.github.yupd.infrastructure.yaml;
+package io.github.yupd.infrastructure.update.updator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -11,10 +11,10 @@ import java.util.EnumSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-public class ObjectMapperFactory {
+public class YamlObjectMapperFactory {
 
     public static Parameter getDefaultParameter() {
-        return new ObjectMapperFactory.Parameter()
+        return new YamlObjectMapperFactory.Parameter()
                 .with(YAMLGenerator.Feature.MINIMIZE_QUOTES)
                 .with(YAMLGenerator.Feature.ALWAYS_QUOTE_NUMBERS_AS_STRINGS)
                 .with(YAMLGenerator.Feature.MINIMIZE_QUOTES)

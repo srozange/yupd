@@ -2,7 +2,7 @@ package io.github.yupd.business;
 
 import io.github.yupd.infrastructure.git.model.GitFile;
 import io.github.yupd.infrastructure.utils.StringUtils;
-import io.github.yupd.infrastructure.yaml.model.YamlPathEntry;
+import io.github.yupd.infrastructure.update.model.ContentUpdateCriteria;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -18,7 +18,7 @@ public class YamlRepoUpdaterParameter {
 
     private String message;
 
-    private List<YamlPathEntry> yamlPathEntries;
+    private List<ContentUpdateCriteria> contentUpdates;
 
     private boolean mergeRequest;
 
@@ -33,11 +33,11 @@ public class YamlRepoUpdaterParameter {
     }
 
     public String getMessage() {
-        return StringUtils.isNullOrEmpty(message) ? "Udpate values in " + getGitFile().getPath() : message;
+        return StringUtils.isNullOrEmpty(message) ? "Update values in " + getGitFile().getPath() : message;
     }
 
-    public List<YamlPathEntry> getYamlPathUpdates() {
-        return yamlPathEntries;
+    public List<ContentUpdateCriteria> getContentUpdates() {
+        return contentUpdates;
     }
 
     public GitFile getGitFile() {
@@ -56,7 +56,7 @@ public class YamlRepoUpdaterParameter {
         private Path sourceFile;
         private GitFile gitFile;
         private String message;
-        private List<YamlPathEntry> yamlPathEntries;
+        private List<ContentUpdateCriteria> contentUpdates;
         private boolean dryRun;
         private boolean mergeRequest;
 
@@ -78,13 +78,13 @@ public class YamlRepoUpdaterParameter {
             return this;
         }
 
-        public Builder withYamlPathEntries(List<YamlPathEntry> yamlPathEntries) {
-            this.yamlPathEntries = yamlPathEntries;
+        public Builder withContentUpdates(List<ContentUpdateCriteria> contentUpdates) {
+            this.contentUpdates = contentUpdates;
             return this;
         }
 
-        public Builder withYamlPathEntries(Map<String, String> yamlPathMap) {
-            withYamlPathEntries(yamlPathMap.entrySet().stream().map(YamlPathEntry::new).collect(Collectors.toList()));
+        public Builder withContentUpdates(Map<String, String> yamlPathMap) {
+            withContentUpdates(yamlPathMap.entrySet().stream().map(ContentUpdateCriteria::new).collect(Collectors.toList()));
             return this;
         }
 
@@ -101,7 +101,7 @@ public class YamlRepoUpdaterParameter {
         public YamlRepoUpdaterParameter build() {
             YamlRepoUpdaterParameter yamlRepoUpdaterParameter = new YamlRepoUpdaterParameter();
             yamlRepoUpdaterParameter.dryRun = this.dryRun;
-            yamlRepoUpdaterParameter.yamlPathEntries = this.yamlPathEntries;
+            yamlRepoUpdaterParameter.contentUpdates = this.contentUpdates;
             yamlRepoUpdaterParameter.message = this.message;
             yamlRepoUpdaterParameter.gitFile = this.gitFile;
             yamlRepoUpdaterParameter.sourceFile = this.sourceFile;
