@@ -4,6 +4,7 @@ import io.github.yupd.infrastructure.git.GitConnectorFactory;
 import io.github.yupd.infrastructure.git.GitConnector;
 import io.github.yupd.infrastructure.git.model.GitFile;
 import io.github.yupd.infrastructure.utils.LogUtils;
+import io.github.yupd.infrastructure.utils.StringUtils;
 import io.github.yupd.infrastructure.utils.UniqueIdGenerator;
 import io.github.yupd.infrastructure.yaml.YamlPathUpdator;
 import io.github.yupd.infrastructure.utils.IOUtils;
@@ -36,7 +37,7 @@ public class YamlRepoUpdater {
 
         LOGGER.info("Applying updates locally");
         String newContent = computeNewContent(parameter, oldContent);
-        if (oldContent.equals(newContent)) {
+        if (StringUtils.equalsIgnoreTrailingWhiteSpaces(oldContent, newContent)) {
             LOGGER.info("The file has not been updated because the new content is equal to the old one");
             return YamlUpdateResult.notUpdated(oldContent);
         }
