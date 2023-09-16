@@ -26,7 +26,7 @@ public class GitFile {
         return branch;
     }
 
-    public String getRefBranch() {
+    public String getRef() {
         return "refs/heads/" + branch;
     }
 

@@ -13,7 +13,7 @@ class YamlRepoUpdaterParameterFactory {
 
     YamlRepoUpdaterParameter create() {
         return YamlRepoUpdaterParameter.builder()
-                .withGitFile(buildGitFile())
+                .withTargetGitFile(buildGitFile())
                 .withMessage(cmd.commitMessage)
                 .withSourceFile(cmd.sourceFile)
                 .withContentUpdates(cmd.contentUpdates)

@@ -30,10 +30,10 @@ public class YamlRepoUpdater {
     UniqueIdGenerator uniqueIdGenerator;
 
     public YamlUpdateResult update(YamlRepoUpdaterParameter parameter) {
-        GitConnector connector = gitConnectorFactory.create(parameter.getGitFile().getRepository());
+        GitConnector connector = gitConnectorFactory.create(parameter.getTargetGitFile().getRepository());
 
         LOGGER.info("Fetching remote file");
-        String oldContent = connector.getFileContent(parameter.getGitFile());
+        String oldContent = connector.getFileContent(parameter.getTargetGitFile());
 
         LOGGER.info("Applying updates locally");
         String newContent = computeNewContent(parameter, oldContent);
@@ -51,20 +51,20 @@ public class YamlRepoUpdater {
         }
 
         if (parameter.isMergeRequest()) {
+            GitFile mergeRequestSourceGitFile = computeMergeRequestSourceGitFile(parameter);
+
             LOGGER.info("Creating new branch");
-            String mergeRequestSourceBranch = "yupd/" + uniqueIdGenerator.generate().substring(0, 7);
-            connector.createBranch(parameter.getGitFile().getRefBranch(), mergeRequestSourceBranch);
+            connector.createBranch(parameter.getTargetGitFile().getRef(), mergeRequestSourceGitFile.getBranch());
 
             LOGGER.info("Updating file on new branch");
-            GitFile mergeRequestSourceBranchFile = parameter.getGitFile().builderFrom().withBranch(mergeRequestSourceBranch).build();
-            connector.updateFile(mergeRequestSourceBranchFile, parameter.getMessage(), newContent);
+            connector.updateFile(mergeRequestSourceGitFile, parameter.getMessage(), newContent);
 
             LOGGER.info("Creating pull/merge request");
-            connector.createMergeRequest(parameter.getMessage(), mergeRequestSourceBranch, parameter.getGitFile().getBranch(), computeMergeRequestBody(parameter));
+            connector.createMergeRequest(parameter.getMessage(), mergeRequestSourceGitFile.getBranch(), parameter.getTargetGitFile().getBranch(), computeMergeRequestBody(parameter));
 
         } else {
             LOGGER.info("Updating remote file");
-            connector.updateFile(parameter.getGitFile(), parameter.getMessage(), newContent);
+            connector.updateFile(parameter.getTargetGitFile(), parameter.getMessage(), newContent);
         }
 
         LOGGER.info("Done!");
@@ -74,20 +74,25 @@ public class YamlRepoUpdater {
     private String computeNewContent(YamlRepoUpdaterParameter parameter, String oldContent) {
         String newContent;
         if (parameter.getSourceFile().isPresent()) {
-            LOGGER.info("Applying YAML path expressions on the template file");
+            LOGGER.info("Applying updates on the template file");
             newContent = updateService.update(IOUtils.readFile(parameter.getSourceFile().get()), parameter.getContentUpdates());
         } else {
-            LOGGER.info("Applying YAML path expressions");
+            LOGGER.info("Applying updates");
             newContent = updateService.update(oldContent, parameter.getContentUpdates());
         }
         return newContent;
+    }
+
+    private GitFile computeMergeRequestSourceGitFile(YamlRepoUpdaterParameter parameter) {
+        String mergeRequestSourceBranch = "yupd/" + uniqueIdGenerator.generate().substring(0, 7);
+        return parameter.getTargetGitFile().builderFrom().withBranch(mergeRequestSourceBranch).build();
     }
 
     private String computeMergeRequestBody(YamlRepoUpdaterParameter parameter) {
         return parameter.getContentUpdates()
                 .stream()
                 .map(YamlRepoUpdater::computePathEntryDescription)
-                .collect(Collectors.joining("\n", "Proposed update in " + parameter.getGitFile().getPath() + ":\n", "\n"));
+                .collect(Collectors.joining("\n", "Proposed update in " + parameter.getTargetGitFile().getPath() + ":\n", "\n"));
     }
 
     private static String computePathEntryDescription(ContentUpdateCriteria entry) {

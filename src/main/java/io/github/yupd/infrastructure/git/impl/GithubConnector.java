@@ -68,7 +68,7 @@ public class GithubConnector implements GitConnector {
     }
 
     private GHContent getGithubContent(GitFile file) throws IOException {
-        return githubRepository.getFileContent(file.getPath(), file.getRefBranch());
+        return githubRepository.getFileContent(file.getPath(), file.getRef());
     }
 
 }

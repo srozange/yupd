@@ -14,7 +14,7 @@ public class YamlRepoUpdaterParameter {
 
     private Path sourceFile;
 
-    private GitFile gitFile;
+    private GitFile targetGitFile;
 
     private String message;
 
@@ -33,15 +33,15 @@ public class YamlRepoUpdaterParameter {
     }
 
     public String getMessage() {
-        return StringUtils.isNullOrEmpty(message) ? "Update values in " + getGitFile().getPath() : message;
+        return StringUtils.isNullOrEmpty(message) ? "Update values in " + getTargetGitFile().getPath() : message;
     }
 
     public List<ContentUpdateCriteria> getContentUpdates() {
         return contentUpdates;
     }
 
-    public GitFile getGitFile() {
-        return gitFile;
+    public GitFile getTargetGitFile() {
+        return targetGitFile;
     }
 
     public boolean isDryRun() {
@@ -54,7 +54,7 @@ public class YamlRepoUpdaterParameter {
 
     public static final class Builder {
         private Path sourceFile;
-        private GitFile gitFile;
+        private GitFile targetGitFile;
         private String message;
         private List<ContentUpdateCriteria> contentUpdates;
         private boolean dryRun;
@@ -68,8 +68,8 @@ public class YamlRepoUpdaterParameter {
             return this;
         }
 
-        public Builder withGitFile(GitFile gitFile) {
-            this.gitFile = gitFile;
+        public Builder withTargetGitFile(GitFile gitFile) {
+            this.targetGitFile = gitFile;
             return this;
         }
 
@@ -103,7 +103,7 @@ public class YamlRepoUpdaterParameter {
             yamlRepoUpdaterParameter.dryRun = this.dryRun;
             yamlRepoUpdaterParameter.contentUpdates = this.contentUpdates;
             yamlRepoUpdaterParameter.message = this.message;
-            yamlRepoUpdaterParameter.gitFile = this.gitFile;
+            yamlRepoUpdaterParameter.targetGitFile = this.targetGitFile;
             yamlRepoUpdaterParameter.sourceFile = this.sourceFile;
             yamlRepoUpdaterParameter.mergeRequest = this.mergeRequest;
             return yamlRepoUpdaterParameter;
