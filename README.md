@@ -141,7 +141,7 @@ Docker images are available on [Docker Hub](https://hub.docker.com/repository/do
 To use the image, you can run the following command:
 
 ```bash
-docker run --rm srozange/yupd:0.3 --repo-type github --token <updateme> --project srozange/playground --path k8s/deployment.yml --branch yupd-it --set *.containers[0].image=nginx:newversion
+docker run --rm srozange/yupd:0.4 --repo-type github --token <updateme> --project srozange/playground --path k8s/deployment.yml --branch yupd-it --set *.containers[0].image=nginx:newversion
 ```
 
 ## Limitations
