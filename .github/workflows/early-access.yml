@@ -80,7 +80,7 @@ jobs:
       - name: 'Upload build artifact'
         uses: actions/upload-artifact@v4
         with:
-          name: artifacts
+          name: artifacts-${{ runner.os }}
           path: |
             target/distributions/*.zip
             target/distributions/*.tar.gz
@@ -104,6 +104,9 @@ jobs:
 
       - name: 'Download all build artifacts'
         uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
 
       - name: 'Set up Java'
         uses: actions/setup-java@v4
@@ -126,6 +129,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: 'Move Docker runner to target'
+        run: mkdir target && mv artifacts/*runner* target/
 
       - name: 'Build and push Docker image'
         uses: docker/build-push-action@v5
