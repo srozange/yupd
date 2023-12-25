@@ -12,7 +12,7 @@
         <compiler-plugin.version>3.11.0</compiler-plugin.version>
         <jreleaser-plugin.version>1.9.0</jreleaser-plugin.version>
         <os-plugin.version>1.7.1</os-plugin.version>
-        <surefire-plugin.version>3.2.1</surefire-plugin.version>
+        <surefire-plugin.version>3.2.3</surefire-plugin.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
