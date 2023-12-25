@@ -107,7 +107,7 @@ For more information on the syntax, you can refer to the [Javadoc of class 'Patt
 ## Manual
 ```shell
 Usage: yupd [-hV] [--dry-run] [--insecure] [--pull-request] [--verbose] -b=<branch> [-f=<sourceFile>] [-m=<commitMessage>] -p=<path> --project=<project>
-            [-r=<url>] --repo-type=<repoType> -t=<token> --set=<String=String>[||<String=String>...] [--set=<String=String>[||<String=String>...]]...
+            [-r=<url>] --repo-type=<repoType> -t=<token> --set=<String=String>[@@@<String=String>...] [--set=<String=String>[@@@<String=String>...]]...
   -b, --branch=<branch>     Specifies the branch name of the target file to update (env: YUPD_BRANCH)
       --dry-run             If set to true, no write operation is done (env: YUPD_DRY_RUN)
   -f, --template=<sourceFile>
@@ -123,7 +123,7 @@ Usage: yupd [-hV] [--dry-run] [--insecure] [--pull-request] [--verbose] -b=<bran
   -r, --repo=<url>          Specifies the URL of the Git repository (env: YUPD_REPO)
       --repo-type=<repoType>
                             Specifies the repository type; valid values: 'gitlab' or 'github' (env: YUPD_REPO_TYPE)
-      --set=<String=String>[||<String=String>...]
+      --set=<String=String>[@@@<String=String>...]
                             Allows setting YAML path expressions (e.g., metadata.name=new_name) or regular expressions (env: YUPD_SET)
   -t, --token=<token>       Provides the authentication token (env: YUPD_TOKEN)
   -V, --version             Print version information and exit.
