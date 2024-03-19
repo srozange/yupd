@@ -78,7 +78,7 @@
         <dependency>
             <groupId>io.quarkiverse.githubapi</groupId>
             <artifactId>quarkus-github-api</artifactId>
-            <version>1.316.0</version>
+            <version>1.320.0</version>
         </dependency>
         <dependency>
             <groupId>org.gitlab</groupId>
