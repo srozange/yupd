@@ -1,11 +1,14 @@
 name: EarlyAccess
 
-on:
-  push:
-    branches: [ main ]
+on: push
+
+# on:
+#  push:
+#    branches: [ main ]
 
 env:
-  GRAAL_VERSION: '22.3.2'
+  GRAAL_DISTRIBUTION: 'graalvm-community'
+  GRAAL_VERSION: '23.1.2'
   JAVA_VERSION: '17'
   JAVA_DISTRO: 'zulu'
 
@@ -61,6 +64,7 @@ jobs:
         with:
           version: ${{ env.GRAAL_VERSION }}
           java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.GRAAL_DISTRIBUTION }}
           components: 'native-image'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
