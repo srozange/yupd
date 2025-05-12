@@ -88,7 +88,7 @@
         <dependency>
             <groupId>io.github.yaml-path</groupId>
             <artifactId>yaml-path</artifactId>
-            <version>0.0.10</version>
+            <version>0.0.12</version>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
