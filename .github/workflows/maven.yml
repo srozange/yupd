@@ -33,6 +33,6 @@ jobs:
         run: ./mvnw -B -ntp --file pom.xml verify
 
       - name: 'Upload coverage reports'
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
