@@ -11,7 +11,8 @@ on:
         required: false
 
 env:
-  GRAAL_VERSION: '22.3.2'
+  GRAAL_DISTRIBUTION: 'graalvm-community'
+  GRAAL_VERSION: '23.1.2'
   JAVA_VERSION: '17'
   JAVA_DISTRO: 'zulu'
 
@@ -64,7 +65,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ ubuntu-20.04, macOS-latest, windows-latest ]
+        os: [ ubuntu-22.04, macOS-latest, windows-latest ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: 'Check out repository'
@@ -77,6 +78,7 @@ jobs:
         with:
           version: ${{ env.GRAAL_VERSION }}
           java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.GRAAL_DISTRIBUTION }}
           components: 'native-image'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 

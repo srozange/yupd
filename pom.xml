@@ -338,9 +338,9 @@
                                             </artifact>
                                             <artifact>
                                                 <path>
-                                                    {{artifactsDir}}/{{distributionName}}-{{projectVersion}}-osx-x86_64.zip
+                                                    {{artifactsDir}}/{{distributionName}}-{{projectVersion}}-osx-aarch_64.zip
                                                 </path>
-                                                <platform>osx-x86_64</platform>
+                                                <platform>osx-aarch_64</platform>
                                             </artifact>
                                         </artifacts>
                                     </yupd>
