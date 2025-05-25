@@ -5,9 +5,8 @@ on:
     branches: [ main ]
 
 env:
-  GRAAL_DISTRIBUTION: 'graalvm-community'
-  GRAAL_VERSION: '23.1.2'
-  JAVA_VERSION: '17'
+  GRAAL_DISTRIBUTION: 'graalvm'
+  JAVA_VERSION: '21'
   JAVA_DISTRO: 'zulu'
 
 jobs:
@@ -60,7 +59,6 @@ jobs:
       - name: 'Set up Graal'
         uses: graalvm/setup-graalvm@v1
         with:
-          version: ${{ env.GRAAL_VERSION }}
           java-version: ${{ env.JAVA_VERSION }}
           distribution: ${{ env.GRAAL_DISTRIBUTION }}
           components: 'native-image'

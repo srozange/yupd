@@ -14,14 +14,14 @@
         <os-plugin.version>1.7.1</os-plugin.version>
         <surefire-plugin.version>3.5.3</surefire-plugin.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <maven.buildNumber.shortRevisionLength>7</maven.buildNumber.shortRevisionLength>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-        <quarkus.platform.version>3.5.0</quarkus.platform.version>
+        <quarkus.platform.version>3.22.3</quarkus.platform.version>
         <exec.mainClass>io.github.yupd.Yupd</exec.mainClass>
         <executable-suffix/>
         <artifactsDir>target/distributions</artifactsDir>
@@ -98,7 +98,6 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>5.17.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -252,7 +251,8 @@
                 </plugins>
             </build>
             <properties>
-                <quarkus.package.type>native</quarkus.package.type>
+                <quarkus.native.enabled>true</quarkus.native.enabled>
+                <quarkus.package.jar.enabled>false</quarkus.package.jar.enabled>
             </properties>
         </profile>
         <profile>
