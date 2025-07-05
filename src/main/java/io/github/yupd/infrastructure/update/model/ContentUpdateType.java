@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 public enum ContentUpdateType {
     YAMLPATH("ypath:", "yamlpath"),
-    REGEX("regex:", "regex");
+    REGEX("regex:", "regex"),
+    JSON("json:", "json");
 
     private String prefix;
     private String displayName;

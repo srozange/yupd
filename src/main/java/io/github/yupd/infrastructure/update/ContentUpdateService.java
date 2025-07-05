@@ -2,6 +2,7 @@ package io.github.yupd.infrastructure.update;
 
 import io.github.yupd.infrastructure.update.model.ContentUpdateCriteria;
 import io.github.yupd.infrastructure.update.model.ContentUpdateType;
+import io.github.yupd.infrastructure.update.updator.JsonPathUpdator;
 import io.github.yupd.infrastructure.update.updator.RegexUpdator;
 import io.github.yupd.infrastructure.update.updator.YamlPathUpdator;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -14,13 +15,16 @@ import java.util.stream.Collectors;
 public class ContentUpdateService {
 
     @Inject
+    JsonPathUpdator jsonPathUpdator;
+
+    @Inject
     RegexUpdator regexUpdator;
 
     @Inject
     YamlPathUpdator yamlPathUpdator;
 
     public String update(String content, List<ContentUpdateCriteria> updates) {
-        return computeRegexUpdates(computeYamlPathUpdates(content, updates), updates);
+        return computeRegexUpdates(computeJsonPathUpdates(computeYamlPathUpdates(content, updates), updates), updates);
     }
 
     private String computeYamlPathUpdates(String content, List<ContentUpdateCriteria> updates) {
@@ -29,6 +33,14 @@ public class ContentUpdateService {
             return content;
         }
         return yamlPathUpdator.update(content, yamlPathUpdates);
+    }
+
+    private String computeJsonPathUpdates(String content, List<ContentUpdateCriteria> updates) {
+        List<ContentUpdateCriteria> jsonPathUpdates = filterUpdates(updates, ContentUpdateType.JSON);
+        if (jsonPathUpdates.isEmpty()) {
+            return content;
+        }
+        return jsonPathUpdator.update(content, jsonPathUpdates);
     }
 
     private String computeRegexUpdates(String content, List<ContentUpdateCriteria> updates) {

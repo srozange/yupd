@@ -61,7 +61,7 @@ You can specify how the file is updated using the repeatable `--set` option:
 --set [type:]expression=value
 ```
 
-Available types are : ```ypath``` and ```regex```.
+Available types are : ```ypath```, ```regex```, and ```json```.
 
 We will use the following file for the subsequent examples:
 
@@ -104,6 +104,24 @@ The text matched within the parentheses will be replaced with the right part.
 
 For more information on the syntax, you can refer to the [Javadoc of class 'Pattern'](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html).
 
+### JSON path expressions
+
+Yupd can also update JSON files using [JsonPath](https://github.com/json-path/JsonPath) expressions.
+
+Here's an example where we change the name field to 'newname' in a JSON file:
+
+```shell
+--set json:$.name=newname
+```
+
+JsonPath expressions allow you to navigate and modify JSON structures. Some examples:
+- `$.name` - Updates the root level 'name' field
+- `$.spec.replicas` - Updates nested fields
+- `$.ports[0]` - Updates array elements
+- `$.envs[*]` - Updates all array elements
+
+For more detailed syntax information, you can refer to the [JsonPath documentation](https://github.com/json-path/JsonPath).
+
 ## Manual
 ```shell
 Usage: yupd [-hV] [--dry-run] [--insecure] [--pull-request] [--verbose] -b=<branch> [-f=<sourceFile>] [-m=<commitMessage>] -p=<path> --project=<project>
@@ -124,7 +142,7 @@ Usage: yupd [-hV] [--dry-run] [--insecure] [--pull-request] [--verbose] -b=<bran
       --repo-type=<repoType>
                             Specifies the repository type; valid values: 'gitlab' or 'github' (env: YUPD_REPO_TYPE)
       --set=<String=String>[@@@<String=String>...]
-                            Allows setting YAML path expressions (e.g., metadata.name=new_name) or regular expressions (env: YUPD_SET)
+                            Allows setting YAML path expressions, JSON path expressions, or regular expressions (env: YUPD_SET)
   -t, --token=<token>       Provides the authentication token (env: YUPD_TOKEN)
   -V, --version             Print version information and exit.
       --verbose             If set to true, sets the log level to debug (env: YUPD_VERBOSE)
