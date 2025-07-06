@@ -3,23 +3,15 @@ package io.github.yupd.infrastructure.update.updator;
 import io.github.yupd.infrastructure.update.model.ContentUpdateCriteria;
 import jakarta.enterprise.context.ApplicationScoped;
 
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @ApplicationScoped
 public class RegexUpdator {
 
-    public String update(String content, List<ContentUpdateCriteria> updates) {
-        return updates.stream()
-                .reduce(content,
-                        (currentContent, update) -> update(currentContent, update),
-                        (previous, last) -> last
-                );
-    }
 
-    private String update(String content, ContentUpdateCriteria update) {
-        StringBuffer result = new StringBuffer();
+    public String update(String content, ContentUpdateCriteria update) {
+        StringBuilder result = new StringBuilder();
         Matcher matcher = Pattern.compile(update.key()).matcher(content);
         while (matcher.find()) {
             String newValue;
