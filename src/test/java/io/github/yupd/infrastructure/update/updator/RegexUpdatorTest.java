@@ -10,7 +10,7 @@ class RegexUpdatorTest {
 
     @Test
     void noMatch() {
-        ContentUpdateCriteria criteria = new ContentUpdateCriteria("regex:(original contentt)", "titi");
+        ContentUpdateCriteria criteria = ContentUpdateCriteria.from("regex:(original contentt)", "titi");
 
         String result = new RegexUpdator().update("original content", criteria);
 
@@ -21,15 +21,15 @@ class RegexUpdatorTest {
     void matchNoGroup() {
         RegexUpdator updator = new RegexUpdator();
         
-        String result = updator.update("name: oldname", new ContentUpdateCriteria("regex:oldname", "newname"));
-        result = updator.update(result, new ContentUpdateCriteria("regex:name:", "newlabel:"));
+        String result = updator.update("name: oldname", ContentUpdateCriteria.from("regex:oldname", "newname"));
+        result = updator.update(result, ContentUpdateCriteria.from("regex:name:", "newlabel:"));
 
         assertThat(result).isEqualTo("newlabel: newname");
     }
 
     @Test
     void match() {
-        ContentUpdateCriteria criteria = new ContentUpdateCriteria("regex:good name: ([a-z]+)", "newname");
+        ContentUpdateCriteria criteria = ContentUpdateCriteria.from("regex:good name: ([a-z]+)", "newname");
 
         String result = new RegexUpdator().update(
                 "1. should be updated -> good name: oldname\n" +
