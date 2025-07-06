@@ -64,7 +64,7 @@ class YamlRepoUpdaterTest {
         parameterBuilder = YamlRepoUpdaterParameter.builder()
                 .withTargetGitFile(gitFile)
                 .withMessage(COMMIT_MESSAGE)
-                .withContentUpdates(List.of(new ContentUpdateCriteria("ypath:path", "replacement")));
+                .withContentUpdates(List.of(ContentUpdateCriteria.from("ypath:path", "replacement")));
 
         lenient().when(uniqueIdGenerator.generate()).thenReturn("uniqueid");
     }

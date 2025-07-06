@@ -12,7 +12,7 @@ class YamlPathUpdatorTest {
     @Test
     public void testMonoDocument() {
         String content = IOUtils.readFile("YamlPathUpdator/deployment.yml");
-        String newContent = new YamlPathUpdator().update(content, new ContentUpdateCriteria("*.containers[0].image", "nginx:newversion"));
+        String newContent = new YamlPathUpdator().update(content, ContentUpdateCriteria.from("*.containers[0].image", "nginx:newversion"));
         String expected = IOUtils.readFile("YamlPathUpdator/deployment_expected.yml");
         assertThat(newContent).isEqualToIgnoringNewLines(expected);
     }
@@ -20,7 +20,7 @@ class YamlPathUpdatorTest {
     @Test
     public void testMultiDocument() {
         assertThat(
-                new YamlPathUpdator().update("name: oldContent\n---\nname: oldContent2", new ContentUpdateCriteria("name", "newContent")))
+                new YamlPathUpdator().update("name: oldContent\n---\nname: oldContent2", ContentUpdateCriteria.from("name", "newContent")))
                 .isEqualToIgnoringNewLines("name: newContent\n---\nname: newContent\n");
     }
 

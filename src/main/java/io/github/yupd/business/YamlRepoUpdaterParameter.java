@@ -84,7 +84,7 @@ public class YamlRepoUpdaterParameter {
         }
 
         public Builder withContentUpdates(Map<String, String> yamlPathMap) {
-            withContentUpdates(yamlPathMap.entrySet().stream().map(ContentUpdateCriteria::new).collect(Collectors.toList()));
+            withContentUpdates(yamlPathMap.entrySet().stream().map(ContentUpdateCriteria::from).collect(Collectors.toList()));
             return this;
         }
 
