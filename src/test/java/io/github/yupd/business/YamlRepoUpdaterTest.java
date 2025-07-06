@@ -8,6 +8,7 @@ import io.github.yupd.infrastructure.update.ContentUpdateService;
 import io.github.yupd.infrastructure.utils.IOUtils;
 import io.github.yupd.infrastructure.utils.UniqueIdGenerator;
 import io.github.yupd.infrastructure.update.model.ContentUpdateCriteria;
+import io.github.yupd.infrastructure.diff.DiffService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -45,6 +46,9 @@ class YamlRepoUpdaterTest {
 
     @Mock
     private UniqueIdGenerator uniqueIdGenerator;
+
+    @Mock
+    private DiffService diffService;
 
     @InjectMocks
     private YamlRepoUpdater updater;
