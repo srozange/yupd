@@ -3,7 +3,6 @@ package io.github.yupd.infrastructure.update.updator;
 import io.github.yupd.infrastructure.update.model.ContentUpdateCriteria;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,7 +10,7 @@ class RegexUpdatorTest {
 
     @Test
     void noMatch() {
-        List<ContentUpdateCriteria> criteria = List.of(new ContentUpdateCriteria("regex:(original contentt)", "titi"));
+        ContentUpdateCriteria criteria = new ContentUpdateCriteria("regex:(original contentt)", "titi");
 
         String result = new RegexUpdator().update("original content", criteria);
 
@@ -20,18 +19,17 @@ class RegexUpdatorTest {
 
     @Test
     void matchNoGroup() {
-        List<ContentUpdateCriteria> criteria = List.of(
-                new ContentUpdateCriteria("regex:oldname", "newname"),
-                new ContentUpdateCriteria("regex:name:", "newlabel:"));
-
-        String result = new RegexUpdator().update("name: oldname", criteria);
+        RegexUpdator updator = new RegexUpdator();
+        
+        String result = updator.update("name: oldname", new ContentUpdateCriteria("regex:oldname", "newname"));
+        result = updator.update(result, new ContentUpdateCriteria("regex:name:", "newlabel:"));
 
         assertThat(result).isEqualTo("newlabel: newname");
     }
 
     @Test
     void match() {
-        List<ContentUpdateCriteria> criteria = List.of(new ContentUpdateCriteria("regex:good name: ([a-z]+)", "newname"));
+        ContentUpdateCriteria criteria = new ContentUpdateCriteria("regex:good name: ([a-z]+)", "newname");
 
         String result = new RegexUpdator().update(
                 "1. should be updated -> good name: oldname\n" +

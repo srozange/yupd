@@ -19,14 +19,11 @@ public class YamlPathUpdator {
     private static final ObjectMapper OBJECT_MAPPER = YamlObjectMapperFactory.create();
 
     public String update(String content, ContentUpdateCriteria yamlPathEntry) {
-        return update(content, List.of(yamlPathEntry));
-    }
-
-    public String update(String content, List<ContentUpdateCriteria> yamlPathEntries) {
         YamlExpressionParser yamlExpressionParser = YamlPath.from(content);
-        yamlPathEntries.forEach(entry -> yamlExpressionParser.write(entry.key(), entry.value()));
+        yamlExpressionParser.write(yamlPathEntry.key(), yamlPathEntry.value());
         return dumpAsString(yamlExpressionParser);
     }
+
 
     private String dumpAsString(YamlExpressionParser yaml) {
         return yaml.getResources().stream()
