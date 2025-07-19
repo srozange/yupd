@@ -9,7 +9,7 @@ import io.github.yupd.infrastructure.utils.StringUtils;
 import io.github.yupd.infrastructure.utils.UniqueIdGenerator;
 import io.github.yupd.infrastructure.utils.IOUtils;
 import io.github.yupd.infrastructure.update.model.ContentUpdateCriteria;
-import io.github.yupd.infrastructure.diff.DiffService;
+import io.github.yupd.infrastructure.utils.DiffUtils;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.jboss.logging.Logger;
@@ -30,9 +30,6 @@ public class YamlRepoUpdater {
     @Inject
     UniqueIdGenerator uniqueIdGenerator;
 
-    @Inject
-    DiffService diffService;
-
     public YamlUpdateResult update(YamlRepoUpdaterParameter parameter) {
         GitConnector connector = gitConnectorFactory.create(parameter.getTargetGitFile().getRepository());
 
@@ -49,10 +46,10 @@ public class YamlRepoUpdater {
         }
 
         LOGGER.debugf("New content:");
-        LOGGER.debugf("%s", newContent);
+        LOGGER.debugf("%s", updateResult.newContent());
 
         LOGGER.infof("Changes:");
-        LOGGER.infof("%s", diffService.generateDiff(oldContent, newContent));
+        LOGGER.infof("%s", updateResult.generateDiff());
 
         if (parameter.isDryRun()) {
             LOGGER.infof("No updates since the dry mode is activated");
@@ -107,6 +104,10 @@ public class YamlRepoUpdater {
 
         public boolean updated() {
             return !StringUtils.equalsIgnoreTrailingWhiteSpaces(originalContent, newContent);
+        }
+
+        public String generateDiff() {
+            return DiffUtils.generateDiff(originalContent, newContent);
         }
     }
 }

@@ -1,6 +1,5 @@
-package io.github.yupd.infrastructure.diff;
+package io.github.yupd.infrastructure.utils;
 
-import com.github.difflib.DiffUtils;
 import com.github.difflib.patch.Patch;
 import com.github.difflib.patch.AbstractDelta;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -8,14 +7,17 @@ import jakarta.enterprise.context.ApplicationScoped;
 import java.util.Arrays;
 import java.util.List;
 
-@ApplicationScoped
-public class DiffService {
+public class DiffUtils {
 
-    public String generateDiff(String oldContent, String newContent) {
+    DiffUtils() {
+        throw new IllegalStateException("utility class");
+    }
+
+    public static String generateDiff(String oldContent, String newContent) {
         List<String> oldLines = Arrays.asList(oldContent.split(System.lineSeparator()));
         List<String> newLines = Arrays.asList(newContent.split(System.lineSeparator()));
         
-        Patch<String> patch = DiffUtils.diff(oldLines, newLines);
+        Patch<String> patch = com.github.difflib.DiffUtils.diff(oldLines, newLines);
         
         if (patch.getDeltas().isEmpty()) {
             return "No differences found";
