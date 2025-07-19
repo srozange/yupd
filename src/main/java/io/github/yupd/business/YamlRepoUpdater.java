@@ -41,33 +41,38 @@ public class YamlRepoUpdater {
 
         LOGGER.info("Applying updates locally");
         String newContent = computeNewContent(parameter, oldContent);
-        if (StringUtils.equalsIgnoreTrailingWhiteSpaces(oldContent, newContent)) {
+
+        YamlUpdateResult updateResult = new YamlUpdateResult(oldContent, newContent);
+        if (!updateResult.updated()) {
             LOGGER.info("The file has not been updated because the new content is equal to the old one");
-            return YamlUpdateResult.notUpdated(oldContent);
+            return updateResult;
         }
 
         LOGGER.debugf("New content:");
         LOGGER.debugf("%s", newContent);
-        
+
         LOGGER.infof("Changes:");
         LOGGER.infof("%s", diffService.generateDiff(oldContent, newContent));
 
         if (parameter.isDryRun()) {
             LOGGER.infof("No updates since the dry mode is activated");
-            return YamlUpdateResult.updated(oldContent, newContent);
+            return updateResult;
         }
 
         if (parameter.isMergeRequest()) {
-            GitFile mergeRequestSourceGitFile = computeMergeRequestSourceGitFile(parameter);
+            String mergeRequestFromBranch = parameter.getTargetGitFile().getBranch();
+            String mergeRequestToBranch = "yupd/" + uniqueIdGenerator.generate().substring(0, 7);
 
-            LOGGER.info("Creating new branch");
-            connector.createBranch(parameter.getTargetGitFile().getRef(), mergeRequestSourceGitFile.getBranch());
+            LOGGER.info("Creating pull/merge request target branch");
+            connector.createBranch(parameter.getTargetGitFile().getRef(), mergeRequestToBranch);
 
-            LOGGER.info("Updating file on new branch");
-            connector.updateFile(mergeRequestSourceGitFile, parameter.getMessage(), newContent);
+            LOGGER.info("Updating file on target branch");
+            GitFile targetFileOnToBranch = parameter.getTargetGitFile().builderFrom().withBranch(mergeRequestToBranch).build();
+            connector.updateFile(targetFileOnToBranch, parameter.getMessage(), newContent);
 
             LOGGER.info("Creating pull/merge request");
-            connector.createMergeRequest(parameter.getMessage(), mergeRequestSourceGitFile.getBranch(), parameter.getTargetGitFile().getBranch(), computeMergeRequestBody(parameter));
+            String url = connector.createMergeRequest(parameter.getMessage(), mergeRequestToBranch, mergeRequestFromBranch, computeMergeRequestBody(parameter));
+            LOGGER.infof("Created pull/merge request url : %s", url);
 
         } else {
             LOGGER.info("Updating remote file");
@@ -75,24 +80,16 @@ public class YamlRepoUpdater {
         }
 
         LOGGER.info("Done!");
-        return YamlUpdateResult.updated(oldContent, newContent);
+        return updateResult;
     }
 
     private String computeNewContent(YamlRepoUpdaterParameter parameter, String oldContent) {
-        String newContent;
         if (parameter.getSourceFile().isPresent()) {
             LOGGER.info("Applying updates on the template file");
-            newContent = updateService.update(IOUtils.readFile(parameter.getSourceFile().get()), parameter.getContentUpdates());
-        } else {
-            LOGGER.info("Applying updates");
-            newContent = updateService.update(oldContent, parameter.getContentUpdates());
+            return updateService.update(IOUtils.readFile(parameter.getSourceFile().get()), parameter.getContentUpdates());
         }
-        return newContent;
-    }
-
-    private GitFile computeMergeRequestSourceGitFile(YamlRepoUpdaterParameter parameter) {
-        String mergeRequestSourceBranch = "yupd/" + uniqueIdGenerator.generate().substring(0, 7);
-        return parameter.getTargetGitFile().builderFrom().withBranch(mergeRequestSourceBranch).build();
+        LOGGER.info("Applying updates");
+        return updateService.update(oldContent, parameter.getContentUpdates());
     }
 
     private String computeMergeRequestBody(YamlRepoUpdaterParameter parameter) {
@@ -106,14 +103,10 @@ public class YamlRepoUpdater {
         return "- [" + entry.type().getDisplayName() + "] " + entry.key() + "=" + entry.value();
     }
 
-    public record YamlUpdateResult(boolean updated, String originalContent, String newContent) {
+    public record YamlUpdateResult(String originalContent, String newContent) {
 
-        public static YamlUpdateResult updated(String originalContent, String newContent) {
-            return new YamlUpdateResult(true, originalContent, newContent);
-        }
-
-        public static YamlUpdateResult notUpdated(String originalContent) {
-            return new YamlUpdateResult(false, originalContent, originalContent);
+        public boolean updated() {
+            return !StringUtils.equalsIgnoreTrailingWhiteSpaces(originalContent, newContent);
         }
     }
 }

@@ -10,6 +10,6 @@ public interface GitConnector {
 
     void createBranch(String ref, String name);
 
-    void createMergeRequest(String title, String sourceBranch, String targetBranch, String body);
+    String createMergeRequest(String title, String sourceBranch, String targetBranch, String body);
 
 }

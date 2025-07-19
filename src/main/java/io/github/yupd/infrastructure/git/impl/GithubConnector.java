@@ -58,10 +58,10 @@ public class GithubConnector implements GitConnector {
     }
 
     @Override
-    public void createMergeRequest(String title, String sourceBranch, String targetBranch, String body) {
+    public String createMergeRequest(String title, String sourceBranch, String targetBranch, String body) {
         try {
             GHPullRequest pullRequest = githubRepository.createPullRequest(title, sourceBranch, targetBranch, body);
-            LogUtils.getConsoleLogger().infof("Pull request opened: %s", pullRequest.getHtmlUrl());
+            return pullRequest.getHtmlUrl().toString();
         } catch (IOException e) {
             throw new RuntimeException("Could not create pull request in github", e);
         }

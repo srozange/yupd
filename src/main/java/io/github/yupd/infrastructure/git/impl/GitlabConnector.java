@@ -3,6 +3,7 @@ package io.github.yupd.infrastructure.git.impl;
 import io.github.yupd.infrastructure.git.GitConnector;
 import io.github.yupd.infrastructure.git.model.GitFile;
 import io.github.yupd.infrastructure.git.model.GitRepository;
+import io.github.yupd.infrastructure.utils.LogUtils;
 import org.gitlab.api.GitlabAPI;
 import org.gitlab.api.models.GitlabMergeRequest;
 import org.gitlab.api.models.GitlabProject;
@@ -51,10 +52,11 @@ public class GitlabConnector implements GitConnector {
     }
 
     @Override
-    public void createMergeRequest(String title, String sourceBranch, String targetBranch, String body) {
+    public String createMergeRequest(String title, String sourceBranch, String targetBranch, String body) {
         try {
             GitlabMergeRequest mergeRequest = gitlabAPI.createMergeRequest(gitlabProject.getId(), sourceBranch, targetBranch, null, title);
             gitlabAPI.updateMergeRequest(gitlabProject.getId(), mergeRequest.getIid(), targetBranch, null, title, body, null, null);
+            return mergeRequest.getWebUrl();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
