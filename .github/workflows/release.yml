@@ -168,6 +168,6 @@ jobs:
           ./mvnw -B -ntp versions:set versions:commit -DnewVersion=${{ needs.precheck.outputs.NEXT_VERSION }}
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "GitHub Action"
-          sed -i 's|srozange/yupd:[0-9]\.[0-9]|srozange/yupd:${{ github.event.inputs.version }}|g' README.md
+          sed -i 's|srozange/yupd:[^ ]*|srozange/yupd:${{ github.event.inputs.version }}|g' README.md
           git commit -a -m "⬆️  Next version $NEXT_VERSION"
           git push origin HEAD:main
