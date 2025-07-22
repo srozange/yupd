@@ -18,8 +18,8 @@ public class ContentUpdateService {
     @Inject
     YamlPathUpdator yamlPathUpdator;
 
-    public String update(String content, List<ContentUpdateCriteria> updates) {
-        return updates.stream()
+    public String update(String content, List<ContentUpdateCriteria> contentUpdateCriteriaList) {
+        return contentUpdateCriteriaList.stream()
                 .reduce(content,
                         (currentContent, update) -> switch (update.type()) {
                             case YAMLPATH -> yamlPathUpdator.update(currentContent, update);

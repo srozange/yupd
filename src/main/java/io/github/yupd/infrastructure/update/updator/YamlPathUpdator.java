@@ -18,9 +18,9 @@ public class YamlPathUpdator {
 
     private static final ObjectMapper OBJECT_MAPPER = YamlObjectMapperFactory.create();
 
-    public String update(String content, ContentUpdateCriteria yamlPathEntry) {
+    public String update(String content, ContentUpdateCriteria contentUpdateCriteria) {
         YamlExpressionParser yamlExpressionParser = YamlPath.from(content);
-        yamlExpressionParser.write(yamlPathEntry.key(), yamlPathEntry.value());
+        yamlExpressionParser.write(contentUpdateCriteria.key(), contentUpdateCriteria.value());
         return dumpAsString(yamlExpressionParser);
     }
 

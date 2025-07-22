@@ -8,7 +8,6 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class YamlRepoUpdaterParameter {
 
@@ -18,7 +17,7 @@ public class YamlRepoUpdaterParameter {
 
     private String message;
 
-    private List<ContentUpdateCriteria> contentUpdates;
+    private List<ContentUpdateCriteria> contentUpdateCriteriaList;
 
     private boolean mergeRequest;
 
@@ -36,8 +35,8 @@ public class YamlRepoUpdaterParameter {
         return StringUtils.isNullOrEmpty(message) ? "Update values in " + getTargetGitFile().getPath() : message;
     }
 
-    public List<ContentUpdateCriteria> getContentUpdates() {
-        return contentUpdates;
+    public List<ContentUpdateCriteria> getContentUpdateCriteriaList() {
+        return contentUpdateCriteriaList;
     }
 
     public GitFile getTargetGitFile() {
@@ -56,7 +55,7 @@ public class YamlRepoUpdaterParameter {
         private Path sourceFile;
         private GitFile targetGitFile;
         private String message;
-        private List<ContentUpdateCriteria> contentUpdates;
+        private List<ContentUpdateCriteria> contentUpdateCriteriaList;
         private boolean dryRun;
         private boolean mergeRequest;
 
@@ -78,13 +77,13 @@ public class YamlRepoUpdaterParameter {
             return this;
         }
 
-        public Builder withContentUpdates(List<ContentUpdateCriteria> contentUpdates) {
-            this.contentUpdates = contentUpdates;
+        public Builder withContentUpdateCriteriaList(List<ContentUpdateCriteria> contentUpdateCriteriaList) {
+            this.contentUpdateCriteriaList = contentUpdateCriteriaList;
             return this;
         }
 
-        public Builder withContentUpdates(Map<String, String> yamlPathMap) {
-            withContentUpdates(yamlPathMap.entrySet().stream().map(ContentUpdateCriteria::from).collect(Collectors.toList()));
+        public Builder withContentUpdateCriteriaList(Map<String, String> yamlPathMap) {
+            this.contentUpdateCriteriaList = ContentUpdateCriteria.from(yamlPathMap);
             return this;
         }
 
@@ -101,7 +100,7 @@ public class YamlRepoUpdaterParameter {
         public YamlRepoUpdaterParameter build() {
             YamlRepoUpdaterParameter yamlRepoUpdaterParameter = new YamlRepoUpdaterParameter();
             yamlRepoUpdaterParameter.dryRun = this.dryRun;
-            yamlRepoUpdaterParameter.contentUpdates = this.contentUpdates;
+            yamlRepoUpdaterParameter.contentUpdateCriteriaList = this.contentUpdateCriteriaList;
             yamlRepoUpdaterParameter.message = this.message;
             yamlRepoUpdaterParameter.targetGitFile = this.targetGitFile;
             yamlRepoUpdaterParameter.sourceFile = this.sourceFile;

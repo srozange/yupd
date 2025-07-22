@@ -1,6 +1,8 @@
 package io.github.yupd.infrastructure.update.model;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public record ContentUpdateCriteria(ContentUpdateType type, String key, String value) {
 
@@ -10,7 +12,7 @@ public record ContentUpdateCriteria(ContentUpdateType type, String key, String v
         return new ContentUpdateCriteria(type, key.replace(type.getPrefix(), ""), value);
     }
 
-    public static ContentUpdateCriteria from(Map.Entry<String, String> entry) {
-        return from(entry.getKey(), entry.getValue());
+    public static List<ContentUpdateCriteria> from(Map<String, String> criteriaMap) {
+        return criteriaMap.entrySet().stream().map(e -> from(e.getKey(), e.getValue())).collect(Collectors.toList());
     }
 }

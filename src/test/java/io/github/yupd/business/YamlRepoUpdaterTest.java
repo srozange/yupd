@@ -64,7 +64,7 @@ class YamlRepoUpdaterTest {
         parameterBuilder = YamlRepoUpdaterParameter.builder()
                 .withTargetGitFile(gitFile)
                 .withMessage(COMMIT_MESSAGE)
-                .withContentUpdates(List.of(ContentUpdateCriteria.from("ypath:path", "replacement")));
+                .withContentUpdateCriteriaList(List.of(ContentUpdateCriteria.from("ypath:path", "replacement")));
 
         lenient().when(uniqueIdGenerator.generate()).thenReturn("uniqueid");
     }
@@ -74,7 +74,7 @@ class YamlRepoUpdaterTest {
         // Setup
         YamlRepoUpdaterParameter parameter = parameterBuilder.build();
         when(connector.getFileContent(parameter.getTargetGitFile())).thenReturn(ORIGINAL_CONTENT);
-        when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdates())).thenReturn(NEW_CONTENT);
+        when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(NEW_CONTENT);
 
         // Test
         YamlRepoUpdater.YamlUpdateResult result = updater.update(parameter);
@@ -91,7 +91,7 @@ class YamlRepoUpdaterTest {
         // Setup
         YamlRepoUpdaterParameter parameter = parameterBuilder.withMergeRequest(true).build();
         when(connector.getFileContent(parameter.getTargetGitFile())).thenReturn(ORIGINAL_CONTENT);
-        when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdates())).thenReturn(NEW_CONTENT);
+        when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(NEW_CONTENT);
 
         // Test
         YamlRepoUpdater.YamlUpdateResult result = updater.update(parameter);
@@ -114,7 +114,7 @@ class YamlRepoUpdaterTest {
 
         YamlRepoUpdaterParameter parameter = parameterBuilder.withSourceFile(template).build();
         when(connector.getFileContent(parameter.getTargetGitFile())).thenReturn(ORIGINAL_CONTENT);
-        when(contentUpdateService.update(TEMPLATE_CONTENT, parameter.getContentUpdates())).thenReturn(NEW_CONTENT);
+        when(contentUpdateService.update(TEMPLATE_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(NEW_CONTENT);
 
         // Test
         YamlRepoUpdater.YamlUpdateResult result = updater.update(parameter);
@@ -131,7 +131,7 @@ class YamlRepoUpdaterTest {
         // Setup
         YamlRepoUpdaterParameter parameter = parameterBuilder.withDryRun(true).build();
         when(connector.getFileContent(parameter.getTargetGitFile())).thenReturn(ORIGINAL_CONTENT);
-        when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdates())).thenReturn(NEW_CONTENT);
+        when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(NEW_CONTENT);
 
         // Test
         YamlRepoUpdater.YamlUpdateResult result = updater.update(parameter);
@@ -149,7 +149,7 @@ class YamlRepoUpdaterTest {
         // Setup
         YamlRepoUpdaterParameter parameter = parameterBuilder.build();
         when(connector.getFileContent(parameter.getTargetGitFile())).thenReturn(ORIGINAL_CONTENT);
-        when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdates())).thenReturn(ORIGINAL_CONTENT);
+        when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(ORIGINAL_CONTENT);
 
         // Test
         YamlRepoUpdater.YamlUpdateResult result = updater.update(parameter);
