@@ -16,7 +16,7 @@ class YamlRepoUpdaterParameterFactory {
                 .withTargetGitFile(buildGitFile())
                 .withMessage(cmd.commitMessage)
                 .withSourceFile(cmd.sourceFile)
-                .withContentUpdates(cmd.contentUpdates)
+                .withContentUpdateCriteriaList(cmd.contentUpdates)
                 .withDryRun(cmd.dryRun)
                 .withMergeRequest(cmd.mergeRequest)
                 .build();

@@ -83,14 +83,14 @@ public class YamlRepoUpdater {
     private String computeNewContent(YamlRepoUpdaterParameter parameter, String oldContent) {
         if (parameter.getSourceFile().isPresent()) {
             LOGGER.info("Applying updates on the template file");
-            return updateService.update(IOUtils.readFile(parameter.getSourceFile().get()), parameter.getContentUpdates());
+            return updateService.update(IOUtils.readFile(parameter.getSourceFile().get()), parameter.getContentUpdateCriteriaList());
         }
         LOGGER.info("Applying updates");
-        return updateService.update(oldContent, parameter.getContentUpdates());
+        return updateService.update(oldContent, parameter.getContentUpdateCriteriaList());
     }
 
     private String computeMergeRequestBody(YamlRepoUpdaterParameter parameter) {
-        return parameter.getContentUpdates()
+        return parameter.getContentUpdateCriteriaList()
                 .stream()
                 .map(YamlRepoUpdater::computePathEntryDescription)
                 .collect(Collectors.joining("\n", "Proposed update in " + parameter.getTargetGitFile().getPath() + ":\n", "\n"));
