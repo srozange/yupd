@@ -1,6 +1,6 @@
-package io.github.yupd.infrastructure.git;
+package io.github.yupd.domain.ports.out;
 
-import io.github.yupd.infrastructure.git.model.GitFile;
+import io.github.yupd.domain.model.GitFile;
 
 public interface GitConnector {
 

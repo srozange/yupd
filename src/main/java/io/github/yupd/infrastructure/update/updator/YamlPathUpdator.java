@@ -4,10 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.yamlpath.YamlExpressionParser;
 import io.github.yamlpath.YamlPath;
-import io.github.yupd.infrastructure.update.model.ContentUpdateCriteria;
+import io.github.yupd.domain.model.ContentUpdateCriteria;
 import jakarta.enterprise.context.ApplicationScoped;
 
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 

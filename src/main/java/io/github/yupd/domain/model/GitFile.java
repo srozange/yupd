@@ -1,4 +1,4 @@
-package io.github.yupd.infrastructure.git.model;
+package io.github.yupd.domain.model;
 
 import java.util.Objects;
 

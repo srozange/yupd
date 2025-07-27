@@ -1,4 +1,4 @@
-package io.github.yupd.infrastructure.update.model;
+package io.github.yupd.domain.model;
 
 import java.util.List;
 import java.util.Map;

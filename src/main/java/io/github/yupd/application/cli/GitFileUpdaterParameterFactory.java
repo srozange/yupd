@@ -1,18 +1,19 @@
-package io.github.yupd.command;
+package io.github.yupd.application.cli;
 
-import io.github.yupd.business.YamlRepoUpdaterParameter;
-import io.github.yupd.infrastructure.git.model.GitFile;
-import io.github.yupd.infrastructure.git.model.GitRepository;
+import io.github.yupd.domain.model.GitFileUpdaterParameter;
+import io.github.yupd.domain.model.GitFile;
+import io.github.yupd.domain.model.GitRepository;
 
-class YamlRepoUpdaterParameterFactory {
+class GitFileUpdaterParameterFactory {
+
     private final YupdCommand cmd;
 
-    YamlRepoUpdaterParameterFactory(YupdCommand cmd) {
+    GitFileUpdaterParameterFactory(YupdCommand cmd) {
         this.cmd = cmd;
     }
 
-    YamlRepoUpdaterParameter create() {
-        return YamlRepoUpdaterParameter.builder()
+    GitFileUpdaterParameter create() {
+        return GitFileUpdaterParameter.builder()
                 .withTargetGitFile(buildGitFile())
                 .withMessage(cmd.commitMessage)
                 .withSourceFile(cmd.sourceFile)
