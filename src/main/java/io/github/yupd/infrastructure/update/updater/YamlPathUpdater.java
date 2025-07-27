@@ -1,4 +1,4 @@
-package io.github.yupd.infrastructure.update.updator;
+package io.github.yupd.infrastructure.update.updater;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
-public class YamlPathUpdator {
+public class YamlPathUpdater {
 
     private static final String DOCUMENT_DELIMITER = "---";
 

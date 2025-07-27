@@ -1,4 +1,4 @@
-package io.github.yupd.infrastructure.update.updator;
+package io.github.yupd.infrastructure.update.updater;
 
 import io.github.yupd.domain.model.ContentUpdateCriteria;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -7,8 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @ApplicationScoped
-public class RegexUpdator {
-
+public class RegexUpdater {
 
     public String update(String content, ContentUpdateCriteria contentUpdateCriteria) {
         StringBuilder result = new StringBuilder();

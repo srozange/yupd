@@ -3,7 +3,6 @@ package io.github.yupd.domain.service;
 import io.github.yupd.domain.model.GitFileUpdaterParameter;
 import io.github.yupd.domain.model.GitFileUpdateResult;
 import io.github.yupd.domain.ports.in.GitFileUpdater;
-import io.github.yupd.domain.ports.out.ContentUpdateService;
 import io.github.yupd.domain.ports.out.GitConnectorFactory;
 import io.github.yupd.domain.ports.out.GitConnector;
 import io.github.yupd.domain.model.GitFile;
@@ -26,7 +25,7 @@ public class GitFileUpdaterImpl implements GitFileUpdater {
     GitConnectorFactory gitConnectorFactory;
 
     @Inject
-    ContentUpdateService updateService;
+    ChainContentUpdater updateService;
 
     @Inject
     IdGenerator idGenerator;

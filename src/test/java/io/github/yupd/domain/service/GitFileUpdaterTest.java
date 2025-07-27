@@ -1,7 +1,6 @@
 package io.github.yupd.domain.service;
 
 import io.github.yupd.domain.model.*;
-import io.github.yupd.domain.ports.out.ContentUpdateService;
 import io.github.yupd.domain.ports.out.GitConnector;
 import io.github.yupd.domain.ports.out.GitConnectorFactory;
 import io.github.yupd.infrastructure.utils.IOUtils;
@@ -36,7 +35,7 @@ class GitFileUpdaterTest {
     private GitConnectorFactory factory;
 
     @Mock
-    private ContentUpdateService contentUpdateService;
+    private ChainContentUpdater chaineContentUpdater;
     
     @Mock
     private GitConnector connector;
@@ -68,7 +67,7 @@ class GitFileUpdaterTest {
         // Setup
         GitFileUpdaterParameter parameter = parameterBuilder.build();
         when(connector.getFileContent(parameter.getTargetGitFile())).thenReturn(ORIGINAL_CONTENT);
-        when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(NEW_CONTENT);
+        when(chaineContentUpdater.update(ORIGINAL_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(NEW_CONTENT);
 
         // Test
         GitFileUpdateResult result = updater.update(parameter);
@@ -85,7 +84,7 @@ class GitFileUpdaterTest {
         // Setup
         GitFileUpdaterParameter parameter = parameterBuilder.withMergeRequest(true).build();
         when(connector.getFileContent(parameter.getTargetGitFile())).thenReturn(ORIGINAL_CONTENT);
-        when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(NEW_CONTENT);
+        when(chaineContentUpdater.update(ORIGINAL_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(NEW_CONTENT);
 
         // Test
         GitFileUpdateResult result = updater.update(parameter);
@@ -108,7 +107,7 @@ class GitFileUpdaterTest {
 
         GitFileUpdaterParameter parameter = parameterBuilder.withSourceFile(template).build();
         when(connector.getFileContent(parameter.getTargetGitFile())).thenReturn(ORIGINAL_CONTENT);
-        when(contentUpdateService.update(TEMPLATE_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(NEW_CONTENT);
+        when(chaineContentUpdater.update(TEMPLATE_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(NEW_CONTENT);
 
         // Test
         GitFileUpdateResult result = updater.update(parameter);
@@ -125,7 +124,7 @@ class GitFileUpdaterTest {
         // Setup
         GitFileUpdaterParameter parameter = parameterBuilder.withDryRun(true).build();
         when(connector.getFileContent(parameter.getTargetGitFile())).thenReturn(ORIGINAL_CONTENT);
-        when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(NEW_CONTENT);
+        when(chaineContentUpdater.update(ORIGINAL_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(NEW_CONTENT);
 
         // Test
         GitFileUpdateResult result = updater.update(parameter);
@@ -143,7 +142,7 @@ class GitFileUpdaterTest {
         // Setup
         GitFileUpdaterParameter parameter = parameterBuilder.build();
         when(connector.getFileContent(parameter.getTargetGitFile())).thenReturn(ORIGINAL_CONTENT);
-        when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(ORIGINAL_CONTENT);
+        when(chaineContentUpdater.update(ORIGINAL_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(ORIGINAL_CONTENT);
 
         // Test
         GitFileUpdateResult result = updater.update(parameter);

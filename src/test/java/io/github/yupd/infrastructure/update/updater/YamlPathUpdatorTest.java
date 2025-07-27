@@ -1,4 +1,4 @@
-package io.github.yupd.infrastructure.update.updator;
+package io.github.yupd.infrastructure.update.updater;
 
 import io.github.yupd.infrastructure.utils.IOUtils;
 import io.github.yupd.domain.model.ContentUpdateCriteria;
@@ -11,7 +11,7 @@ class YamlPathUpdatorTest {
     @Test
     public void testMonoDocument() {
         String content = IOUtils.readFile("YamlPathUpdator/deployment.yml");
-        String newContent = new YamlPathUpdator().update(content, ContentUpdateCriteria.from("*.containers[0].image", "nginx:newversion"));
+        String newContent = new YamlPathUpdater().update(content, ContentUpdateCriteria.from("*.containers[0].image", "nginx:newversion"));
         String expected = IOUtils.readFile("YamlPathUpdator/deployment_expected.yml");
         assertThat(newContent).isEqualToIgnoringNewLines(expected);
     }
@@ -19,7 +19,7 @@ class YamlPathUpdatorTest {
     @Test
     public void testMultiDocument() {
         assertThat(
-                new YamlPathUpdator().update("name: oldContent\n---\nname: oldContent2", ContentUpdateCriteria.from("name", "newContent")))
+                new YamlPathUpdater().update("name: oldContent\n---\nname: oldContent2", ContentUpdateCriteria.from("name", "newContent")))
                 .isEqualToIgnoringNewLines("name: newContent\n---\nname: newContent\n");
     }
 
