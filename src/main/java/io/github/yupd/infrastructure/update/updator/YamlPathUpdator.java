@@ -5,18 +5,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.yamlpath.YamlExpressionParser;
 import io.github.yamlpath.YamlPath;
 import io.github.yupd.domain.model.ContentUpdateCriteria;
+import io.github.yupd.domain.ports.out.ContentUpdater;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
-public class YamlPathUpdator {
+public class YamlPathUpdator implements ContentUpdater {
 
     private static final String DOCUMENT_DELIMITER = "---";
 
     private static final ObjectMapper OBJECT_MAPPER = YamlObjectMapperFactory.create();
 
+    @Override
     public String update(String content, ContentUpdateCriteria contentUpdateCriteria) {
         YamlExpressionParser yamlExpressionParser = YamlPath.from(content);
         yamlExpressionParser.write(contentUpdateCriteria.key(), contentUpdateCriteria.value());

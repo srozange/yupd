@@ -1,15 +1,16 @@
 package io.github.yupd.infrastructure.update.updator;
 
 import io.github.yupd.domain.model.ContentUpdateCriteria;
+import io.github.yupd.domain.ports.out.ContentUpdater;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @ApplicationScoped
-public class RegexUpdator {
+public class RegexUpdator implements ContentUpdater {
 
-
+    @Override
     public String update(String content, ContentUpdateCriteria contentUpdateCriteria) {
         StringBuilder result = new StringBuilder();
         Matcher matcher = Pattern.compile(contentUpdateCriteria.key()).matcher(content);
