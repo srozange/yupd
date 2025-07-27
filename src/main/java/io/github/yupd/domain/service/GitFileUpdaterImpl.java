@@ -1,8 +1,8 @@
 package io.github.yupd.domain.service;
 
-import io.github.yupd.domain.model.YamlRepoUpdaterParameter;
-import io.github.yupd.domain.model.YamlUpdateResult;
-import io.github.yupd.domain.ports.in.YamlRepoUpdater;
+import io.github.yupd.domain.model.GitFileUpdaterParameter;
+import io.github.yupd.domain.model.GitFileUpdateResult;
+import io.github.yupd.domain.ports.in.GitFileUpdater;
 import io.github.yupd.domain.ports.out.ContentUpdateService;
 import io.github.yupd.domain.ports.out.GitConnectorFactory;
 import io.github.yupd.domain.ports.out.GitConnector;
@@ -18,7 +18,7 @@ import org.jboss.logging.Logger;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
-public class YamlRepoUpdaterImpl implements YamlRepoUpdater {
+public class GitFileUpdaterImpl implements GitFileUpdater {
 
     private static final Logger LOGGER = LogUtils.getConsoleLogger();
 
@@ -32,7 +32,7 @@ public class YamlRepoUpdaterImpl implements YamlRepoUpdater {
     IdGenerator idGenerator;
 
     @Override
-    public YamlUpdateResult update(YamlRepoUpdaterParameter parameter) {
+    public GitFileUpdateResult update(GitFileUpdaterParameter parameter) {
         GitConnector connector = gitConnectorFactoryImpl.create(parameter.getTargetGitFile().getRepository());
 
         LOGGER.info("Fetching remote file");
@@ -41,7 +41,7 @@ public class YamlRepoUpdaterImpl implements YamlRepoUpdater {
         LOGGER.info("Applying updates locally");
         String newContent = computeNewContent(parameter, oldContent);
 
-        YamlUpdateResult updateResult = new YamlUpdateResult(oldContent, newContent);
+        GitFileUpdateResult updateResult = new GitFileUpdateResult(oldContent, newContent);
         if (!updateResult.updated()) {
             LOGGER.info("The file has not been updated because the new content is equal to the old one");
             return updateResult;
@@ -82,7 +82,7 @@ public class YamlRepoUpdaterImpl implements YamlRepoUpdater {
         return updateResult;
     }
 
-    private String computeNewContent(YamlRepoUpdaterParameter parameter, String oldContent) {
+    private String computeNewContent(GitFileUpdaterParameter parameter, String oldContent) {
         if (parameter.getSourceFile().isPresent()) {
             LOGGER.info("Applying updates on the template file");
             return updateService.update(IOUtils.readFile(parameter.getSourceFile().get()), parameter.getContentUpdateCriteriaList());
@@ -91,10 +91,10 @@ public class YamlRepoUpdaterImpl implements YamlRepoUpdater {
         return updateService.update(oldContent, parameter.getContentUpdateCriteriaList());
     }
 
-    private String computeMergeRequestBody(YamlRepoUpdaterParameter parameter) {
+    private String computeMergeRequestBody(GitFileUpdaterParameter parameter) {
         return parameter.getContentUpdateCriteriaList()
                 .stream()
-                .map(YamlRepoUpdaterImpl::computePathEntryDescription)
+                .map(GitFileUpdaterImpl::computePathEntryDescription)
                 .collect(Collectors.joining("\n", "Proposed update in " + parameter.getTargetGitFile().getPath() + ":\n", "\n"));
     }
 

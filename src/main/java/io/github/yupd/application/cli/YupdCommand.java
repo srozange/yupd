@@ -1,6 +1,6 @@
 package io.github.yupd.application.cli;
 
-import io.github.yupd.domain.service.YamlRepoUpdaterImpl;
+import io.github.yupd.domain.ports.in.GitFileUpdater;
 import io.github.yupd.domain.model.GitRepository;
 import io.github.yupd.infrastructure.utils.LogUtils;
 import picocli.CommandLine;
@@ -13,7 +13,7 @@ import java.util.concurrent.Callable;
 @CommandLine.Command(name = "yupd", mixinStandardHelpOptions = true, versionProvider = YupdVersionProvider.class, usageHelpWidth = 160)
 public class YupdCommand implements Callable<Integer> {
 
-    private final YamlRepoUpdaterImpl yamlRepoUpdater;
+    private final GitFileUpdater gitFileUpdater;
 
     @CommandLine.Option(names = {"-r", "--repo"}, defaultValue = "${YUPD_REPO}", description = "Specifies the URL of the Git repository (env: YUPD_REPO)")
     String url;
@@ -54,15 +54,15 @@ public class YupdCommand implements Callable<Integer> {
     @CommandLine.Option(names = {"--verbose"}, defaultValue = "${YUPD_VERBOSE:-false}", description = "If set to true, sets the log level to debug (env: YUPD_VERBOSE)")
     boolean verbose;
 
-    public YupdCommand(YamlRepoUpdaterImpl yamlRepoUpdater) {
-        this.yamlRepoUpdater = yamlRepoUpdater;
+    public YupdCommand(GitFileUpdater gitFileUpdater) {
+        this.gitFileUpdater = gitFileUpdater;
     }
 
     @Override
     public Integer call() {
         LogUtils.setConsoleLoggerLevel(verbose ? "DEBUG" : "INFO");
         try {
-            yamlRepoUpdater.update(new YamlRepoUpdaterParameterFactory(this).create());
+            gitFileUpdater.update(new GitFileUpdaterParameterFactory(this).create());
         } catch (RuntimeException e) {
             LogUtils.getConsoleLogger().error("An error occurred", e);
             return 1;

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class YamlRepoUpdaterParameter {
+public class GitFileUpdaterParameter {
 
     private Path sourceFile;
 
@@ -95,15 +95,15 @@ public class YamlRepoUpdaterParameter {
             return this;
         }
 
-        public YamlRepoUpdaterParameter build() {
-            YamlRepoUpdaterParameter yamlRepoUpdaterParameter = new YamlRepoUpdaterParameter();
-            yamlRepoUpdaterParameter.dryRun = this.dryRun;
-            yamlRepoUpdaterParameter.contentUpdateCriteriaList = this.contentUpdateCriteriaList;
-            yamlRepoUpdaterParameter.message = this.message;
-            yamlRepoUpdaterParameter.targetGitFile = this.targetGitFile;
-            yamlRepoUpdaterParameter.sourceFile = this.sourceFile;
-            yamlRepoUpdaterParameter.mergeRequest = this.mergeRequest;
-            return yamlRepoUpdaterParameter;
+        public GitFileUpdaterParameter build() {
+            GitFileUpdaterParameter gitFileUpdaterParameter = new GitFileUpdaterParameter();
+            gitFileUpdaterParameter.dryRun = this.dryRun;
+            gitFileUpdaterParameter.contentUpdateCriteriaList = this.contentUpdateCriteriaList;
+            gitFileUpdaterParameter.message = this.message;
+            gitFileUpdaterParameter.targetGitFile = this.targetGitFile;
+            gitFileUpdaterParameter.sourceFile = this.sourceFile;
+            gitFileUpdaterParameter.mergeRequest = this.mergeRequest;
+            return gitFileUpdaterParameter;
         }
     }
 }

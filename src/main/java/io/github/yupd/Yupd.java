@@ -1,6 +1,6 @@
 package io.github.yupd;
 
-import io.github.yupd.domain.service.YamlRepoUpdaterImpl;
+import io.github.yupd.domain.ports.in.GitFileUpdater;
 import io.github.yupd.application.cli.YupdCommand;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
@@ -15,11 +15,11 @@ public class Yupd implements QuarkusApplication {
     CommandLine.IFactory factory;
 
     @Inject
-    YamlRepoUpdaterImpl yamlRepoUpdater;
+    GitFileUpdater gitFileUpdater;
 
     @Override
     public int run(String... args) {
-        return new CommandLine(new YupdCommand(yamlRepoUpdater), factory).setCaseInsensitiveEnumValuesAllowed(true).execute(args);
+        return new CommandLine(new YupdCommand(gitFileUpdater), factory).setCaseInsensitiveEnumValuesAllowed(true).execute(args);
     }
 
     public static void main(String[] args) {

@@ -2,9 +2,8 @@ package io.github.yupd.integration;
 
 import io.github.yupd.Yupd;
 import io.github.yupd.domain.ports.out.IdGenerator;
-import io.github.yupd.domain.service.YamlRepoUpdaterImpl;
-import io.github.yupd.domain.model.YamlUpdateResult;
-import io.github.yupd.infrastructure.IdGeneratorImpl;
+import io.github.yupd.domain.service.GitFileUpdaterImpl;
+import io.github.yupd.domain.model.GitFileUpdateResult;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.mockito.InjectSpy;
 import jakarta.inject.Inject;
@@ -21,17 +20,17 @@ public abstract class AbstractIntegrationTest {
     Yupd yupd;
 
     @InjectSpy
-    YamlRepoUpdaterImpl yamlRepoUpdater;
+    GitFileUpdaterImpl gitFileUpdater;
 
     @InjectMock
     IdGenerator idGenerator;
 
-    ResultCaptor<YamlUpdateResult> yamlRepoUpdaterResultCaptor;
+    ResultCaptor<GitFileUpdateResult> gitFileUpdaterResultCaptor;
 
     @BeforeEach
     void setup() {
-        yamlRepoUpdaterResultCaptor = new ResultCaptor<>();
-        doAnswer(yamlRepoUpdaterResultCaptor).when(yamlRepoUpdater).update(Mockito.any());
+        gitFileUpdaterResultCaptor = new ResultCaptor<>();
+        doAnswer(gitFileUpdaterResultCaptor).when(gitFileUpdater).update(Mockito.any());
     }
 
     public static class ResultCaptor<T> implements Answer {
