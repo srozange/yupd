@@ -1,10 +1,11 @@
-package io.github.yupd.command;
+package io.github.yupd.application.cli;
 
-import io.github.yupd.business.YamlRepoUpdaterParameter;
-import io.github.yupd.infrastructure.git.model.GitFile;
-import io.github.yupd.infrastructure.git.model.GitRepository;
+import io.github.yupd.domain.model.YamlRepoUpdaterParameter;
+import io.github.yupd.domain.model.GitFile;
+import io.github.yupd.domain.model.GitRepository;
 
 class YamlRepoUpdaterParameterFactory {
+
     private final YupdCommand cmd;
 
     YamlRepoUpdaterParameterFactory(YupdCommand cmd) {

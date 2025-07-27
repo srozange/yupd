@@ -1,9 +1,8 @@
-package io.github.yupd.infrastructure.git.impl;
+package io.github.yupd.infrastructure.git.connector;
 
-import io.github.yupd.infrastructure.git.GitConnector;
-import io.github.yupd.infrastructure.git.model.GitFile;
-import io.github.yupd.infrastructure.git.model.GitRepository;
-import io.github.yupd.infrastructure.utils.LogUtils;
+import io.github.yupd.domain.ports.out.GitConnector;
+import io.github.yupd.domain.model.GitFile;
+import io.github.yupd.domain.model.GitRepository;
 import org.gitlab.api.GitlabAPI;
 import org.gitlab.api.models.GitlabMergeRequest;
 import org.gitlab.api.models.GitlabProject;

@@ -1,7 +1,7 @@
-package io.github.yupd.command;
+package io.github.yupd.application.cli;
 
-import io.github.yupd.business.YamlRepoUpdater;
-import io.github.yupd.infrastructure.git.model.GitRepository;
+import io.github.yupd.domain.service.YamlRepoUpdaterImpl;
+import io.github.yupd.domain.model.GitRepository;
 import io.github.yupd.infrastructure.utils.LogUtils;
 import picocli.CommandLine;
 
@@ -13,7 +13,7 @@ import java.util.concurrent.Callable;
 @CommandLine.Command(name = "yupd", mixinStandardHelpOptions = true, versionProvider = YupdVersionProvider.class, usageHelpWidth = 160)
 public class YupdCommand implements Callable<Integer> {
 
-    private final YamlRepoUpdater yamlRepoUpdater;
+    private final YamlRepoUpdaterImpl yamlRepoUpdater;
 
     @CommandLine.Option(names = {"-r", "--repo"}, defaultValue = "${YUPD_REPO}", description = "Specifies the URL of the Git repository (env: YUPD_REPO)")
     String url;
@@ -54,7 +54,7 @@ public class YupdCommand implements Callable<Integer> {
     @CommandLine.Option(names = {"--verbose"}, defaultValue = "${YUPD_VERBOSE:-false}", description = "If set to true, sets the log level to debug (env: YUPD_VERBOSE)")
     boolean verbose;
 
-    public YupdCommand(YamlRepoUpdater yamlRepoUpdater) {
+    public YupdCommand(YamlRepoUpdaterImpl yamlRepoUpdater) {
         this.yamlRepoUpdater = yamlRepoUpdater;
     }
 

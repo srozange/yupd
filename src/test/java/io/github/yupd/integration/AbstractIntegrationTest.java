@@ -1,8 +1,11 @@
 package io.github.yupd.integration;
 
 import io.github.yupd.Yupd;
-import io.github.yupd.business.YamlRepoUpdater;
-import io.github.yupd.infrastructure.utils.UniqueIdGenerator;
+import io.github.yupd.domain.ports.out.IdGenerator;
+import io.github.yupd.domain.service.YamlRepoUpdaterImpl;
+import io.github.yupd.domain.model.YamlUpdateResult;
+import io.github.yupd.infrastructure.IdGeneratorImpl;
+import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.mockito.InjectSpy;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,12 +21,12 @@ public abstract class AbstractIntegrationTest {
     Yupd yupd;
 
     @InjectSpy
-    YamlRepoUpdater yamlRepoUpdater;
+    YamlRepoUpdaterImpl yamlRepoUpdater;
 
-    @InjectSpy
-    UniqueIdGenerator uniqueIdGenerator;
+    @InjectMock
+    IdGenerator idGenerator;
 
-    ResultCaptor<YamlRepoUpdater.YamlUpdateResult> yamlRepoUpdaterResultCaptor;
+    ResultCaptor<YamlUpdateResult> yamlRepoUpdaterResultCaptor;
 
     @BeforeEach
     void setup() {

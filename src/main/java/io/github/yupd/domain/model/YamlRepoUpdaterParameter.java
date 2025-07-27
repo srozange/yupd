@@ -1,8 +1,6 @@
-package io.github.yupd.business;
+package io.github.yupd.domain.model;
 
-import io.github.yupd.infrastructure.git.model.GitFile;
 import io.github.yupd.infrastructure.utils.StringUtils;
-import io.github.yupd.infrastructure.update.model.ContentUpdateCriteria;
 
 import java.nio.file.Path;
 import java.util.List;

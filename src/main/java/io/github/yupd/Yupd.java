@@ -1,7 +1,7 @@
 package io.github.yupd;
 
-import io.github.yupd.business.YamlRepoUpdater;
-import io.github.yupd.command.YupdCommand;
+import io.github.yupd.domain.service.YamlRepoUpdaterImpl;
+import io.github.yupd.application.cli.YupdCommand;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -15,7 +15,7 @@ public class Yupd implements QuarkusApplication {
     CommandLine.IFactory factory;
 
     @Inject
-    YamlRepoUpdater yamlRepoUpdater;
+    YamlRepoUpdaterImpl yamlRepoUpdater;
 
     @Override
     public int run(String... args) {

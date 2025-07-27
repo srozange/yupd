@@ -32,7 +32,7 @@ public class GitlabHttpMockedRepositoryTest extends AbstractHttpMockedRepository
 
     @Test
     void repo_file_is_updated_with_merge_request() {
-        when(uniqueIdGenerator.generate()).thenReturn("77024e4");
+        when(idGenerator.generate()).thenReturn("77024e4");
         String[] args = CommandLineArgsBuilder.get()
                 .withOption("--repo", getServerUrl())
                 .withOption("--repo-type", "gitlab")

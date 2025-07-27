@@ -1,4 +1,4 @@
-package io.github.yupd.command;
+package io.github.yupd.application.cli;
 
 import org.eclipse.microprofile.config.ConfigProvider;
 import picocli.CommandLine;

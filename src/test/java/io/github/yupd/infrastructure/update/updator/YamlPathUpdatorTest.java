@@ -1,8 +1,7 @@
 package io.github.yupd.infrastructure.update.updator;
 
-import io.github.yupd.infrastructure.update.updator.YamlPathUpdator;
 import io.github.yupd.infrastructure.utils.IOUtils;
-import io.github.yupd.infrastructure.update.model.ContentUpdateCriteria;
+import io.github.yupd.domain.model.ContentUpdateCriteria;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

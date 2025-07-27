@@ -1,14 +1,11 @@
-package io.github.yupd.business;
+package io.github.yupd.domain.service;
 
-import io.github.yupd.infrastructure.git.GitConnector;
-import io.github.yupd.infrastructure.git.GitConnectorFactory;
-import io.github.yupd.infrastructure.git.model.GitFile;
-import io.github.yupd.infrastructure.git.model.GitRepository;
-import io.github.yupd.infrastructure.update.ContentUpdateService;
+import io.github.yupd.domain.model.*;
+import io.github.yupd.domain.ports.out.ContentUpdateService;
+import io.github.yupd.domain.ports.out.GitConnector;
+import io.github.yupd.domain.ports.out.GitConnectorFactory;
 import io.github.yupd.infrastructure.utils.IOUtils;
-import io.github.yupd.infrastructure.utils.UniqueIdGenerator;
-import io.github.yupd.infrastructure.update.model.ContentUpdateCriteria;
-import io.github.yupd.infrastructure.utils.DiffUtils;
+import io.github.yupd.domain.ports.out.IdGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,7 +33,7 @@ class YamlRepoUpdaterTest {
     private final static String FILE_PATH = "k8s/deployment.yml";
 
     @Mock
-    private GitConnectorFactory provider;
+    private GitConnectorFactory factory;
 
     @Mock
     private ContentUpdateService contentUpdateService;
@@ -45,20 +42,17 @@ class YamlRepoUpdaterTest {
     private GitConnector connector;
 
     @Mock
-    private UniqueIdGenerator uniqueIdGenerator;
-
-    @Mock
-    private DiffUtils diffUtils;
+    private IdGenerator idGenerator;
 
     @InjectMocks
-    private YamlRepoUpdater updater;
+    private YamlRepoUpdaterImpl updater;
 
     private YamlRepoUpdaterParameter.Builder parameterBuilder;
 
     @BeforeEach
     void setup() {
         GitRepository gitRepository = GitRepository.builder().withType(GitRepository.Type.GITLAB).build();
-        when(provider.create(gitRepository)).thenReturn(connector);
+        when(factory.create(gitRepository)).thenReturn(connector);
 
         GitFile gitFile = GitFile.builder().withGitRepository(gitRepository).withPath(FILE_PATH).withBranch(TARGET_BRANCH).build();
         parameterBuilder = YamlRepoUpdaterParameter.builder()
@@ -66,7 +60,7 @@ class YamlRepoUpdaterTest {
                 .withMessage(COMMIT_MESSAGE)
                 .withContentUpdateCriteriaList(List.of(ContentUpdateCriteria.from("ypath:path", "replacement")));
 
-        lenient().when(uniqueIdGenerator.generate()).thenReturn("uniqueid");
+        lenient().when(idGenerator.generate()).thenReturn("uniqueid");
     }
 
     @Test
@@ -77,7 +71,7 @@ class YamlRepoUpdaterTest {
         when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(NEW_CONTENT);
 
         // Test
-        YamlRepoUpdater.YamlUpdateResult result = updater.update(parameter);
+        YamlUpdateResult result = updater.update(parameter);
 
         // Assert
         verify(connector).updateFile(parameter.getTargetGitFile(), COMMIT_MESSAGE, NEW_CONTENT);
@@ -94,7 +88,7 @@ class YamlRepoUpdaterTest {
         when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(NEW_CONTENT);
 
         // Test
-        YamlRepoUpdater.YamlUpdateResult result = updater.update(parameter);
+        YamlUpdateResult result = updater.update(parameter);
 
         // Assert
         verify(connector).createBranch("refs/heads/" + TARGET_BRANCH, MR_SOURCE_BRANCH);
@@ -117,7 +111,7 @@ class YamlRepoUpdaterTest {
         when(contentUpdateService.update(TEMPLATE_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(NEW_CONTENT);
 
         // Test
-        YamlRepoUpdater.YamlUpdateResult result = updater.update(parameter);
+        YamlUpdateResult result = updater.update(parameter);
 
         // Assert
         verify(connector).updateFile(parameter.getTargetGitFile(), COMMIT_MESSAGE, NEW_CONTENT);
@@ -134,7 +128,7 @@ class YamlRepoUpdaterTest {
         when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(NEW_CONTENT);
 
         // Test
-        YamlRepoUpdater.YamlUpdateResult result = updater.update(parameter);
+        YamlUpdateResult result = updater.update(parameter);
 
         // Assert
         verify(connector, never()).updateFile(parameter.getTargetGitFile(), COMMIT_MESSAGE, NEW_CONTENT);
@@ -152,7 +146,7 @@ class YamlRepoUpdaterTest {
         when(contentUpdateService.update(ORIGINAL_CONTENT, parameter.getContentUpdateCriteriaList())).thenReturn(ORIGINAL_CONTENT);
 
         // Test
-        YamlRepoUpdater.YamlUpdateResult result = updater.update(parameter);
+        YamlUpdateResult result = updater.update(parameter);
 
         // Assert
         verify(connector, times(0)).updateFile(eq(parameter.getTargetGitFile()), eq(COMMIT_MESSAGE), anyString());

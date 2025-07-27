@@ -1,4 +1,4 @@
-package io.github.yupd.infrastructure.update.model;
+package io.github.yupd.domain.model;
 
 import java.util.Arrays;
 import java.util.regex.Pattern;

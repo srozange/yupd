@@ -1,15 +1,16 @@
-package io.github.yupd.business;
+package io.github.yupd.domain.service;
 
-import io.github.yupd.infrastructure.git.GitConnectorFactory;
-import io.github.yupd.infrastructure.git.GitConnector;
-import io.github.yupd.infrastructure.git.model.GitFile;
-import io.github.yupd.infrastructure.update.ContentUpdateService;
+import io.github.yupd.domain.model.YamlRepoUpdaterParameter;
+import io.github.yupd.domain.model.YamlUpdateResult;
+import io.github.yupd.domain.ports.in.YamlRepoUpdater;
+import io.github.yupd.domain.ports.out.ContentUpdateService;
+import io.github.yupd.domain.ports.out.GitConnectorFactory;
+import io.github.yupd.domain.ports.out.GitConnector;
+import io.github.yupd.domain.model.GitFile;
 import io.github.yupd.infrastructure.utils.LogUtils;
-import io.github.yupd.infrastructure.utils.StringUtils;
-import io.github.yupd.infrastructure.utils.UniqueIdGenerator;
+import io.github.yupd.domain.ports.out.IdGenerator;
 import io.github.yupd.infrastructure.utils.IOUtils;
-import io.github.yupd.infrastructure.update.model.ContentUpdateCriteria;
-import io.github.yupd.infrastructure.utils.DiffUtils;
+import io.github.yupd.domain.model.ContentUpdateCriteria;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.jboss.logging.Logger;
@@ -17,21 +18,22 @@ import org.jboss.logging.Logger;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
-public class YamlRepoUpdater {
+public class YamlRepoUpdaterImpl implements YamlRepoUpdater {
 
     private static final Logger LOGGER = LogUtils.getConsoleLogger();
 
     @Inject
-    GitConnectorFactory gitConnectorFactory;
+    GitConnectorFactory gitConnectorFactoryImpl;
 
     @Inject
     ContentUpdateService updateService;
 
     @Inject
-    UniqueIdGenerator uniqueIdGenerator;
+    IdGenerator idGenerator;
 
+    @Override
     public YamlUpdateResult update(YamlRepoUpdaterParameter parameter) {
-        GitConnector connector = gitConnectorFactory.create(parameter.getTargetGitFile().getRepository());
+        GitConnector connector = gitConnectorFactoryImpl.create(parameter.getTargetGitFile().getRepository());
 
         LOGGER.info("Fetching remote file");
         String oldContent = connector.getFileContent(parameter.getTargetGitFile());
@@ -58,7 +60,7 @@ public class YamlRepoUpdater {
 
         if (parameter.isMergeRequest()) {
             String mergeRequestFromBranch = parameter.getTargetGitFile().getBranch();
-            String mergeRequestToBranch = "yupd/" + uniqueIdGenerator.generate().substring(0, 7);
+            String mergeRequestToBranch = "yupd/" + idGenerator.generate().substring(0, 7);
 
             LOGGER.info("Creating pull/merge request target branch");
             connector.createBranch(parameter.getTargetGitFile().getRef(), mergeRequestToBranch);
@@ -92,7 +94,7 @@ public class YamlRepoUpdater {
     private String computeMergeRequestBody(YamlRepoUpdaterParameter parameter) {
         return parameter.getContentUpdateCriteriaList()
                 .stream()
-                .map(YamlRepoUpdater::computePathEntryDescription)
+                .map(YamlRepoUpdaterImpl::computePathEntryDescription)
                 .collect(Collectors.joining("\n", "Proposed update in " + parameter.getTargetGitFile().getPath() + ":\n", "\n"));
     }
 
@@ -100,14 +102,4 @@ public class YamlRepoUpdater {
         return "- [" + entry.type().getDisplayName() + "] " + entry.key() + "=" + entry.value();
     }
 
-    public record YamlUpdateResult(String originalContent, String newContent) {
-
-        public boolean updated() {
-            return !StringUtils.equalsIgnoreTrailingWhiteSpaces(originalContent, newContent);
-        }
-
-        public String generateDiff() {
-            return DiffUtils.generateDiff(originalContent, newContent);
-        }
-    }
 }
