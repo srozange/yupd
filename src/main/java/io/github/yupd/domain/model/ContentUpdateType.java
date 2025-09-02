@@ -5,7 +5,8 @@ import java.util.regex.Pattern;
 
 public enum ContentUpdateType {
     YAMLPATH("ypath:", "yamlpath"),
-    REGEX("regex:", "regex");
+    REGEX("regex:", "regex"),
+    JSONPATH("jpath:", "jsonpath");
 
     private static final Pattern HAS_PREFIX_PATTERN = Pattern.compile("^[a-zA-Z]*:.*");
 
