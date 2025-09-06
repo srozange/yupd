@@ -42,7 +42,7 @@ public class YupdCommand implements Callable<Integer> {
     @CommandLine.Option(names = {"-m", "--commit-msg"}, defaultValue = "${YUPD_COMMIT_MSG}", description = "Provides a custom commit message for the update (env: YUPD_COMMIT_MSG)")
     String commitMessage;
 
-    @CommandLine.Option(names = {"--set"}, required = true, defaultValue = "${YUPD_SET}", split = "@@@", description = "Allows setting YAML path expressions (e.g., metadata.name=new_name) or regular expressions (env: YUPD_SET)")
+    @CommandLine.Option(names = {"--set"}, required = true, defaultValue = "${YUPD_SET}", split = "@@@", description = "Allows setting YAML path expressions (e.g., metadata.name=new_name), JSON path expressions (e.g., $.server.port=9090), or regular expressions (env: YUPD_SET)")
     Map<String, String> contentUpdates = new LinkedHashMap<>();
 
     @CommandLine.Option(names = {"--merge-request", "--pull-request"}, defaultValue = "${YUPD_MERGE_REQUEST:-false}", description = "If set to true, open either a pull request or a merge request based on the Git provider context (env: YUPD_MERGE_REQUEST)")

@@ -1,0 +1,16 @@
+{
+  "server" : {
+    "port" : 9090,
+    "host" : "newhost",
+    "ssl" : true
+  },
+  "database" : {
+    "url" : "jdbc:postgresql://localhost:5432/mydb",
+    "username" : "newuser",
+    "maxConnections" : 20
+  },
+  "features" : {
+    "enableCaching" : true,
+    "enableMetrics" : true
+  }
+}
