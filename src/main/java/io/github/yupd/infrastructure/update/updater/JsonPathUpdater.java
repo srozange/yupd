@@ -43,11 +43,11 @@ public class JsonPathUpdater {
         }
         
         if (Boolean.TRUE.toString().equalsIgnoreCase(value)) {
-            return Boolean.TRUE;
+            return true;
         }
         
         if (Boolean.FALSE.toString().equalsIgnoreCase(value)) {
-            return Boolean.FALSE;
+            return false;
         }
         
         try {
@@ -57,7 +57,7 @@ public class JsonPathUpdater {
                 return Integer.parseInt(value);
             }
         } catch (NumberFormatException e) {
-            
+            // nothing
         }
         
         return value;

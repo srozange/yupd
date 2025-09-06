@@ -19,9 +19,6 @@ public class JsonObjectMapperFactory {
     public static ObjectMapper create(Parameter parameter) {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        // Préserver l'indentation et le formatage
-        objectMapper.enable(JsonGenerator.Feature.WRITE_NUMBERS_AS_STRINGS);
-        
         parameter.withSerializationFeature.stream()
                 .forEach(feature -> objectMapper.configure(feature, true));
         parameter.withoutSerializationFeature.stream()

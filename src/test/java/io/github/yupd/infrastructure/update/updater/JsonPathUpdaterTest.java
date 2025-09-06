@@ -9,33 +9,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 class JsonPathUpdaterTest {
 
     @Test
-    public void testUpdateServerPort() {
+    public void testUpdateAllFields() {
         String content = IOUtils.readFile("JsonPathUpdator/config.json");
-        String newContent = new JsonPathUpdater().update(content, ContentUpdateCriteria.from("$.server.port", "9090"));
-        assertThat(newContent).contains("\"port\"");
-        assertThat(newContent).contains("9090");
-        assertThat(newContent).contains("\"server\"");
+        String expectedContent = IOUtils.readFile("JsonPathUpdator/config_expected.json");
+        
+        JsonPathUpdater updater = new JsonPathUpdater();
+
+        String newContent = updater.update(content, ContentUpdateCriteria.from("$.server.port", "9090"));
+        newContent = updater.update(newContent, ContentUpdateCriteria.from("$.server.host", "newhost"));
+        newContent = updater.update(newContent, ContentUpdateCriteria.from("$.server.ssl", "true"));
+        newContent = updater.update(newContent, ContentUpdateCriteria.from("$.database.username", "newuser"));
+        newContent = updater.update(newContent, ContentUpdateCriteria.from("$.database.maxConnections", "20"));
+        newContent = updater.update(newContent, ContentUpdateCriteria.from("$.features.enableMetrics", "true"));
+
+        assertThat(newContent).isEqualTo(expectedContent);
     }
 
-    @Test
-    public void testUpdateBooleanValue() {
-        String content = "{\"enabled\": false}";
-        String newContent = new JsonPathUpdater().update(content, ContentUpdateCriteria.from("$.enabled", "true"));
-        assertThat(newContent).contains("\"enabled\" : true");
-    }
-
-    @Test
-    public void testUpdateStringValue() {
-        String content = "{\"name\": \"oldValue\"}";
-        String newContent = new JsonPathUpdater().update(content, ContentUpdateCriteria.from("$.name", "newValue"));
-        assertThat(newContent).contains("\"name\" : \"newValue\"");
-    }
-
-    @Test
-    public void testUpdateNumericValue() {
-        String content = "{\"count\": 5}";
-        String newContent = new JsonPathUpdater().update(content, ContentUpdateCriteria.from("$.count", "10"));
-        assertThat(newContent).contains("\"count\"");
-        assertThat(newContent).contains("10");
-    }
 }

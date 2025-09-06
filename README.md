@@ -3,9 +3,9 @@
 [![Build](https://github.com/srozange/yupd/actions/workflows/maven.yml/badge.svg)](https://github.com/srozange/yupd/actions/workflows/maven.yml)
 [![codecov](https://codecov.io/gh/srozange/yupd/branch/main/badge.svg?token=JCPP4VZ1S1)](https://codecov.io/gh/srozange/yupd)
 
-**Update YAML files the GitOps way**
+**Update YAML and JSON files the GitOps way**
 
-Yupd is a command-line tool that allows updating a YAML file in a remote GitHub or GitLab repository.
+Yupd is a command-line tool that allows updating YAML and JSON files in a remote GitHub or GitLab repository.
 
 ## Usage
 
@@ -61,7 +61,7 @@ You can specify how the file is updated using the repeatable `--set` option:
 --set [type:]expression=value
 ```
 
-Available types are : ```ypath``` and ```regex```.
+Available types are : ```ypath```, ```json``` and ```regex```.
 
 We will use the following file for the subsequent examples:
 
@@ -89,6 +89,24 @@ Or you can use the shorthand:
 ```
 
 For more detailed syntax information, you can refer to the [YamlPath readme page](https://github.com/yaml-path/YamlPath).
+
+### JSON path expressions
+
+Yupd can also update JSON files using JSON path expressions, which use the [JsonPath](https://github.com/json-path/JsonPath) library.
+
+Here's an example where we change a server port in a JSON file:
+
+```shell
+--set json:$.server.port=9090
+```
+
+Or you can use the shorthand with the `$` prefix:
+
+```shell
+--set $.server.port=9090
+```
+
+For more information on the syntax, you can refer to the [JsonPath documentation](https://github.com/json-path/JsonPath).
 
 ### Regular Expressions
 
@@ -124,7 +142,7 @@ Usage: yupd [-hV] [--dry-run] [--insecure] [--pull-request] [--verbose] -b=<bran
       --repo-type=<repoType>
                             Specifies the repository type; valid values: 'gitlab' or 'github' (env: YUPD_REPO_TYPE)
       --set=<String=String>[@@@<String=String>...]
-                            Allows setting YAML path expressions (e.g., metadata.name=new_name) or regular expressions (env: YUPD_SET)
+                            Allows setting YAML path expressions (e.g., metadata.name=new_name), JSON path expressions (e.g., $.server.port=9090), or regular expressions (env: YUPD_SET)
   -t, --token=<token>       Provides the authentication token (env: YUPD_TOKEN)
   -V, --version             Print version information and exit.
       --verbose             If set to true, sets the log level to debug (env: YUPD_VERBOSE)

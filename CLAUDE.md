@@ -68,4 +68,7 @@ The codebase follows **Hexagonal Architecture** (Ports and Adapters):
 - **Main class**: `io.github.yupd.Yupd`
 - **Native compilation**: Supported via GraalVM (use `-Pnative` profile)
 - **Assembly**: Creates distribution packages in `target/distributions/`
-- Mets des commentaires uniquement quand nécessaire. Explique le pourquoi et non le comment.
+
+## Coding Standards
+
+- Add comments only when necessary. Explain the why, not the how.
