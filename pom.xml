@@ -13,6 +13,8 @@
         <jreleaser-plugin.version>1.20.0</jreleaser-plugin.version>
         <os-plugin.version>1.7.1</os-plugin.version>
         <surefire-plugin.version>3.5.4</surefire-plugin.version>
+        <pitest-plugin.version>1.17.2</pitest-plugin.version>
+        <pitest-junit5.version>1.2.1</pitest-junit5.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
@@ -229,6 +231,42 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>${pitest-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <version>${pitest-junit5.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <targetClasses>
+                        <param>io.github.yupd.domain.*</param>
+                        <param>io.github.yupd.infrastructure.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>io.github.yupd.*</param>
+                    </targetTests>
+                    <excludedClasses>
+                        <param>io.github.yupd.domain.model.*</param>
+                        <param>*ObjectMapperFactory*</param>
+                        <!-- covered by IT -->
+                        <param>io.github.yupd.infrastructure.git.connector.*</param>
+                    </excludedClasses>
+                    <excludedTestClasses>
+                        <param>io.github.yupd.integration.*</param>
+                    </excludedTestClasses>
+                    <mutationThreshold>80</mutationThreshold>
+                    <outputFormats>
+                        <outputFormat>XML</outputFormat>
+                        <outputFormat>HTML</outputFormat>
+                    </outputFormats>
+                    <timestampedReports>false</timestampedReports>
+                </configuration>
             </plugin>
         </plugins>
     </build>
