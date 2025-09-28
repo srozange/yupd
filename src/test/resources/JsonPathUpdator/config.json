@@ -7,10 +7,11 @@
   "database": {
     "url": "jdbc:postgresql://localhost:5432/mydb",
     "username": "user",
-    "maxConnections": 10
+    "maxConnections": 10,
+    "maxTimeout" : 20
   },
   "features": {
-    "enableCaching": true,
-    "enableMetrics": false
+    "enableCaching": false,
+    "enableMetrics": true
   }
 }

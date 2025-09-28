@@ -20,8 +20,10 @@ class JsonPathUpdaterTest {
         newContent = updater.update(newContent, ContentUpdateCriteria.from("$.server.ssl", "true"));
         newContent = updater.update(newContent, ContentUpdateCriteria.from("$.database.username", "newuser"));
         newContent = updater.update(newContent, ContentUpdateCriteria.from("$.database.maxConnections", "20"));
-        newContent = updater.update(newContent, ContentUpdateCriteria.from("$.features.enableMetrics", "true"));
-
+        newContent = updater.update(newContent, ContentUpdateCriteria.from("$.database.maxTimeout", "20.3"));
+        newContent = updater.update(newContent, ContentUpdateCriteria.from("$.features.enableCaching", "true"));
+        newContent = updater.update(newContent, ContentUpdateCriteria.from("$.features.enableMetrics", "false"));
+        
         assertThat(newContent).isEqualTo(expectedContent);
     }
 

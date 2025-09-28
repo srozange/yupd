@@ -266,6 +266,8 @@
                         <outputFormat>HTML</outputFormat>
                     </outputFormats>
                     <timestampedReports>false</timestampedReports>
+                    <verbose>true</verbose>
+                    <threads>4</threads>
                 </configuration>
             </plugin>
         </plugins>

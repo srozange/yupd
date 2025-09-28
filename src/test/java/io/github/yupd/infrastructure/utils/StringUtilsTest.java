@@ -7,6 +7,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 class StringUtilsTest {
 
     @Test
+    void testIsNullOrEmpty() {
+        assertThat(StringUtils.isNullOrEmpty(null)).isTrue();
+        assertThat(StringUtils.isNullOrEmpty("")).isTrue();
+        assertThat(StringUtils.isNullOrEmpty(" ")).isFalse();
+        assertThat(StringUtils.isNullOrEmpty("test")).isFalse();
+    }
+
+    @Test
+    void testIsNotEmpty() {
+        assertThat(StringUtils.isNotEmpty(null)).isFalse();
+        assertThat(StringUtils.isNotEmpty("")).isFalse();
+        assertThat(StringUtils.isNotEmpty(" ")).isTrue();
+        assertThat(StringUtils.isNotEmpty("test")).isTrue();
+    }
+
+    @Test
+    void testNullToEmpty() {
+        assertThat(StringUtils.nullToEmpty(null)).isEqualTo("");
+        assertThat(StringUtils.nullToEmpty("")).isEqualTo("");
+        assertThat(StringUtils.nullToEmpty(" ")).isEqualTo(" ");
+        assertThat(StringUtils.nullToEmpty("test")).isEqualTo("test");
+    }
+
+    @Test
     void testEqualsIgnoreTrailingSpaces() {
         assertThat(StringUtils.equalsIgnoreTrailingWhiteSpaces(null, null)).isTrue();
         assertThat(StringUtils.equalsIgnoreTrailingWhiteSpaces("", null)).isTrue();
