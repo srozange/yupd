@@ -13,7 +13,7 @@
         <jreleaser-plugin.version>1.20.0</jreleaser-plugin.version>
         <os-plugin.version>1.7.1</os-plugin.version>
         <surefire-plugin.version>3.5.4</surefire-plugin.version>
-        <pitest-plugin.version>1.17.2</pitest-plugin.version>
+        <pitest-plugin.version>1.20.4</pitest-plugin.version>
         <pitest-junit5.version>1.2.1</pitest-junit5.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <maven.compiler.source>21</maven.compiler.source>
