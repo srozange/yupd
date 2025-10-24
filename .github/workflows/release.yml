@@ -94,7 +94,7 @@ jobs:
         run: ./mvnw -B -ntp --file pom.xml -Pdist package -DskipTests
 
       - name: 'Upload build artifact'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: artifacts-${{ runner.os }}
           path: |
@@ -102,7 +102,7 @@ jobs:
             target/distributions/*.tar.gz
 
       - name: 'Upload linux executable for Docker image'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: contains(matrix.os, 'ubuntu')
         with:
           name: target
