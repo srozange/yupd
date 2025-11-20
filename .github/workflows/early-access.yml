@@ -17,7 +17,7 @@ jobs:
       VERSION: ${{ steps.vars.outputs.VERSION }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - uses: n1hility/cancel-previous-runs@v3
         with:
@@ -55,7 +55,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: 'Check out repository'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
     
       - name: 'Set up Graal'
         uses: graalvm/setup-graalvm@v1
@@ -99,7 +99,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Check out repository'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
