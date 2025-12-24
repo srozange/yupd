@@ -1,5 +1,7 @@
 package io.github.yupd.infrastructure.utils;
 
+import org.jspecify.annotations.Nullable;
+
 public class StringUtils {
 
     private static final String WINDOWS_CARRIAGE_RETURN_REGEXP = "\\r\\n";
@@ -10,23 +12,23 @@ public class StringUtils {
         throw new IllegalStateException("utility class");
     }
 
-    public static boolean isNullOrEmpty(String str) {
+    public static boolean isNullOrEmpty(@Nullable String str) {
         return str == null || str.isEmpty();
     }
 
-    public static boolean isNotEmpty(String str) {
+    public static boolean isNotEmpty(@Nullable String str) {
         return !isNullOrEmpty(str);
     }
 
-    public static String nullToEmpty(String str) {
+    public static String nullToEmpty(@Nullable String str) {
         return str == null ? "" : str;
     }
 
-    public static boolean equalsIgnoreTrailingWhiteSpaces(String str1, String str2) {
+    public static boolean equalsIgnoreTrailingWhiteSpaces(@Nullable String str1, @Nullable String str2) {
         return stripTrailingWhiteSpaces(str1).equals(stripTrailingWhiteSpaces(str2));
     }
 
-    private static String stripTrailingWhiteSpaces(String str) {
+    private static String stripTrailingWhiteSpaces(@Nullable String str) {
         return nullToEmpty(str)
                 .replaceAll(WINDOWS_CARRIAGE_RETURN_REGEXP, "\n")
                 .replaceAll(ONLY_WHITE_SPACES_AND_CARRIAGE_RETURN_REGEXP, "")

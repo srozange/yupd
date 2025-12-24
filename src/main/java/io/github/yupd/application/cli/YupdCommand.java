@@ -3,6 +3,8 @@ package io.github.yupd.application.cli;
 import io.github.yupd.domain.ports.in.GitFileUpdater;
 import io.github.yupd.domain.model.GitRepository;
 import io.github.yupd.infrastructure.utils.LogUtils;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import picocli.CommandLine;
 
 import java.nio.file.Path;
@@ -16,31 +18,31 @@ public class YupdCommand implements Callable<Integer> {
     private final GitFileUpdater gitFileUpdater;
 
     @CommandLine.Option(names = {"-r", "--repo"}, defaultValue = "${YUPD_REPO}", description = "Specifies the URL of the Git repository (env: YUPD_REPO)")
-    String url;
+    @Nullable String url;
 
     @CommandLine.Option(names = {"--repo-type"}, required = true, defaultValue = "${YUPD_REPO_TYPE}", description = "Specifies the repository type; valid values: 'gitlab' or 'github' (env: YUPD_REPO_TYPE)")
-    GitRepository.Type repoType;
+    GitRepository.@Nullable Type repoType;
 
     @CommandLine.Option(names = {"--project"}, required = true, defaultValue = "${YUPD_PROJECT}", description = "Identifies the project (e.g., 'srozange/yupd' for GitHub or '48539100' for GitLab) (env: YUPD_PROJECT)")
-    String project;
+    @Nullable String project;
 
     @CommandLine.Option(names = {"-b", "--branch"}, required = true, defaultValue = "${YUPD_BRANCH}", description = "Specifies the branch name of the target file to update (env: YUPD_BRANCH)")
-    String branch;
+    @Nullable String branch;
 
     @CommandLine.Option(names = {"-t", "--token"}, required = true, defaultValue = "${YUPD_TOKEN}", description = "Provides the authentication token (env: YUPD_TOKEN)")
-    String token;
+    @Nullable String token;
 
     @CommandLine.Option(names = {"-p", "--path"}, required = true, defaultValue = "${YUPD_PATH}", description = "Specifies the path of the target file to update (env: YUPD_PATH)")
-    String path;
+    @Nullable String path;
 
     @CommandLine.Option(names = {"--insecure"}, defaultValue = "${YUPD_INSECURE:-false}", description = "If set to true, disable SSL certificate validation (applicable to GitLab only) (env: YUPD_INSECURE)")
     boolean insecure;
 
     @CommandLine.Option(names = {"-f", "--template"}, defaultValue = "${YUPD_TEMPLATE}", description = "Points to a local YAML file to be used as the source, instead of the remote one (env: YUPD_TEMPLATE)")
-    Path sourceFile;
+    @Nullable Path sourceFile;
 
     @CommandLine.Option(names = {"-m", "--commit-msg"}, defaultValue = "${YUPD_COMMIT_MSG}", description = "Provides a custom commit message for the update (env: YUPD_COMMIT_MSG)")
-    String commitMessage;
+    @Nullable String commitMessage;
 
     @CommandLine.Option(names = {"--set"}, required = true, defaultValue = "${YUPD_SET}", split = "@@@", description = "Allows setting YAML path expressions (e.g., metadata.name=new_name), JSON path expressions (e.g., $.server.port=9090), or regular expressions (env: YUPD_SET)")
     Map<String, String> contentUpdates = new LinkedHashMap<>();
