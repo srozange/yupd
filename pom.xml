@@ -15,6 +15,9 @@
         <surefire-plugin.version>3.5.4</surefire-plugin.version>
         <pitest-plugin.version>1.21.0</pitest-plugin.version>
         <pitest-junit5.version>1.2.3</pitest-junit5.version>
+        <errorprone.version>2.45.0</errorprone.version>
+        <nullaway.version>0.12.15</nullaway.version>
+        <jspecify-packageinfo-generator.version>1.2.0</jspecify-packageinfo-generator.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
@@ -129,6 +132,12 @@
             <artifactId>archunit-junit5-engine</artifactId>
             <version>1.4.1</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jspecify</groupId>
+            <artifactId>jspecify</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>
@@ -270,6 +279,28 @@
                     <threads>4</threads>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>io.github.bcaillard.jspecify-utilities</groupId>
+                <artifactId>jspecify-packageinfo-generator-maven-plugin</artifactId>
+                <version>${jspecify-packageinfo-generator.version}</version>
+                <configuration>
+                    <sourceDirectories>
+                        <sourceDirectory>src/main/java</sourceDirectory>
+                    </sourceDirectories>
+                    <annotation>NULL_MARKED</annotation>
+                    <excludePackages>
+                        <excludePackage>io.github.yupd</excludePackage>
+                    </excludePackages>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate-package-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <profiles>
@@ -402,6 +433,42 @@
                                     </yupd>
                                 </distributions>
                             </jreleaser>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>nullaway</id>
+            <properties>
+                <skipTests>false</skipTests>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration combine.self="append">
+                            <compilerArgs>
+                                <arg>-XDcompilePolicy=simple</arg>
+                                <arg>--should-stop=ifError=FLOW</arg>
+                                <arg>-Xplugin:ErrorProne -Xep:NullAway:ERROR -XepOpt:NullAway:OnlyNullMarked=true</arg>
+                            </compilerArgs>
+                            <annotationProcessorPaths>
+                                <path>
+                                    <groupId>com.google.errorprone</groupId>
+                                    <artifactId>error_prone_core</artifactId>
+                                    <version>${errorprone.version}</version>
+                                </path>
+                                <path>
+                                    <groupId>com.uber.nullaway</groupId>
+                                    <artifactId>nullaway</artifactId>
+                                    <version>${nullaway.version}</version>
+                                </path>
+                            </annotationProcessorPaths>
                         </configuration>
                     </plugin>
                 </plugins>
