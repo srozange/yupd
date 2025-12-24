@@ -10,6 +10,7 @@ import com.jayway.jsonpath.spi.json.JacksonJsonProvider;
 import com.jayway.jsonpath.spi.mapper.JacksonMappingProvider;
 import io.github.yupd.domain.model.ContentUpdateCriteria;
 import jakarta.enterprise.context.ApplicationScoped;
+import org.jspecify.annotations.Nullable;
 
 @ApplicationScoped
 public class JsonPathUpdater {
@@ -37,9 +38,9 @@ public class JsonPathUpdater {
         }
     }
 
-    private Object parseValue(String value) {
+    private Object parseValue(@Nullable String value) {
         if (value == null) {
-            return null;
+            return "";
         }
         
         if (Boolean.TRUE.toString().equalsIgnoreCase(value)) {

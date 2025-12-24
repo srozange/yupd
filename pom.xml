@@ -284,13 +284,7 @@
                 <artifactId>jspecify-packageinfo-generator-maven-plugin</artifactId>
                 <version>${jspecify-packageinfo-generator.version}</version>
                 <configuration>
-                    <sourceDirectories>
-                        <sourceDirectory>src/main/java</sourceDirectory>
-                    </sourceDirectories>
                     <annotation>NULL_MARKED</annotation>
-                    <excludePackages>
-                        <excludePackage>io.github.yupd</excludePackage>
-                    </excludePackages>
                 </configuration>
                 <executions>
                     <execution>
@@ -298,6 +292,16 @@
                         <goals>
                             <goal>generate-package-info</goal>
                         </goals>
+                    </execution>
+                    <execution>
+                        <id>generate-test-package-info</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>generate-package-info-test</goal>
+                        </goals>
+                        <configuration>
+                            <annotation>NULL_UNMARKED</annotation>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

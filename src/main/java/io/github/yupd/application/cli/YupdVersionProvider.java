@@ -19,7 +19,7 @@ public class YupdVersionProvider implements CommandLine.IVersionProvider {
         try {
             return config.getValue(property, String.class);
         } catch (java.util.NoSuchElementException e) {
-            return null;
+            return "";
         }
     }
 
