@@ -15,7 +15,7 @@
         <surefire-plugin.version>3.5.5</surefire-plugin.version>
         <pitest-plugin.version>1.23.1</pitest-plugin.version>
         <pitest-junit5.version>1.2.3</pitest-junit5.version>
-        <errorprone.version>2.45.0</errorprone.version>
+        <errorprone.version>2.49.0</errorprone.version>
         <nullaway.version>0.13.4</nullaway.version>
         <jspecify-packageinfo-generator.version>1.2.0</jspecify-packageinfo-generator.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
@@ -459,6 +459,7 @@
                             <compilerArgs>
                                 <arg>-XDcompilePolicy=simple</arg>
                                 <arg>--should-stop=ifError=FLOW</arg>
+                                <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
                                 <arg>-Xplugin:ErrorProne -Xep:NullAway:ERROR -XepOpt:NullAway:OnlyNullMarked=true</arg>
                             </compilerArgs>
                             <annotationProcessorPaths>
